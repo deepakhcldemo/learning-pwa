@@ -1,0 +1,216 @@
+<!-- Media Popup container start -->
+<div class="media-wrapper" @slideInOut *ngIf="openMediaPopupState && mediaDetail" [ngClass]="{'active': openMediaPopupState}" [attr.aria-hidden]="!openMediaPopupState">
+  <div class="media-sidebar media-mobie-view">
+    <div class="row media-conatiner">
+      <div class="col-12 col-md-12 col-sm-12 col-lg-9 no-padding background">
+        <!-- Media container start -->
+        <div class="row image-container">
+          <div class="col-12 no-padding text-center border image-background" id="image-container-section">
+            <!-- Image containter start -->
+            <img *ngIf="mediaDetail?.media?.mediakind == 'image'" [src]="mediaDetail?.media?.path" class="enlarge-img item-container--focus"
+              alt="Image">
+            <!-- Image containter end -->
+            <!-- No Media containter start -->
+            <img *ngIf="!(mediaDetail?.media?.mediakind == 'image') && (!(mediaDetail?.media?.mediakind ==='video'))"
+              src="../../../assets/images/no-image.png" class="enlarge-noimage" alt="Image">
+            <!-- No Media containter end -->
+            <!-- Video containter start -->
+            <video id="video_section" *ngIf="mediaDetail?.media?.mediakind == 'video'" controls class="enlarge-img item-container--focus">
+              <source src="{{mediaDetail?.media?.path}}" [attr.tabindex]="tabIndexStatus? 0:-1" #video_section>
+            </video>
+            <!-- Video containter start -->
+          </div>
+        </div>
+        <!-- Media container end -->
+      </div>
+      <!--Div for selecting the students-->
+      <div class="col-12 col-md-12 col-sm-12 col-lg-3 no-padding sidebar-details" id="local">
+        <div class="row sidebar-header">
+          <div class="col-12 col-sm-12 col-md-12">
+            <button id="close_section" class="btn icon-exit exit-icon  exit-icon__top exit-icon__height icon__button btn__white item-container--focus"
+              aria-label="Close" (click)="closeMediaPopup();" (keyup.enter)="closeMediaPopup()" [attr.tabindex]="tabIndexStatus? 0:-1">
+            </button>
+            <button class="btn icon__button btn__white done__button item-container--focus" (click)="updateMedia(mediaDesc.value, caption.value);"
+              (keyup.enter)="updateMedia(mediaDesc.value, caption.value);" role="button" [attr.tabindex]="tabIndexStatus? 0:-1">Done</button>
+          </div>
+        </div>
+        <div class="sidebar-margin ps" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="isMobileView? true : false"
+          role="presentation" #scrollTopMediaPopup>
+          <div [ngClass]="{'sidebar-margin': isMobileView}">
+            <div class="form-group">
+              <!-- Media title container start -->
+              <input type="text" class="picture-title item-container--focus" #caption [value]="mediaCaption" spellcheck="false"
+                [attr.tabindex]="tabIndexStatus? 0:-1" onfocus="this.select()">
+              <!-- Media title container end -->
+              <!-- Media description container start -->
+              <textarea #mediaDesc class="form-control item-container--focus form-textarea" id="exampleFormControlTextarea"
+                rows="3" placeholder="Description" [(ngModel)]="mediaDetail.media.mediaDescription" spellcheck="false"
+                [attr.tabindex]="tabIndexStatus? 0:-1"></textarea>
+              <!-- Media description container end -->
+              <hr>
+            </div>
+            <!-- Tagged students list container desktop view start -->
+            <div class="media-students-section">
+              <h5 class="tag-students-heading tagged-students-header">Tagged
+                Students</h5>
+              <br>
+              <ul class="ul-padding-left ul-list-style-type tagged-students">
+                <li class="sidebar-padding sidebar-details item-container--focus" *ngFor="let student of taggedStudents">
+                  <div style="display: inline-block">
+                    <label class="checkbox-container">
+                      <input type="checkbox" class="custom-control-input item-container--focus" id="{{student?.fullName}}"
+                        (change)="addStudent($event, student)" [checked]="student?.tagged" [attr.tabindex]="tabIndexStatus? 0:-1">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                  <span class="gavatar item-container--focus">{{student?.avatar}}</span> <label class="label-margin"
+                    for="{{student.fullName}}">
+                    {{student.firstName.charAt(0).toUpperCase()+student.firstName.slice(1)}}
+                    {{student.lastName.charAt(0).toUpperCase()+student.lastName.slice(1)}} </label>
+                </li>
+              </ul>
+            </div>
+            <!-- Tagged students list container end -->
+            <hr>
+            <!-- Untagged students list container start -->
+            <div class="media-students-section">
+              <h5 class="tag-students-heading">Tag Students</h5>
+              <ul class="studentlist ul-padding-left ul-list-style-type">
+                <li class="sidebar-padding sidebar-details" *ngFor="let student of untaggedStudents">
+                  <div style="display: inline-block">
+                    <label class="checkbox-container">
+                      <input type="checkbox" class="custom-control-input item-container--focus" id="{{student?.fullName}}"
+                        (change)="addStudent($event, student)" [checked]="student?.tagged" [attr.tabindex]="tabIndexStatus? 0:-1"
+                        attr.aria-label="{{student.fullName}}">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                  <span class="gavatar">{{student?.avatar}}</span>
+                  <span class="btn icon__button label-margin" title="{{student.firstName.charAt(0).toUpperCase()+student.firstName.slice(1) + student.lastName.charAt(0).toUpperCase()+student.lastName.slice(1)}}">
+                    {{student.firstName.charAt(0).toUpperCase()+student.firstName.slice(1) +
+                    student.lastName.charAt(0).toUpperCase()+student.lastName.slice(1) |truncate : 15}}
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <!-- Untagged students list container end -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div tabindex="0" (focus)="setFocus('video_section', 'close_section')">
+    </div>
+  </div>
+
+  <!-- Mobile view start-->
+  <div class="media-sidebar media-desktop-view">
+    <div class="row media-conatiner">
+      <div class="col-12 col-md-12 col-sm-12 col-lg-9 no-padding background" *ngIf="enableMobileViewControl">
+        <div class="row sidebar-header device-mode">
+          <div class="col-12 sidebar-header__height">
+            <button class="btn icon-chevron icon-flipped icon-any icon__button item-container--focus" (click)="closeMediaPopup();"
+              (keyup.enter)="closeMediaPopup()" [attr.tabindex]="tabIndexStatus? 0:-1"></button><!--Remove autofocus from this button-->
+            <div class="image-caption">
+              {{mediaDetail?.media?.caption| truncate: 15 }}
+            </div>
+            <button class="btn editControll icon__button btn__white icon-edit item-container--focus" (click)="editMedia()"
+              (keyup.enter)="editMedia()" [attr.tabindex]="tabIndexStatus? 0:-1"> Edit
+            </button>
+
+          </div>
+        </div>
+        <!-- Media container mobile view start -->
+        <div class="row image-container">
+          <div class="col-12 no-padding text-center border image-background">
+            <img *ngIf="mediaDetail?.media?.mediakind == 'image'" [src]="mediaDetail?.media?.path" class="enlarge-img item-container--focus"
+              alt="Image">
+            <img *ngIf="!(mediaDetail?.media?.mediakind == 'image') && (!(mediaDetail?.media?.mediakind ==='video'))"
+              src="../../../assets/images/no-image.png" class="enlarge-noimage" alt="Image">
+            <video id="video_section_mobile" *ngIf="mediaDetail?.media?.mediakind == 'video'" controls class="enlarge-img item-container--focus"
+              [attr.tabindex]="tabIndexStatus? 0:-1">
+              <source src="{{mediaDetail?.media?.path}}">
+            </video>
+          </div>
+        </div>
+        <!-- Media container mobile view end -->
+      </div>
+      <!--Div for selecting the students-->
+      <div class="col-12 col-md-12 col-sm-12 col-lg-3 no-padding sidebar-details" *ngIf='!enableMobileViewControl'>
+        <div class="row sidebar-header">
+          <div class="col-12 col-sm-12 col-md-12">
+            <button id="close_section_mobile" class="btn icon-exit exit-icon exit-icon__top icon__button btn__white item-container--focus"
+              aria-label="Close" (click)="closeMobileView();" (keyup.enter)="closeMobileView()" [attr.tabindex]="tabIndexStatus? 0:-1"
+              ><!--remove autofocus from this button-->
+            </button>
+            <button class="btn icon__button btn__white done__button item-container--focus" (click)="updateMedia(mediaDesc.value, caption.value);"
+              (keyup.enter)="updateMedia(mediaDesc.value, caption.value);" role="button" [attr.tabindex]="tabIndexStatus? 0:-1">
+              Done</button>
+          </div>
+        </div>
+        <div class="sidebar-margin ps" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="isMobileView? true : false">
+          <div [ngClass]="{'sidebar-margin': isMobileView}">
+            <div class="form-group">
+              <input type="text" class="picture-title item-container--focus" #caption [value]="mediaCaption" spellcheck="false"
+                [attr.tabindex]="tabIndexStatus? 0:-1" onfocus="this.select()">
+              <textarea #mediaDesc class="form-control item-container--focus" id="exampleFormControlTextarea" rows="3"
+                placeholder="Description" [(ngModel)]="mediaDetail.media.mediaDescription" spellcheck="false"
+                [attr.tabindex]="tabIndexStatus? 0:-1"></textarea>
+              <hr>
+            </div>
+            <!-- Tagged students list container mobile view start -->
+            <div class="media-students-section">
+              <h5 class="tag-students-heading tagged-students-header">Tagged
+                Students</h5>
+              <br>
+              <ul class="ul-padding-left ul-list-style-type tagged-students">
+                <li class="sidebar-padding sidebar-details item-container--focus" *ngFor="let student of taggedStudents">
+
+                  <div style="display: inline-block">
+                    <label class="checkbox-container">
+                      <input type="checkbox" class="custom-control-input item-container--focus" id="{{student?.fullName}}"
+                        (change)="addStudent($event, student)" [checked]="student?.tagged" [attr.tabindex]="tabIndexStatus? 0:-1">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+
+                  <span class="gavatar item-container--focus">{{student?.avatar}}</span> <label class="label-margin"
+                    for="{{student.fullName}}">
+                    {{student.firstName.charAt(0).toUpperCase()+student.firstName.slice(1)}}
+                    {{student.lastName.charAt(0).toUpperCase()+student.lastName.slice(1)}} </label>
+                </li>
+              </ul>
+            </div>
+            <!-- Tagged students list container mobile view end -->
+            <hr>
+            <!-- untagged students list container mobile view start -->
+            <div class="media-students-section">
+              <h5 class="tag-students-heading">Tag Students</h5>
+              <ul class="studentlist ul-padding-left ul-list-style-type">
+                <li class="sidebar-padding sidebar-details" *ngFor="let student of untaggedStudents">
+                  <div style="display: inline-block">
+                    <label class="checkbox-container">
+                      <input type="checkbox" class="custom-control-input item-container--focus" id="{{student?.fullName}}"
+                        (change)="addStudent($event, student)" [checked]="student?.tagged" [attr.tabindex]="tabIndexStatus? 0:-1"
+                        attr.aria-label="{{student.fullName}}">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+
+                  <span class="gavatar">{{student?.avatar}}</span>
+                  <span class="btn icon__button label-margin" title="{{student.firstName.charAt(0).toUpperCase()+student.firstName.slice(1) + student.lastName.charAt(0).toUpperCase()+student.lastName.slice(1)}}">
+                    {{student.firstName.charAt(0).toUpperCase()+student.firstName.slice(1) +
+                    student.lastName.charAt(0).toUpperCase()+student.lastName.slice(1) |truncate : 15}}
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <!-- untagged students list container mobile view start -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div tabindex="0" (focus)="setFocus('video_section_mobile', 'close_section_mobile')"></div> -->
+  </div>
+  <!-- Mobile view end -->
+</div>
+<!-- Media Popup container end -->

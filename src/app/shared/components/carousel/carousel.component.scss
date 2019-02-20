@@ -1,0 +1,148 @@
+@import "../../../../styles/mixins";
+/*Css For Next And Previous Button Of Carousel */
+
+.slick-next {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #EEF3F7 69%) !important;
+    position: absolute;
+    display: block;
+    height: 330px;
+    width: 50px;
+    line-height: 0px;
+    font-size: 0px;
+    cursor: pointer;
+    color: transparent;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    padding: 0;
+    border: none;
+    outline: none;
+    right: -1px;
+    z-index: 1;
+    &:hover {
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #EEF3F7 69%);
+    }
+}
+
+.slick-prev {
+    position: absolute;
+    display: block;
+    height: 330px;
+    width: 50px;
+    line-height: 0px;
+    font-size: 0px;
+    cursor: pointer;
+    color: transparent;
+    top: -20px;
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    padding: 0;
+    border: none;
+    outline: none;
+    left: -1px;
+    z-index: 1;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #EEF3F7 69%) !important;
+    &:hover {
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #EEF3F7 69%);
+    }
+}
+
+.slick-next:before {
+    content: "\e920";
+}
+
+.slick-prev:before {
+    content: "\e920";
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-family: $font-family-k12_universal_icons;
+    font-size: 48px;
+    line-height: 1;
+    color: $dark-green;
+    opacity: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Applied style to slick in the carousel. */
+
+.slick-slide {
+    margin-left: -5px;
+    margin-right: -5px;
+    transform: scale(0.8);
+    &.slick-current {
+        transform: scale(1);
+    }
+}
+
+.slick-slider {
+    touch-action: auto;
+    -ms-touch-action: auto;
+    touch-action: pan-y !important;
+}
+
+// class for '...' for animation
+.sync-data-animation {
+    display: inline-block;
+}
+
+@keyframes blink {
+    /**
+     * At the start of the animation the dot
+     * has an opacity of .2
+     */
+    0% {
+        opacity: .2;
+    }
+    /**
+     * At 20% the dot is fully visible and
+     * then fades out slowly
+     */
+    20% {
+        opacity: 1;
+    }
+    /**
+     * Until it reaches an opacity of .2 and
+     * the animation can start again
+     */
+    100% {
+        opacity: .2;
+    }
+}
+
+.sync-data-animation span {
+    /**
+     * Use the blink animation, which is defined above
+     */
+    animation-name: blink;
+    /**
+     * The animation should take 1.4 seconds
+     */
+    animation-duration: 1.4s;
+    /**
+     * It will repeat itself forever
+     */
+    animation-iteration-count: infinite;
+    /**
+     * This makes sure that the starting style (opacity: .2)
+     * of the animation is applied before the animation starts.
+     * Otherwise we would see a short flash or would have
+     * to set the default styling of the dots to the same
+     * as the animation. Same applies for the ending styles.
+     */
+    animation-fill-mode: both;
+}
+
+.sync-data-animation span:nth-child(2) {
+    /**
+     * Starts the animation of the third dot
+     * with a delay of .2s, otherwise all dots
+     * would animate at the same time
+     */
+    animation-delay: .2s;
+}
+
+.sync-data-animation span:nth-child(3) {
+    animation-delay: .4s;}

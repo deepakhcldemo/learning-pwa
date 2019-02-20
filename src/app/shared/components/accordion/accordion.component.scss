@@ -1,0 +1,176 @@
+@import "../../../../styles/mixins";
+.navigation-tabs-container {
+    height: 52px;
+    background-color: $white-smoke-invision;
+}
+
+.navigation-tabs {
+    height: inherit;
+    padding: 10px;
+}
+
+.label-off {
+    height: 30px;
+    width: 181px;
+    background-color: #FFFFFF;
+    border: 1px solid $elf-green;
+    box-shadow: none !important;
+    border-radius: unset;
+    color: $elf-green;
+}
+
+.label-off.active {
+    height: 30px;
+    width: 181px;
+    background: $elf-green !important;
+    border: 1px solid $elf-green;
+    box-shadow: none !important;
+    border-radius: unset;
+    color: $white;
+}
+
+.accordion {
+    padding: 0;
+}
+
+.grade-container {
+    height: 44px;
+    background-color: $tranquil;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.3);
+    text-decoration-color: $dark-green;
+    color: $dark-green;
+    cursor: pointer;
+    margin-bottom: 0px;
+    display: block;
+    padding-right: 0px;
+}
+
+.grade-container {
+    height: 44px;
+    background-color: $tranquil;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.parentHidden {
+    display: none;
+}
+
+.accordSpan {
+    width: 94%;
+    display: inline-block;
+    height: inherit;
+    vertical-align: sub;
+    padding-right: 0px;
+}
+
+.open-grid-font-style {
+    height: 24px;
+    color: $elf-green;
+    font-family: Cabin;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.accordSpan-checkList {
+    height: 100% !important;
+    width: 89%;
+    display: inline-block;
+}
+
+.parent-container-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.parent-icon-rotate {
+    display: inline-block;
+    transform: rotate(90deg);
+}
+
+.caret {
+    height: inherit;
+    width: 24px;
+    color: $dark-green;
+    font-family: FontAwesome;
+    font-size: 26px;
+    line-height: 44px;
+    text-align: center;
+    cursor: pointer;
+    padding: 0px;
+}
+
+.assessment-accordion-style {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.assessments-space {
+    height: 70px;
+    width: 540px;
+    background-color: #F9F9F9;
+    padding: 12px 0px 10px 20px;
+    border-bottom: 1px solid $lightest-grey;
+}
+
+.noAssessment {
+    display: none;
+}
+
+.assessment-style {
+    height: 18px;
+    color: $dark-grey;
+    font-family: Cabin;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.assessment-color-style {
+    cursor: pointer;
+    color: $dark-green;
+    height: 24px;
+    font-family: Cabin;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    padding-top: 5px;
+}
+
+.change-background {
+    background-color: $search-placeholder-color !important;
+}
+
+.gradeColor {
+    background-color: $white !important;
+    box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.change-text {
+    color: $lightblue !important;
+    width: 91% !important;
+}
+
+.grade-text {
+    height: 24px;
+    color: $dark-green;
+    font-family: $font-family-cabin;
+    font-size: 18px;
+    line-height: 43px;
+}
+
+@media screen and (max-width: 768px) {
+    .accordSpan {
+        width: 91%;
+    }
+    .assessment-accordion-style {
+        text-align: left;
+        margin: 10px;
+        padding-left: 10px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .accordSpan {
+        width: 92%;
+    }
+}

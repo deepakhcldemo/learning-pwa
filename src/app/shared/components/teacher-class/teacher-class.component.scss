@@ -1,0 +1,111 @@
+@import "../../../../styles/mixins";
+
+/* Applied on class selector dropdown */
+.dropdown--position {
+  display: inline;
+  position: absolute;
+  right: 0px;
+  z-index: 2;
+  top: 0px;
+}
+
+.class-menu--selector {
+  position: absolute;
+  right: 105px;
+  color: $white;
+  background: $black;
+  font-family: $font-family-cabin;
+  box-shadow: none !important;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  height: 42px;
+  width: unset;
+  left: unset;
+  border-radius: unset;
+}
+
+.caret {
+  text-transform: capitalize;
+}
+
+.class-list--style {
+  overflow-y: auto;
+  max-height: 250px;
+  border-radius: 0px;
+  left: unset;
+  width: unset;
+}
+
+.class-menu--options {
+  height: 50px;
+  width: 220px;
+  line-height: 50px;
+  text-transform: capitalize;
+  border-bottom: 1px solid $carbon-grey;
+  cursor: pointer;
+  padding-left: 15px;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: $font-family-cabin;
+  color: $black;
+  background: $white;
+  color: $elf-green;
+}
+
+.no-class--message {
+  height: 44px;
+  width: 220px;
+  font-family: $font-family-cabin;
+  font-size: 18px;
+  font-weight: bold;
+  color: $lightest-grey;
+  position: absolute;
+  right: 107px;
+  margin-top: 8px;
+  left: unset;
+  text-align: unset;
+  padding-top: unset;
+}
+
+@media screen and (max-width: 768px) {
+  .dropdown--position {
+    position: fixed;
+    top: 54px;
+    width: 100%;
+  }
+
+  .class-menu--selector {
+    width: 100%;
+    left: 0px;
+    font-size: 16px;
+    border-radius: 0;
+    height: 38px;
+  }
+
+  .class-list--style {
+    width: 100%;
+    transform: translate3d(0px, 38px, 0px) !important;
+    margin: 0px;
+  }
+  .class-menu--options {
+    width: 100%;
+    text-align: center;
+  }
+  .no-class--message {
+    height: 38px;
+    width: 100%;
+    background: $black;
+    margin-top: 0px;
+    left: 0px;
+    text-align: center;
+    padding-top: 5px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .dropdown--position {
+    right: 0px;
+  }
+}

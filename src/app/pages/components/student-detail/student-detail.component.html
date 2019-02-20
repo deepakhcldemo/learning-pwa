@@ -1,0 +1,78 @@
+<div class="student-container" [ngClass]="{'active': popupStatus}" aria-hidden="!popupStatus">
+  <div class="row student-header">
+    <div class="col-12 student-container--margin" *ngIf="!editable">
+      <button id="arrow_button" class="btn icon__button btn__font icon-chevron icon-flipped icon-any item-container--focus" (keyup.enter)="closeStudentPopup()" (click)="closeStudentPopup();" *ngIf="assessmentDetail?.assessment?.type !== 'ongoing'" [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="close student assessment details"></button>
+      <span *ngIf="editable" class="gavatar">{{studentDetails?.avatar}}</span>
+      <span class="student--name">
+        {{studentDetails?.fullName}}
+      </span>
+      <span class="editbutton-container">
+        <button class="btn icon__button btn__white btn__font item-container--focus" (click)="toggleEdit()" [attr.tabindex]="tabIndexStatus? 0:-1">
+          <div class="editbutton__font" aria-label="click here to Remove Observation">
+          <span class="editbutton__font--remove">Remove</span><br>Observation
+          </div></button>
+      </span>
+
+    </div>
+    <div class="col-12 student-container--margin" *ngIf="editable">
+      <button class="btn icon__button btn__white btn__font editbutton--cancel item-container--focus" (keyup.enter)="toggleEdit()" (click)="toggleEdit()" [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="close Edit screen">
+        Cancel </button>
+      <button class="btn icon__button btn__white btn__font editbutton--remove item-container--focus" (click)="deleteComment();" (keyup.enter)="deleteComment();" [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="delete selected student item details">
+        Remove
+      </button>
+    </div>
+  </div>
+
+  <div class="student-item-list" *ngIf="allComment && allComment.length>0">
+    <div class="row student-item-row" *ngFor="let comment of allComment; let i = index" [attr.data-index]="i">
+
+      <div class="col-4 comment-container">
+        <div class="comment--style">
+          <label class="checkbox-container" *ngIf="editable">
+            <input class="custom-control-input item-container--focus" type="checkbox" (click)="pushStudentCommentIds($event, comment)" [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="check checkbox item to perform delete action">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="comment--date">
+          {{comment.updatedat?.seconds|dateFormat}}
+        </div>
+      </div>
+      <div [ngClass]="{'disable-click': editable}" class="col-7 student-list--style">
+        <button *ngIf="comment.ctype === 'comment'" (click)="getComment(comment)" class='comment-type--style icon__button item-container--focus' [attr.tabindex]="tabIndexStatus? 0:-1"  attr.aria-label="click here to open comment {{comment.comments}} created on date {{comment.updatedat?.seconds|dateFormat}}">
+          {{comment.comments}}</button>
+
+        <img alt="image" *ngIf="comment.ctype === 'media' && comment?.mediaData?.mediakind === 'image'" (click)="getComment(comment)" (keyup.enter)="getComment(comment)"
+          class="comment-type--media image-placeholder item-container--focus" src="{{comment.mediaData.path}}" [attr.tabindex]="tabIndexStatus? 0:-1" attr.aria-label="click here to open image created on date {{comment.updatedat?.seconds|dateFormat}}">
+        <video *ngIf="comment.ctype === 'media' && comment?.mediaData?.mediakind === 'video'" controls class="comment-type--media item-container--focus"
+          (click)="getComment(comment)" (keyup.enter)="getComment(comment)" [attr.tabindex]="tabIndexStatus? 0:-1" attr.aria-label="click here to open video created on date {{comment.updatedat?.seconds|dateFormat}}">
+          <source src="{{comment.mediaData.path}}">
+        </video>
+      </div>
+
+    </div>
+  </div>
+  <div class="student-item-list--blank" *ngIf="allComment && allComment.length === 0" aria-label="currently No Record found">
+      No observation yet
+  </div>
+
+  <div class="row comment-section">
+    <div class="col-12 comment-section--inner">
+      <div class="comment-student--add">
+        <input class="save-comment item-container--focus" [(ngModel)]="studentComment" placeholder="Write a comment" type="text"
+          (keyup.enter)="saveNewComment()" [attr.tabindex]="tabIndexStatus? 0:-1">
+      </div>
+      <div class="media-upload__button">
+        <input class="image-file item-container--focus" type="file" accept="media_type" capture="camcorder" (change)="onFileSelected($event)"
+          #imgInput>
+        <button class="btn icon__button btn__font--capture icon-camera" (click)="imgInput.click()" [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="Media capture"></button>
+
+        <button class="btn icon__button btn__font--capture icon-media_library icon-footer" (click)="getMediaList()" [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="Media library"></button>
+      </div>
+    </div>
+  </div>
+<div tabindex="0" (focus)="setAccessibilityFocus('arrow_button')"></div>
+</div>
+<app-global-modal [headerTitle]="headerTitle" [popupType]="popupType">
+  <app-media-library (deleteMediaCount)="deleteMediaCommentFromLibrary($event)" (updateMediaCount) = saveIsObserved($event)></app-media-library>
+</app-global-modal>
+<app-comment-popup></app-comment-popup>

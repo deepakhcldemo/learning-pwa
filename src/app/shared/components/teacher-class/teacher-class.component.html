@@ -1,0 +1,15 @@
+<div class="dropdown dropdown--position" *ngIf="classSelectorStatus">
+  <button class="btn class-menu--selector dropdown-toggle" type="button" data-toggle="dropdown" *ngIf="currentClass">
+    <span class="caret">{{currentClass?.className}}</span></button>
+  <ul class="dropdown-menu col-without-padding class-list--style" *ngIf="allClasses && allClasses.length > 1">
+    <li class="class-menu--options" [ngStyle]="{'color':class == currentClass ? '#09866D' : 'black' }" *ngFor="let class of allClasses"
+      (click)="setCurrentClass(class)">{{class?.className | truncate : classNameLength}}</li>
+  </ul>
+  <ul class="dropdown-menu col-without-padding class-list--style" *ngIf="allClasses && allClasses.length === 1">
+    <li class="class-menu--options" >{{allClasses[0]?.className | truncate : classNameLength}}</li>
+  </ul>
+</div>
+
+<div class="dropdown dropdown--position" *ngIf="!classSelectorStatus">
+  <span class="no-class--message">No Class Available</span>
+</div>

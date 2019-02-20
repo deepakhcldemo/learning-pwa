@@ -1,0 +1,543 @@
+@import "../../../../../styles/mixins";
+// new CSS
+.page-container {
+    overflow-y: hidden;
+}
+// .no-record-desktop{
+//     display : none;
+// }
+
+.programs {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.programs-box-shadow {
+    padding-left: 0px;
+    margin: 0;
+}
+
+.assessment-checklist-sideber-container {
+    height: calc(100% - 35px);
+    border: 1px solid $white-grey;
+    box-shadow: 0 0 5px 1px $grey;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: grid;
+}
+
+.program-list {
+    color: $lightblue;
+    cursor: pointer;
+    padding: 0;
+    font-size: 18px;
+    list-style: none;
+}
+
+.program-list-item-container {
+    border-bottom: 1px solid #d6d6d6;
+    padding: 10px;
+}
+
+.program-list-item {
+    display: block;
+    width: 100%;
+}
+
+.program-list-item__active {
+    border-left: 4px solid $blue;
+    color: $sine-blue;
+}
+
+.program-list__backgroundColor {
+    background-color: $white;
+}
+
+.icon-chevron__color {
+    float: right;
+}
+
+/*class for container of accordion*/
+
+.accordian-container {
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: unset;
+    position: absolute;
+    width: calc(100% - 70px);
+    height: calc(100vh - 100px);
+}
+
+.assessment-checkilist-accordion {
+    width: 30%;
+    float: left;
+    height: inherit;
+}
+
+/*left side coursal for grades and units   */
+
+.assessment-checklist-sidebar-header {
+    background-color: $dark-blue;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+    height: 44px;
+    line-height: 44px;
+    font-family: $font-family-cabin;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: $white;
+    text-align: left;
+    padding-left: 0px;
+}
+
+/*give margin from left to the checklist heading*/
+
+.assessment-checklist-report-heading {
+    margin-left: 6px;
+}
+
+.no-records {
+    text-align: center;
+}
+
+.no-record-mobile {
+    display: none;
+}
+
+/*close button icon*/
+
+.exit-icon-padding {
+    display: none;
+}
+
+/*dynamically apply class to navigation bar*/
+
+.assessment-checklist-navigation-bar {
+    overflow-y: auto;
+    background: $white;
+    box-shadow: 0 0 5px 1px $grey;
+    list-style: none;
+    padding-left: 0px;
+    li {
+        cursor: pointer;
+    }
+}
+
+/* class for specfic li for a grid*/
+
+.assessment-checklist-grade-container {
+    //padding: 4px 0 4px 20px;
+    font-size: 18px;
+    background-color: $search-placeholder-color;
+    text-decoration-color: $lightblue;
+    color: $dark-blue;
+    border-bottom: 1px solid $lightest-grey;
+    cursor: pointer;
+}
+
+/* class for first grade selected*/
+
+.first-selected-grade {
+    background-color: $white !important;
+}
+
+/* specific span for short name for bench mark and math practice*/
+
+.assessment-checklis-span {
+    height: 100% !important;
+    display: inline-block;
+    text-align: left;
+    color: $lightblue;
+    cursor: pointer;
+    width: 88%;
+}
+
+/*padding from left and change the font-weight tp description title*/
+
+.assessment-description-title {
+    padding-left: 10px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+/*adding border to the left for selecting any benchmar/mathpractice*/
+
+.border-adding-benchmark {
+    border-left: 4px solid $blue;
+}
+
+/* becnch mark and mathpractice css*/
+
+.benchmark-block-title {
+    display: block;
+    text-align: left;
+    color: $lightblue;
+}
+
+/*color to benchmark title*/
+
+.border-adding-benchmark>.benchmark-block-title {
+    color: $sine-blue;
+}
+
+/* becnch mark and mathpractice description css*/
+
+.benchmark-block-description {
+    display: block;
+    text-align: left;
+    color: $carbon-black;
+}
+
+/*color to benchmark description*/
+
+.border-adding-benchmark>.benchmark-block-description {
+    color: $carbon-black;
+}
+
+.caret__icon {
+    height: 36px;
+    width: 24px;
+    color: $blue;
+    font-family: FontAwesome;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer; // width: 10%;
+    position: relative;
+    top: -34px;
+    right: 10px;
+}
+
+/*rotating the arrow by 90 degrre*/
+
+.rotate-arrow {
+    display: inline-block;
+    transform: rotate(90deg);
+    position: relative;
+    top: -34px;
+}
+
+.arrow-left {
+    position: relative;
+    top: -34px;
+}
+
+/*assessment check list for mobile view*/
+
+.assessment-checlist-mobile-view {
+    display: none;
+}
+
+.assessment-checkilist-desktop-view {
+    width: 70%;
+    left: 30%;
+    position: relative;
+}
+
+/* class top bar for asseement check with */
+
+.assessment-checklist-practice-top-bar {
+    padding-left: 10px;
+    height: 44px;
+    width: 100%;
+    background-color: $search-placeholder-color;
+}
+
+/*rotating the arrow by 180 degrre*/
+
+.assessment-checklist-rotate-arrow {
+    display: inline-block;
+    transform: rotate(180deg);
+}
+
+/*student list for comment section*/
+
+.student-list {
+    max-height: calc(100vh - 130px);
+    overflow-y: auto;
+    width: calc(100% - 43px);
+}
+
+/* individual cards for individual student */
+
+.card {
+    width: 100%; // border: 0px;
+    flex-direction: unset;
+    margin-bottom: 12px;
+}
+
+/* individual cards body for individual student */
+
+.card-body {
+    padding: 12px;
+    display: flex;
+}
+
+/* individual student details */
+
+.std_details {
+    width: 100%; //padding: 4px 0 0 25px;
+    padding: 4px 0 0 12px;
+}
+
+/* individual student name */
+
+.std_name {
+    height: 19px;
+    width: 150px;
+    color: $dark-grey;
+    font-family: $font-family-cabin;
+    font-size: 18px;
+    line-height: 18px;
+    word-break: break-word;
+    display: inline-block;
+}
+
+/* class for alphabet sorting*/
+
+.side-menu-sorting {
+    position: absolute;
+    color: $lightblue;
+    right: 0px;
+    top: -43px;
+    bottom: 0;
+    padding: 0 2px;
+    cursor: pointer;
+    height: calc(100vh - 90px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 35px;
+    background-color: $white;
+    box-shadow: -1px 0 4px 0 rgba(0, 0, 0, 0.2);
+    display: block;
+}
+
+/* div inside side menu sorting */
+
+.menu-options {
+    color: $lightblue !important;
+    font-family: $font-family-cabin;
+    font-size: 16px;
+    line-height: 36px;
+    text-align: center;
+}
+
+/*change the  font color for arrow*/
+
+.icon__button__font {
+    color: $lightblue;
+}
+
+/*side commenting section */
+
+.side_comment_section {
+    padding-left: 14px;
+    padding-right: 5px;
+    margin-top: 44px;
+}
+
+/*assessment checklist reoprst for desktop view*/
+
+.assessment-checkilist-desktop-view {
+    display: block;
+}
+
+/*change the display to inline for student avtar*/
+
+.student-gavtar {
+    display: inline-table;
+}
+
+/*class to div with no records*/
+
+.assessment-checklist-no-record {
+    text-align: center;
+}
+
+.no-record-text {
+    text-align: center;
+}
+
+.alphabet--anchor {
+    display: block;
+}
+
+// .no-record {
+//     position: absolute;
+//     left: 55%;
+//     top: 50px;
+// }
+
+.no-record-desktop {
+    display: block;
+    position: absolute;
+    left: 52%;
+    top: 10%;
+}
+
+@media screen and (max-width: 1024px) {
+    .assessment-checlist-mobile-view {
+        display: none;
+    }
+    .assessment-checklis-span {
+        width: 75%;
+    }
+    .no-record-mobile {
+        display: none;
+    }
+    .no-record-desktop {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .no-record-mobile{
+        display: block;
+    position: absolute;
+    left: 4%;
+    top: 14%;
+    }
+    .no-record-desktop {
+       display: none;
+    }
+   
+    /*left side coursal for grades and units   */
+    .assessment-checklist-sidebar-header {
+        padding: 0px;
+    }
+    .accordian-container {
+        width: 100%;
+        padding-top: 36px;
+        height: calc(100vh - 170px);
+    }
+    .assessment-checkilist-accordion {
+        width: 100%
+    }
+    .exit-icon-padding {
+        display: inline-block;
+        font-size: 20px !important;
+        height: 28px !important;
+        width: 36px !important;
+    }
+    .assessment-checklis-span {
+        width: 88%;
+    }
+    /*assessment check list for mobile view*/
+    .assessment-checlist-mobile-view {
+        display: block;
+        position: fixed;
+        top: 135px;
+        left: 0px;
+        right: 0px;
+        height: calc(100% - 120px);
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    /*chang color for button icons*/
+    .icon__button__color {
+        color: $blue;
+        font-size: 20px;
+    }
+    /* benchmark for mobile view*/
+    .benchmark-block {
+        height: 111px;
+        width: 100%;
+        background-color: $white;
+        padding: 1.5rem;
+    }
+    /* class for benchmark description */
+    .benchmark--title-desc {
+        border-left: 4px solid $sine-blue;
+        background-color: $white;
+    }
+    /* class for benchmark titile */
+    .benchmark-titie {
+        height: 24px;
+        width: 100%;
+        color: $sine-blue;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 24px;
+    }
+    /* class for selected unit */
+    .benchmark-titie-left {
+        padding-left: 10px;
+    }
+    /* bench mark and math practice description for mobile view */
+    .benchmark-mobile-description {
+        padding-left: 10px;
+        display: block;
+        max-width: 349px;
+        white-space: nowrap; //overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .student-list {
+        width: 100%;
+        max-height: calc(100vh - 330px);
+    }
+    .card {
+        background-color: $search-placeholder-color;
+    }
+    /*specific student card*/
+    .card-without-border {
+        margin: 0 auto;
+        background-color: $white;
+        margin-top: 10px;
+        margin-top: 0px;
+    }
+    .card-body {
+        background-color: $white;
+        max-width: 85%;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+    /*give margin 0 to avtar */
+    .gavatar--margin {
+        left: 0 !important;
+        margin: 0 !important;
+    }
+    /* comments componenet class */
+    .comment-section {
+        background-color: $white;
+        max-width: 85%;
+        margin: 0 auto;
+    }
+    .side-menu-sorting {
+        width: 35px;
+        padding-right: 5px;
+        top: 95px;
+        box-shadow: none;
+        background-color: #e0e9ef;
+        max-height: calc(100% - 170px);
+    }
+    .menu-options {
+        line-height: 27px;
+    }
+    .no-record-div {
+        min-height: 100%;
+        padding-top: 40%;
+    }
+    .assessment-checkilist-desktop-view {
+        display: none;
+    }
+    .remove-sidebar {
+        display: none;
+    }
+    .removeAssessment {
+        display: none;
+    }
+    .back-button {
+        min-height: 40px;
+    }
+    .selected-tag {
+        background-color: lightblue;
+        min-height: 80px;
+    }
+    .assessment-mobile-view {
+        overflow-y: scroll;
+        height: calc(100% - 175px);
+        position: absolute;
+        width: calc(100% - 44px);
+    }
+}

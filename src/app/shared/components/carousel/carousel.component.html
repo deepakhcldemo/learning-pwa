@@ -1,0 +1,11 @@
+<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" *ngIf=" assessmentItemList.length>0"
+    tabindex="-1" role="listitem">
+    <div ngxSlickItem *ngFor="let checklist of assessmentItemList" class="slide" tabindex="-1">
+        <app-progress-card (click)="openAssessment(checklist)" (keyup.enter)="openAssessment(checklist)" [checklist]="checklist"
+            tabindex="-1">
+        </app-progress-card>
+    </div>
+</ngx-slick-carousel>
+<div class="carousel carousel-line-height" *ngIf=" assessmentItemList.length ===0">Loading <span class='sync-data-animation'>
+        <span>...</span></span>
+</div>

@@ -1,0 +1,71 @@
+{
+  "type": "ongoing",
+  "title": "Ongoing Assessment 7",
+  "id": "ONGOING_7",
+  "keywords": ["ongoing", "assessment", "7"],
+  "criteria": [
+    {
+      "id": "ONG_7_CRIT_1",
+      "title": "Ongoing criteria 1",
+      "sequence": 1,
+      "tags": [
+        {
+          "title": "Criteria tag 1",
+          "description": "This is the description of criteria tag 1"
+        },
+        {
+          "title": "Criteria tag 2",
+          "description": "This is the description of criteria tag 2"
+        }
+      ]
+    },
+    {
+      "id": "ONG_7_CRIT_2",
+      "title": "Ongoing criteria 2",
+      "sequence": 2,
+      "tags": [
+        {
+          "title": "Criteria tag 2",
+          "description": "This is the description of criteria tag 2"
+        },
+        {
+          "title": "Criteria tag 3",
+          "description": "This is the description of criteria tag 3"
+        }
+      ]
+    },
+    {
+      "id": "ONG_7_CRIT_3",
+      "title": "Ongoing criteria 3",
+      "sequence": 3,
+      "tags": [
+        {
+          "title": "Criteria tag 3",
+          "description": "This is the description of criteria tag 3"
+        }
+      ]
+    },
+    {
+      "id": "ONG_7_CRIT_4",
+      "title": "Ongoing criteria 4",
+      "sequence": 4,
+      "tags": [
+        {
+          "title": "Criteria tag 4",
+          "description": "This is the description of criteria tag 4"
+        }
+      ]
+    },
+    {
+      "id": "ONG_7_CRIT_5",
+      "title": "Ongoing criteria 5",
+      "sequence": 5,
+      "tags": [
+        {
+          "title": "Criteria tag 4",
+          "description": "This is the description of criteria tag 4"
+        }
+      ]
+    }
+  ]
+}

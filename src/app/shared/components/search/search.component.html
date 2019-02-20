@@ -1,0 +1,230 @@
+<!--Divsion to open or close the search panel with overlay effect starts here-->
+<div
+  class="overlay"
+  [ngClass]="{ active: toggleSearch }"
+  (click)="toggleSearchSideBar()"
+  [attr.aria-hidden]="!toggleSearch"
+></div>
+<!--Divsion to open or close the search panel with overlay effect  ends here-->
+
+<!--Search Wrapper-->
+<div
+  @slideInOut
+  *ngIf="toggleSearch"
+  class="search-wrapper"
+  [ngClass]="{ active: toggleSearch }"
+  [attr.aria-hidden]="!toggleSearch"
+>
+  <div class="search-wrapper-innerbody">
+    <div class="row search-wrapper-innerbody-header">
+      <!--Division for searh input control and icons for search and cancel-->
+      <div class="input-group col-12">
+        <i
+          class="btn icon-button search-icon search-icon--align icon-search"
+          role="icon-search"
+          tab-index="-1"
+        >
+        </i>
+        <input
+          class="form-control item-container--focus search-box enter-keyword-to-sea"
+          type="text"
+          [(ngModel)]="searchKeyword"
+          (keyup)="searchOnKeyPress($event)"
+          aria-label=" search panel is active that show keywords searched on today and within this week, to view them, navigate using either tab or"
+          placeholder="Enter keyword to search..."
+          id="search"
+          [attr.tabindex]="searchTabIndexStatus ? 0 : -1"
+        />
+
+        <button
+          class="btn icon-button item-container--focus clear-btn"
+          (click)="clearSearchkeyword(); setFocus('search')"
+          *ngIf="searchKeyword != ''"
+          aria-label="Clear search list to re do search"
+          [attr.tabindex]="searchTabIndexStatus ? 0 : -1"
+        >
+          Clear
+        </button>
+
+        <button
+          class="btn icon-exit icon-button item-container--focus exit-icon exit-icon__top"
+          (click)="toggleSearchSideBar()"
+          [attr.tabindex]="searchTabIndexStatus ? 0 : -1"
+          aria-label="Close Search Panel"
+        ></button>
+      </div>
+      <!--Division for search input ends here-->
+    </div>
+    <!--Divsion for search wrapper ends here-->
+
+    <!-- Divsion for search panel-->
+    <div class="row search-panel-container" style="padding-right:0px;">
+      <div class="container search-panel">
+        <!--Division to show today data-->
+        <div *ngIf="todaySearchKeywords.length > 0">
+          <div *ngIf="today">
+            <div class="border-design">
+              <a class="today-heading" aria-label="Todays searched keywords">
+                {{ todayHeading }}</a
+              >
+              <div class="horizontal-line-divider">
+                <hr />
+              </div>
+            </div>
+            <div class="row container">
+              <ul>
+                <li
+                  class="today-keywords-list item-container--focus"
+                  (keydown.enter)="searchOnClick(todaySearchedKey.searchString)"
+                  (click)="searchOnClick(todaySearchedKey.searchString)"
+                  *ngFor="
+                    let todaySearchedKey of (todaySearchKeywords | slice: 0:4)
+                  "
+                  [attr.tabindex]="searchTabIndexStatus ? 0 : -1"
+                >
+                  <a>{{ todaySearchedKey.searchString }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--Division to show Today searchKeywords end here.-->
+
+        <!--started division to show week data-->
+        <div *ngIf="weeklySearchedKeywords.length > 0">
+          <div *ngIf="week">
+            <div class="border-design">
+              <a
+                class="week-day-heading"
+                aria-label="Keywords searched in this week"
+                >{{ weekHeading }}</a
+              >
+              <div class="horizontal-line-divider">
+                <hr />
+              </div>
+            </div>
+            <div class="row container">
+              <ul>
+                <li
+                  class="week-keywords-list item-container--focus"
+                  (keydown.enter)="searchOnClick(weeklySearchKey.searchString)"
+                  (click)="searchOnClick(weeklySearchKey.searchString)"
+                  *ngFor="
+                    let weeklySearchKey of (weeklySearchedKeywords | slice: 0:4)
+                  "
+                  [attr.tabindex]="searchTabIndexStatus ? 0 : -1"
+                >
+                  <span>{{ weeklySearchKey.searchString }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--Divison to show searchkeywords in week end here-->
+
+        <!--Division to show searched results-->
+        <div *ngIf="searchOnKeyword">
+          <div class="row">
+            <!--Division to show noResult message starts here-->
+            <div
+              *ngIf="result"
+              class="no-result "
+              aria-label="No result found, please re do search by navigating to search input text field"
+              [attr.tabindex]="searchTabIndexStatus ? 0 : -1"
+              id="noResult"
+            >
+              {{ NoResultString }}
+            </div>
+            <!--Division to show noResult message ends here-->
+
+            <!--List to show result starts here-->
+            <ul>
+              <li
+                aria-label="searched item are listed, please navigate using tab"
+                *ngFor="let searchedWord of searchItems; index as j"
+                class="searchrow item-container--focus"
+              >
+                <button
+                  *ngIf="searchedWord.type === 'media'"
+                  class="media icon-button item-container--focus"
+                  (click)="editMediaToggle(searchedWord.details)"
+                  [attr.tabindex]="searchTabIndexStatus ? 0 : -1"
+                >
+                  <i
+                    class="icon-media_library icon-media-library"
+                    tabindex="-1"
+                  ></i>
+                  <span class="media-title">{{
+                    searchedWord.details.caption
+                  }}</span>
+                </button>
+
+                <button
+                  *ngIf="searchedWord.type === 'notes'"
+                  class="notes icon-button notes-alignment item-container--focus"
+                  (click)="editNotesToggle(searchedWord.details)"
+                  [attr.tabindex]="searchTabIndexStatus ? 0 : -1"
+                >
+                  <i class="icon-PDF_alt icon-notes" tabindex="-1"></i>
+                  <span class="notes-title">{{
+                    searchedWord.details.comment
+                  }}</span>
+                </button>
+
+                <button
+                  *ngIf="
+                    searchedWord.type === 'checklist' ||
+                    searchedWord.type === 'ongoing'
+                  "
+                  class="assessment icon-button assessment-allignment item-container--focus"
+                  (click)="openAssessment(searchedWord)"
+                  [attr.tabindex]="searchTabIndexStatus ? 0 : -1"
+                >
+                  <i
+                    class="icon-observational_assessment icon-observational_assessment-inverted icon-assessment-library"
+                    *ngIf="searchedWord.type === 'checklist'"
+                    tabindex="-1"
+                  ></i>
+                  <i
+                    class="icon-assessment icon-assessment-library"
+                    *ngIf="searchedWord.type === 'ongoing'"
+                  ></i>
+                  <div class="assessment-title">
+                    {{ searchedWord.searchdata.title }}
+                  </div>
+                  <div class="path">{{ searchedWord.searchdata.path }}</div>
+                </button>
+              </li>
+            </ul>
+            <!--list to show result ends here-->
+          </div>
+        </div>
+        <!--Division to show result ends here-->
+
+        <div tabindex="0" (focus)="setFocus('search')">
+          <!-- Go to focus on search input control after traversing the result-->
+        </div>
+
+        <!--Division to show keywords from-->
+        <div *ngIf="suggest">
+          <div class="row">
+            <ul>
+              <li
+                class="searchrow item-container--focus"
+                [attr.tabindex]="searchTabIndexStatus ? 0 : -1"
+                (keydown.enter)="searchOnClick(suggestKeyword.searchString)"
+                (click)="searchOnClick(suggestKeyword.searchString)"
+                *ngFor="let suggestKeyword of (suggestKeys | slice: 0:5)"
+              >
+                <span *ngIf="suggestKeyword != ' '">{{
+                  suggestKeyword.searchString
+                }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--Division to suggest keywords end here-->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="chart-container text-center">
+    <table class="inner-table">
+      <thead class="header-caption">
+        <tr class="cell-table">
+          <td class="student-cell"></td>
+          <td class="cell-width">
+            <div class="middle-text">0</div>
+          </td>
+          <td class="cell-width" *ngFor="let scale of totalScaleNumberCount;let i = index">
+            <div *ngIf="i % 2 !=0" class="middle-text device-view--mobile">{{scaleInterval*i + scaleInterval}}</div>
+            <div class="middle-text device-view--desktop">{{scaleInterval*i + scaleInterval}}</div>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="student-cell"></td>
+          <td class="cell-withborder" *ngFor="let cell of totalScaleNumberCount;let i = index" [ngClass]="{'cell-border': i===0}"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class='scrollable-table ps' [perfectScrollbar]="perfectScrollbarConfig" [disabled]="false">
+      <table class='chart-table'>
+        <tbody>
+          <tr *ngFor="let student of studentList">
+            <td class="student-cell item-container--focus" [attr.tabindex]="tabIndexStatus? 0:-1">
+              <div class="ellipses" data-toggle="tooltip" data-placement="right" ngbTooltip="{{student.fullName}}">
+                {{student.fullName}}
+                <span [attr.aria-label]="'Number of observations'+student.observationCount"></span>
+              </div>
+            </td>
+            <td class="cell-bar">
+              <div class="chart-outer-bar ">
+                <div class="chart-inner-bar" [ngStyle]="{
+                                      'width': student.observationCount*10/scaleInterval +'%'
+                                      }">
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="student-cell item-container--focus" *ngIf="studentList && studentList.length==0">
+              <div class="no-student-msg">
+                <span>No student in this class.</span>
+              </div>
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

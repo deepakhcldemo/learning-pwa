@@ -1,0 +1,77 @@
+<div class="row search-control-panel">
+  <div class="col-12 filter control-container" [ngClass]="{'control-container':setFlag}">{{viewSelection}}
+    <span *ngIf='optionSelected.from && optionSelected.to'>from
+      <br />{{optionSelected.from}} to {{optionSelected.to}}</span>
+
+    <div class="name-filter item-container--focus" (click)="setFlag=!setFlag;toggleForm()" [attr.tabindex]="tabIndexStatus? 0:-1"
+      (keyup.enter)="setFlag=!setFlag;toggleForm()">
+      <i class="icon-filter"></i>Filter
+    </div>
+  </div>
+  <div class="control" [ngClass]="{'form-inline-index':setFlag}">
+    <div class="row search-filter-header">
+      <div class="col-12 filter-class">Filter</div>
+      <button class="btn icon__button icon-exit exit-icon" [attr.tabindex]="tabIndexStatus? 0:-1" (click)="setFlag=!setFlag;toggleForm()"></button>
+    </div>
+    <div class="row">
+      <div class="col-12 column-change col-without-padding">
+
+        <form class="form-inline form-inline--padding form-inline__label--margin">
+          <div class="input-group">
+            <label for="program">Program:</label>
+            <select class="form-control form-inline__select--margin item-container--focus view--width" [attr.tabindex]="tabIndexStatus? 0:-1"
+              [(ngModel)]="optionSelected.program" name="optionSelected.program.program.titleInSequence" id="program" (change)="onProgramSelected()">
+              <option class='option' *ngFor='let option of allProgramList' [ngValue]="option">{{option.program.titleInSequence}}</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="view">View:</label>
+            <select class="form-control form-inline__select--margin item-container--focus view--width" [attr.tabindex]="tabIndexStatus? 0:-1"
+              [(ngModel)]="optionSelected.view" name="optionSelected.view" id="view" (change)="onViewOptionsSelected()">
+              <option class='option' *ngFor='let option of view' [ngValue]="option">{{option.value}}</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="when">When:</label>
+            <select class="form-control form-inline__select--margin item-container--focus" [(ngModel)]='optionSelected.when'
+              (change)='onWhenOptionsSelected()' name="when" id="when">
+              <option class='option' *ngFor='let option of filterWeek' [ngValue]="option">{{option.value}}</option>
+            </select>
+          </div>
+
+
+
+
+          <div class="input-group">
+            <label for="from">from:</label>
+            <input readonly class="form-control form-inline__select--margin input-date item-container--focus"
+              placeholder="mm/dd/yyyy" name="from" aria-label="select from date in" value="{{(fromDate.month)?(fromDate.month<10?'0'+fromDate.month:fromDate.month)+ '/' +(fromDate.day<10?'0'+fromDate.day:fromDate.day) + '/' +fromDate.year:''}}"
+              (keyup.enter)="fromDatePicker.toggle()" ngbDatepicker #fromDatePicker="ngbDatepicker" (dateSelect)="onFromDateSelection($event)"
+              (click)="fromDatePicker.toggle()" [disabled]="optionSelected.when['key']!=='custom'" [maxDate]="maxDate" [navigation]="'arrows'">
+            <i class="icon-calendar" (click)="fromDatePicker.toggle()"></i>
+            <i class="icon-calendar" *ngIf="optionSelected.when['key']!=='custom'"></i>
+          </div>
+
+
+          <div class="input-group">
+            <label for="to">to:</label>
+            <input readonly class="form-control form-inline__select--margin input-date item-container--focus"
+              placeholder="mm/dd/yyyy" name="to" aria-label="select to date in" value="{{(toDate.month)?(toDate.month<10?'0'+toDate.month:toDate.month) + '/' +(toDate.day<10?'0'+toDate.day:toDate.day) + '/' + toDate.year:''}}"
+              ngbDatepicker #toDatePicker="ngbDatepicker" (dateSelect)="onToDateSelection($event)" [disabled]="optionSelected.when['key']!=='custom'"
+              (keyup.enter)="toDatePicker.toggle()" (click)="toDatePicker.toggle()" [maxDate]="maxDate" [navigation]="'arrows'">
+            <i class="icon-calendar" (click)="toDatePicker.toggle()"></i>
+            <i class="icon-calendar" *ngIf="optionSelected.when['key']!=='custom'"></i>
+          </div>
+          <div class="input-group">
+            <label for="sort">Sort by:</label>
+            <select class="form-control form-inline__select--margin item-container--focus" aria-label="Sort By"
+              [(ngModel)]='optionSelected.sort' (change)='onSortByOptionsSelected()' name="sort" id="sort">
+              <option class='option' *ngFor='let option of sortBy' [ngValue]="option">{{option.value}}</option>
+            </select>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

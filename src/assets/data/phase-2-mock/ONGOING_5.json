@@ -1,0 +1,49 @@
+{
+  "type": "ongoing",
+  "title": "Ongoing Assessment 5",
+  "id": "ONGOING_5",
+  "keywords": ["ongoing", "assessment", "5"],
+  "criteria": [
+    {
+      "id": "ONG_5_CRIT_2",
+      "title": "Ongoing criteria 2",
+      "sequence": 2,
+      "tags": [
+        {
+          "title": "Criteria tag 1",
+          "description": "This is the description of criteria tag 1"
+        },
+        {
+          "title": "Criteria tag 2",
+          "description": "This is the description of criteria tag 2"
+        }
+      ]
+    },
+    {
+      "id": "ONG_5_CRIT_1",
+      "title": "Ongoing criteria 1",
+      "sequence": 1,
+      "tags": [
+        {
+          "title": "Criteria tag 2",
+          "description": "This is the description of criteria tag 2"
+        },
+        {
+          "title": "Criteria tag 3",
+          "description": "This is the description of criteria tag 3"
+        }
+      ]
+    },
+    {
+      "id": "ONG_5_CRIT_3",
+      "title": "Ongoing criteria 3",
+      "sequence": 3,
+      "tags": [
+        {
+          "title": "Criteria tag 3",
+          "description": "This is the description of criteria tag 3"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+@import "../../../../../styles/mixins";
+.search-control-panel {
+    background: $header-title-color;
+    padding-top: unset;
+}
+
+/* Display filter page in mobile view and hidden in desktop view. */
+
+.filter {
+    display: none;
+}
+
+/* Set flag to true in mobile view which displays date while it is hiddent in desktop view. */
+
+.control-container {
+    display: none;
+}
+
+/* Hide the observation chart. */
+
+.control {
+    position: unset;
+    z-index: 1;
+    background: unset;
+    display: unset;
+    border: none;
+    margin: unset;
+    padding-top: unset;
+}
+
+/* Display filter page in mobile view. */
+
+.search-filter-header {
+    display: none;
+}
+
+.filter-class {
+    color: $header-icon-color;
+    font-size: 24px;
+    top: 9px;
+    left: 3px;
+    display: initial;
+}
+
+/* Icon for closing the filter. */
+
+.icon-exit {
+    float: right;
+    display: inherit;
+    position: relative !important;
+}
+
+.column-change {
+    overflow: unset;
+    right: 0px;
+    color: $black;
+}
+
+/* Styles the select in the form. */
+
+.form-inline select {
+    vertical-align: middle;
+    margin: 0;
+    background-color: $white;
+    border: 1px solid $grayish-black;
+    border-radius: 0px !important;
+}
+
+/* Styles the form. */
+
+.form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    padding: 10px 0 0 0px;
+    font-family: $font-family-cabin;
+}
+
+/* Styles the label in the form. */
+
+.form-inline__label--margin {
+    label {
+        margin: 5px 5px 5px 10px;
+    }
+}
+
+.view--width {
+    width: unset;
+}
+
+/* Styles the "from" and "to" date. */
+
+.input-date {
+    width: 140px;
+    padding-left: 5px !important;
+}
+
+/* Styles the calendar in the form. */
+
+.icon-calendar {
+    position: absolute;
+    z-index: 3;
+    right: 6px;
+    top: 9px;
+    font-size: 21px;
+    color: $black;
+}
+
+/* Styles the input box in the form. */
+
+.form-inline input {
+    vertical-align: middle;
+    background-color: $white;
+    border: 1px solid $grayish-black;
+    border-radius: 0px !important;
+}
+
+@media screen and (min-width: 769px) and (max-width:1260px) {
+    .view--width {
+        width: 150px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .form-inline--padding {
+        padding: 5px 10px !important;
+    }
+    .form-inline__label--margin {
+        label {
+            margin: 5px 5px 5px 0px !important;
+        }
+    }
+    .form-inline__select--margin {
+        margin: 0px !important;
+        padding: 0px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .search-control-panel {
+        padding-top: 36px;
+    }
+    .filter {
+        display: inline;
+    }
+    .name-filter {
+        float: right;
+        top: 2px !important;
+        color: $sine-blue;
+        position: absolute;
+        right: 5px;
+    }
+    .icon-filter {
+        padding: 0px 8px;
+        color: $sine-blue;
+    }
+    .control-container {
+        display: block;
+        top: 7px;
+        color: $eclipse;
+        font-size: 18px;
+    }
+    .control {
+        position: absolute;
+        z-index: 1;
+        background: $white;
+        display: inline-block;
+        width: 100%;
+        top: 0px;
+        height: 100%;
+        padding-top: 36px;
+    }
+    .form-inline-index {
+        display: none;
+    }
+    .search-filter-header {
+        display: flex;
+        display: block;
+        background: $lightblue;
+        height: 56px;
+    }
+    .column-change {
+        top: 0px;
+        overflow: auto;
+        right: 10px;
+        height: calc(100vh - 200px);
+    }
+    .form-inline select {
+        width: 66%;
+    }
+    .form-inline {
+        display: unset;
+        flex-flow: unset;
+        align-items: unset;
+        font-family: $font-family-cabin;
+        padding: 19px 0px;
+    }
+    .form-inline label {
+        color: $dark-grey;
+    }
+    .form-inline .input-group {
+        width: calc(100% - 12px) !important;
+    }
+    .form-inline__label--margin {
+        label {
+            margin: 5px 15px 5px 0px !important;
+            width: 55px;
+        }
+    }
+    .input-group {
+        position: relative;
+        display: flex;
+        left: 12px;
+        flex-wrap: wrap;
+        align-items: stretch;
+        padding-top: 10px;
+    }
+    .icon-calendar {
+        right: 10px;
+        top: 20px;
+    }
+}

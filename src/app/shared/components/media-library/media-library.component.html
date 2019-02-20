@@ -1,0 +1,52 @@
+<!-- Media Library Start -->
+<div class="media-header">
+  <div class="btn-group btn-group-toggle toggle-toggle-2" data-toggle="buttons">
+    <button class="btn btn-light__label label-off attach-media" (click)="displayStudentOrAllMedia('AllMedia')" [ngClass]="{'active': selectedMediaLink =='AllMedia'}"
+      aria-label="All Media" tabindex="0">
+      <input type="radio" name="AllMedia" id="AllMedia" class="attach-media" value="AttachMedia" autocomplete="off"
+        ng-model tabindex="-1">All Media
+    </button>
+    <button class="btn btn-light__label label-off attach-media" (click)="displayStudentOrAllMedia('StudentMedia')" [ngClass]="{'active': selectedMediaLink =='StudentMedia'}"
+      id="label-2" tabindex="0">
+      <input type="radio" [checked]='true' name="StudentMedia" id="StudentMedia" class="attach-media"
+        autocomplete="off" ng-model aria-labelledby="label-2" tabindex="-1">{{studentDetails?.firstName}}'s Media
+    </button>
+  </div>
+</div>
+<div class="row modal-body modal-body--width">
+  <div class="row media-item-container" *ngFor="let item of displayMedia;">
+    <div class="checkbox-div">
+      <label class="checkbox-container item-container--focus" [attr.aria-label]=
+      "item?.mapped ? 'Selected media, Do you want to remove this' : 'Media is not selected, Do you want to select'">
+        <input id="{{ item }}" class="item-container--focus" [(ngModel)]="item.mapped" tabindex="0" (click)="updateMediaItem($event, item)"
+          type="checkbox" [checked]="item?.mapped">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+    <div class="col-lg-12 col-sm-12 col-12">
+      <div class="image-placeholder">
+        <img *ngIf="item.mediakind =='image'" name="item.caption" [src]="item.path" alt="Image" width="221"
+          height="168" class="image-placeholder" tabindex="0">
+        <img *ngIf="!(item.mediakind =='image') && (!(item.mediakind ==='video'))" src="../../../assets/images/no-image.png"
+          width="221" height="168" alt="Image" class="image-placeholder" tabindex="0">
+        <video *ngIf="item.mediakind ==='video'" controls class="image-placeholder" width="221px" height="168px" tabindex="0">
+          <source src="{{item.path}}" type="video/mp4" tabindex="0">
+        </video>
+
+      </div>
+      <div class="picture-caption-container item-container--focus">
+        <p *ngIf="item.caption" class="picture-caption item-container--focus" tabindex="0" attr.aria-label="Item caption name is {{item?.caption}}">
+          <a class="picture-thumbnail">{{((item?.caption)?.length>15) ? (item.caption |
+            slice:0:15)+'...':(item?.caption) }}</a>
+        </p>
+        <p *ngIf="!item.caption" class="picture-nocaption item-container--focus" tabindex="0" attr.aria-label="Item caption name is {{item?.caption}}">
+          <a class="picture-thumbnail">{{((item?.caption)?.length>15) ? (item.caption |
+            slice:0:15)+'...':(item?.caption) }}</a>
+        </p>
+        <p class="picture-caption picture-date" tabindex="0" attr.aria-label="Picture uploaded date is {{item.createdat?.seconds|dateFormat :'MM/DD/YYYY'}}">{{item.createdat?.seconds|dateFormat
+          :'MM/DD/YYYY'}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Media Library End -->

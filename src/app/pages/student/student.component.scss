@@ -1,0 +1,398 @@
+@import "../../../styles/mixins";
+/**
+  below CSS is used for smooth scrolling for I-pad
+**/
+
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+.page-container {
+  overflow-y: hidden;
+}
+
+.student-container {
+  width: 100%;
+  position: fixed;
+  height: calc(100% - 24px);
+  overflow: hidden;
+}
+
+.student-container--padding {
+  padding: 28px;
+}
+
+.student-list {
+  width: 25%;
+  float: left;
+  position: relative;
+  overflow-y: auto;
+  height: inherit;
+  background: $white;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.scrollable-student--list {
+  height: 100%;
+  overflow-y: auto;
+}
+
+/*Applied In The Student List Container.*/
+
+.student-item--container {
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0px;
+  border-bottom: 1px $lightest-grey solid;
+  padding: 5px;
+  background-color: $white;
+}
+
+/*Applied On The Student List Container.*/
+
+.student-title {
+  height: 50px;
+  font-size: 16px;
+  color: $black;
+  margin-left: 15px;
+  padding-top: 9px;
+  border-left: 4px;
+  border-left-style: solid;
+  border-left-color: transparent;
+}
+
+/*In Student List When Focused Give Respective Color*/
+
+.highlighted-assessment-item {
+  border-left: 4px solid $sine-blue;
+}
+
+/*When Put Curson On Tab It Will Turn Its Color To Black*/
+
+.student-title:visited {
+  color: $black;
+}
+
+/*Give Hover Effect When Pointer Points The Tab*/
+
+.student-title:hover {
+  font-family: $font-family-cabin;
+  color: $avatar-blue;
+  cursor: pointer;
+}
+
+/*When Active The Tab Will Have Color And Font In It.*/
+
+.student-title:active {
+  font-family: $font-family-cabin;
+  color: $avatar-blue;
+}
+
+/*In Student List When Focused Give Respective Color*/
+
+.student-title:focus {
+  color: $avatar-blue;
+}
+
+/*Helps In Formatting Css By Adding The Credentionals Of Taggged Students Name In:
+*The Student List
+* In The Notes Section*/
+
+.gavatar {
+  color: $white;
+  background-color: $avatar-blue;
+  display: inline-block;
+  font-family: $font-family-cabin;
+  font-size: 16px;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
+/*Css Formatted On Gavatar While Displaying The First Credential By Adding Letter In Capitals. */
+
+.student-item-title {
+  font-family: $font-family-cabin;
+  font-weight: 500;
+  padding-left: 5px;
+  text-transform: capitalize;
+}
+
+/*Css Formatted On Gavatar While Displaying The First Credential By Transforming The Text To UpperCase. */
+
+.student-item-title::first-letter {
+  text-transform: uppercase;
+}
+
+.icon__button--position {
+  right: 0px;
+  position: relative;
+  float: right;
+}
+
+/* Named As 'Icon-Chevron' Applied Along With The Student List To
+*Display The Current Student Detail On The Side Container.*/
+
+.icon-chevron-show {
+  display: none;
+}
+
+/*Applied To Transform The 'ChevronIcon' To 90*/
+
+.chevron__rotate-icon-90 {
+  display: none;
+}
+
+/*Container Having Four Labels ie.
+*Assessment
+*Notes
+*Media
+*ContactInfo
+*In Desktop View */
+
+.dropdiv {
+  display: none;
+}
+
+.card-without--border {
+  border: unset;
+}
+
+/*Applied On The Side Container Containing The Four Labels ie.
+*Assessment
+*Notes
+*Media
+*Contact-info */
+
+.dropdiv__info {
+  width: 100%;
+}
+
+/*
+*Applied in case where there are no students in a class
+*/
+
+.no-student-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.no-student-msg {
+  position: absolute;
+  top: 29px;
+  color: $carbon-black;
+  font-size: 18px;
+  letter-spacing: 0.45px;
+  line-height: 22px;
+  font-family: $font-family-cabin;
+  font-weight: 600;
+  font-style: normal;
+}
+
+/*Applied On The Card Container Containing The Four Labels ie.
+*Assessment
+*Notes
+*Media
+*ContactInfo */
+
+.card-body {
+  padding: 0px;
+}
+
+.box-shadow {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+}
+
+.toggle-btn {
+  padding: 0px 10px !important;
+  margin-bottom: 13px;
+  margin-top: 18px;
+  margin-left: 10px;
+  max-height: 30px;
+  border: 0px !important;
+}
+
+.btn {
+  border-radius: unset !important;
+}
+
+.btn-light__label:not(:disabled):not(.disabled):active,
+.btn-light__label:not(:disabled):not(.disabled).active,
+.show > .btn-light__label.dropdown-toggle {
+  color: $white;
+  background-color: $lightblue;
+  border-color: $lightblue;
+  border-radius: 0;
+  box-shadow: none;
+  height: unset !important;
+  width: 25% !important;
+}
+
+/*Format All The Four Labels ie.
+*Assessment
+*Notes
+*Media
+*ContactInfo*/
+
+.btn-light__label {
+  padding: 0;
+  font-size: 18px;
+  color: $lightblue;
+  background-color: $white;
+  height: auto !important;
+  width: 25% !important;
+}
+
+/*Applied To All The Labels ie.
+*Assessment
+*Notes
+*Media
+*ContactInfo */
+
+.labelRadio {
+  border: 1px solid $lightblue;
+}
+
+.student-tab__label {
+  font-size: 12px;
+  font-family: $font-family-cabin;
+}
+
+/*Container Having Four Labels ie.
+*Assessment
+*Notes
+*Media
+*ContactInfo
+*In Mobile View */
+
+.sidediv {
+  display: block;
+  width: calc(75% - 62px);
+  overflow-y: hidden;
+  height: inherit;
+  padding: 28px;
+}
+
+/*Applied On The Container Containing All The Labels ie.
+*Assessment
+*Notes
+*Media
+*ContactInfo  */
+
+.student-details--container {
+  height: 100%;
+  margin: 0;
+  border: 1px solid $light-grey;
+  bottom: 0;
+}
+
+/*Applied On Card Where All The Labels Are Present ie.
+*Assessment
+*Notes
+*Media
+*ContactInfo */
+
+.card-body__label {
+  border-bottom: 1px solid $lightblue;
+}
+
+.scrollable {
+  top: 52px;
+  bottom: 0;
+  width: 100%;
+}
+
+label:last-child {
+  border-right: 1px solid $lightblue;
+}
+
+@media screen and (min-width: 1400px) {
+  .student-container {
+    width: 1295px;
+  }
+  .sidediv {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .student-container {
+    height: calc(100% - 146px);
+    background-color: $header-icon-color;
+  }
+  .student-list {
+    width: 100%;
+    position: fixed;
+    top: 84px;
+    bottom: 64px;
+    max-width: 100%;
+  }
+
+  .student-item--container {
+    height: unset;
+    padding: 0px;
+    background-color: $header-icon-color;
+  }
+
+  .student-title {
+    height: 43px;
+    padding-top: 0px;
+    margin-left: 5px;
+    color: $avatar-blue;
+    font-size: 18px;
+    font-family: $font-family-cabin;
+    padding-right: 0px;
+    padding-left: 0px;
+    line-height: 43px;
+  }
+
+  .highlighted-assessment-item {
+    border-left: none;
+  }
+  .gavatar {
+    margin: 1px 15px 1px -10px !important;
+  }
+  .icon-chevron-show {
+    display: inline;
+    font-size: 26px;
+    padding-top: 5px;
+  }
+  .chevron__rotate-icon-90 {
+    display: inline-block;
+    transform: rotate(90deg);
+  }
+  .dropdiv {
+    display: inherit;
+    padding: 0px;
+  }
+  .box-shadow {
+    padding-top: 10px;
+    box-shadow: unset;
+  }
+  .toggle-btn {
+    margin-left: 0px;
+    margin-top: 9px;
+  }
+  .btn-light__label {
+    font-size: 16px;
+  }
+  .sidediv {
+    display: none;
+    margin-top: 20px;
+  }
+  .student-details--container {
+    width: 100%;
+    position: fixed;
+    top: 56px;
+    bottom: 64px;
+    max-width: 100%;
+  }
+}

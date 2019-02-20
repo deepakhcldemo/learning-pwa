@@ -1,0 +1,42 @@
+<ng-template id="modalId" #content let-modal>
+  <div class="modal-header-global">
+    <span class="modal-title">{{headerTitle}}</span>
+    <button *ngIf="popupType=='media'" type=" button" class="btn done-button icon__button btn__white" aria-label="Done"
+      (click)="modal.dismiss('Cross click'); resetTabSelection()" tabindex="0">Done
+      <!-- <span aria-hidden="true">&times;</span> -->
+    </button>
+    <button *ngIf="popupType!='media'" type=" button" class="btn icon-exit icon__button btn__white btn__font icon-exit--line-height"
+      aria-label="Close" (click)="modal.dismiss('Cross click'); resetTabSelection()" tabindex="0">
+      <!-- <span aria-hidden="true">&times;</span> -->
+    </button>
+  </div>
+  <!-- Load the Media Library Start -->
+  <ng-content></ng-content>
+  <!-- Load the Media Library End -->
+  <div *ngIf="popupType=='export'" class="modal-body-global">
+    <div class="row">
+      <p class="downloadCsvModal" *ngIf='items.length == 0'>The Assessment data for {{studentName}} is
+        being prepared.</p>
+      <p aria-label="Csv is prepared for downnload" class="downloadCsvModal" *ngIf='items.length != 0'>The Assessment
+        data for {{studentName}} is
+        prepared and ready for export</p>
+    </div>
+    <div class="row">
+      <button aria-label="Enter to download csv" type="button" id="downloadCSV" *ngIf="items.length > 0 ; else NoLength" (click)="downloadCSV()"
+        class="btn btn-light__label btn__popup--bgcolor" tabindex="0" target="_blank">Download CSV</button>
+      <!-- <button type="button" id="downloadCSV" aria-label="csv is being prepared for downloading" class="btn btn-light__label disabled csvDisablebtn"
+        *ngIf="items.length == 0" tabindex="0">Preparing CSV </button> -->
+        <ng-template #NoLength>Loading data...Please wait</ng-template>
+    </div>
+  </div>
+  <div *ngIf="popupType=='confirm'" class="modal-body-global">
+    <div class="row">
+      <p tabindex="0">{{noteDeletionWarning}}</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light__label btn__popup--bgcolor" (click)="checkNoteConfirmation(true)"
+        tabindex="0">Delete</button>
+      <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')" tabindex="0">Cancel</button>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,409 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "media",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "classid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdat",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "assessmentItemObservation",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "assessmentid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "parent",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdat",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "assessmentItemAnswer",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "studentid",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "assessmentid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "assessmentitemid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "parent",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdat",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "assessmentItemComment",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "students",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "assessmentid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "assessmentitemid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "parent",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdat",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "assessmentItemComment",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "assessmentid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "assessmentitemid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "classid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdat",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "parent",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "productid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "programid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "students",
+          "arrayConfig": "CONTAINS"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "note",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "classid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updatedat",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "media",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "students",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "createdat",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "assessmentItemObservation",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "assessmentitemid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdat",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "media",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "classid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updatedat",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "assessmentItemObservation",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "students",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdat",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "assessmentItemComment",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "assessmentid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "assessmentitemid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "parent",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "classid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "programid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "productid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdat",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "assessmentItemComment",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "studentid",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "assessmentid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "assessmentitemid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "parent",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdat",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "note",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "flagged",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updatedat",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "assessmentItemComment",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "students",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "assessmentid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "assessmentitemid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdat",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "assessmentItemComment",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "assessmentid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "assessmentitemid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "parent",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "students",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "classid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "programid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "productid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdat",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "media",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "students",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "classid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updatedat",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "media",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "id",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdat",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "assessmentItemComment",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "classid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "productid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "programid",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "assessmentItemObservation",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "classid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updatedat",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "note",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "classid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdat",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

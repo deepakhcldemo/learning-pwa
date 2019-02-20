@@ -1,0 +1,278 @@
+@import "../../../../styles/mixins";
+/*Applied on Edit Header Bar*/
+.section-header {
+  height: 39px;
+}
+
+.contact--edit__position {
+  float: right;
+}
+
+button:disabled,
+button[disabled] {
+  color: $lightest-grey;
+  cursor: not-allowed;
+  i {
+    cursor: not-allowed;
+  }
+}
+
+.icon-edit__size {
+  font-size: 14px;
+  margin-right: -4px;
+}
+
+.contact-container {
+  position: unset;
+  height: calc(100% - 108px);
+  width: 100%;
+  overflow-y: auto;
+  padding-top: 1.5rem;
+}
+
+.no-guardian-info--msg {
+  display: none;
+  margin-left: 20px;
+  font-size: 18px;
+  font-family: $font-family-cabin;
+  color: $black;
+  &.active {
+    display: inline;
+  }
+}
+
+.icon-button__color {
+  background: transparent;
+  font-family: $font-family-cabin;
+  color: $white;
+  outline: none;
+  border: none;
+}
+/*Applied on edit Button*/
+
+.edit-contact__edit {
+  font-size: 18px;
+  cursor: pointer;
+  font-family: $font-family-cabin !important;
+}
+/*Applied on Student Initials*/
+
+.contact-section--avatar-a {
+  margin-top: 10px;
+  color: $black;
+  display: none;
+}
+/*Css for Student Initials Circle*/
+
+.gavatar {
+  height: 93px !important;
+  width: 93px !important;
+  line-height: 93px !important;
+  color: $white;
+  background-color: $avatar-blue;
+  display: inline-block;
+  font-family: $font-family-cabin;
+  font-size: 40px !important;
+  font-weight: bold;
+  border-radius: 80px;
+  margin: 1px 23px 1px 7px;
+  text-align: center;
+}
+
+/*Applied on Student Name*/
+
+.edit-contact__student {
+  margin-left: 6px;
+  font-size: 24px;
+}
+/*Applied on Permission Label of Contact Section*/
+
+.contact-section--permission-a {
+  margin-top: 12px;
+  margin-bottom: 31px;
+  margin-left: 20px;
+  font-size: 17px;
+  color: $black;
+}
+.deskview {
+  display: none;
+}
+/*Used to switch between Mobile and Desktop View*/
+
+.mobview {
+  display: inherit;
+}
+/*Applied on label for Guardian 1 and Guardian 2*/
+.contact-section--guardian {
+  margin-bottom: 30px;
+  margin-left: 20px;
+  color: $black;
+}
+/*Applied on Cancel Button*/
+
+.edit-contact__cancel {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+/*Applied on Save Button*/
+
+.edit-contact__save {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  float: right;
+}
+/*Applied on Student Initials*/
+
+.edit-contact--avatar {
+  margin-top: 10px;
+  color: $black;
+  display: none;
+}
+/*Applied on Permission Label of Contact Section in Edit Mode*/
+
+.edit-contact--permission {
+  margin-top: 10px;
+  margin-left: 30px;
+  font-size: 17px;
+  color: $black;
+}
+/*Applied on Camera Permission Slider Switch*/
+
+.edit-contact__switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 0px 0px -10px 10px;
+}
+input:checked + .slider {
+  background-color: $sine-blue;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px $sine-blue;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $light-grey;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: $white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.edit-contact__switch input {
+  display: none;
+}
+/*Applied on Guardian Label*/
+
+.edit-contact__guardian-margin {
+  margin-left: 35px;
+  margin-top: 45px;
+  color: $black;
+}
+/*Css Applied on Edit Contact Form*/
+
+.edit-contact--form {
+  border: 0;
+  outline: none;
+  background: transparent;
+  border-bottom: 1px solid $light-grey;
+  border-radius: 0;
+  margin-bottom: 10px;
+  max-width: 85%;
+  color: $black;
+  margin-left: 30px;
+  padding: 0;
+}
+
+@media screen and (min-width: 800px) {
+  .section-header {
+    height: 47px;
+  }
+
+  .icon-button__color {
+    padding-top: 5px;
+  }
+
+  .icon-edit__size {
+    margin-right: unset;
+  }
+
+  .contact--edit__position {
+    float: none;
+  }
+
+  .contact-section--avatar-a {
+    display: inline;
+  }
+
+  .contact-section--permission-a {
+    margin-left: 128px;
+  }
+
+  .contact-section--guardian {
+    margin-bottom: 20px;
+    margin-left: 128px;
+    font-size: 17px;
+  }
+
+  .contact-container {
+    position: absolute;
+  }
+
+  .no-guardian-info--msg {
+    margin-left: 128px;
+  }
+
+  .edit-contact__save {
+    float: unset;
+  }
+
+  .edit-contact--avatar {
+    display: initial;
+  }
+
+  .edit-contact--permission {
+    margin-left: 128px;
+  }
+
+  .edit-contact__guardian-margin {
+    margin-left: 128px;
+  }
+
+  .edit-contact--form {
+    max-width: 45%;
+    margin-left: 128px;
+  }
+}

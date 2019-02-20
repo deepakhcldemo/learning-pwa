@@ -1,0 +1,52 @@
+<div class="card-container" role="region">
+    <div class="card-header-container">
+        <h5>{{recentActivityHeading}}</h5>
+    </div>
+    <div class="card-body card-body--position ps" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="isMobileView? true : false"
+        [ngStyle]="{'max-height':contentHidden ? '222px' : 'unset' }">
+        <div [ngClass]="{'card-body card-body--position': isMobileView}">
+            <div *ngIf="recentItem.length>0">
+                <ul class="row ul-padding-left recent-item_list" *ngFor="let topic of recentItem" title="{{topic.comment}}">
+                    <li class="notes-list item-container--focus" *ngIf="topic.type == 'notes'" (click)="editNotesToggle(topic)"
+                        attr.aria-label="Notes {{topic.comment}} created on date {{topic?.updatedat?.seconds|dateFormat}}"
+                        [attr.tabindex]="recentTabIndexStatus? 0: -1">
+                        <i class="icon-PDF_alt"></i>
+                        <span class="recent-item-list--title" title="{{topic.comment}}">{{topic.comment}}</span>
+                        <span class="recent-item-list--date">{{topic?.updatedat?.seconds|dateFormat}}</span>
+                    </li>
+                    <li class="assessment-list item-container--focus" *ngIf="topic.type == ('ongoing') ||topic.type ==('checklist')"
+                        (click)="openAssessment(topic)" [attr.tabindex]="recentTabIndexStatus? 0: -1" attr.aria-label="Assessment {{topic.assessmentItem?.title}} having path {{topic.path.split('|').join(' > ')}} created on date {{topic?.updatedat?.seconds|dateFormat}}">
+                        <div class="assessment-list--assessment" title="{{topic.caption}}">
+                            <span class="assessment-list--icon" *ngIf="topic.type != 'ongoing'"><i class="icon-observational_assessment icon-observational_assessment-inverted"></i></span>
+                            <span class="assessment-list--icon" *ngIf="topic.type == 'ongoing'">
+                                <i class="icon-assessment"></i>
+                            </span>
+                            <div class="assessment-list--details" title="{{topic.caption}}">
+                                <div class="recent-item-list--title assessment-recent-title" title="{{topic.title}}">{{topic?.title}}</div>
+                                <div class="recent-item-list--path" title="{{topic.path}}">{{topic.path.split('|').join('
+                                    >
+                                    ')}}</div>
+                            </div>
+                        </div>
+                        <div class="assessment-list--date">{{topic?.updatedat?.seconds|dateFormat}}</div>
+                    </li>
+                    <li class="media-list item-container--focus" *ngIf="topic.type == 'media'" (keyup.enter)="editMediaToggle(topic)"
+                        (click)="editMediaToggle(topic)" [attr.tabindex]="recentTabIndexStatus? 0: -1" attr.aria-label="Media {{topic.caption}} created on date {{topic?.createdat?.seconds|dateFormat}}">
+                        <i class="icon-media_library"></i>
+                        <span class="recent-item-list--title" title="{{topic.caption}}">{{topic.caption}}</span>
+                        <span class="recent-item-list--date">{{topic?.createdat?.seconds|dateFormat}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="row no-record-msg" *ngIf="recentItem.length ===0"> no record found</div>
+        </div>
+    </div>
+    <div class="recent-item-list--more__button" *ngIf="contentHidden && recentItem.length > 3"><span class="recent-item-list--less__button"
+            (click)="toggleContentHidden()">
+            <div class="icon-rotate-more"><i class="icon-chevron"></i></div> more
+        </span></div>
+    <div class="recent-item-list--more__button" *ngIf="!contentHidden">
+        <span class="recent-item-list--less__button" (click)="toggleContentHidden()">
+            <div class="icon-rotate-less"><i class="icon-chevron"></i></div> less
+        </span></div>
+</div>

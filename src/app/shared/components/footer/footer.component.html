@@ -1,0 +1,46 @@
+<footer class="icon-bar flex-center" aria-label="footer" *ngIf="status">
+
+  <ul class="footer-ul-container ul-padding-left ps" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="false"
+    role="presentation" tabindex="-1">
+    <li class="icon-box">
+      <button class="btn icon__button" (click)="goToPage('dashboard')" aria-label="Dashboard" [attr.tabindex]="footerTabIndexStatus? 0:-1">
+        <i class="icon-overview icon-footer" [ngClass]="{'active': activeNavItem=='Dashboard'}"></i>
+        <p [ngClass]="{'active': activeNavItem=='Dashboard'}">Dashboard</p>
+      </button>
+    </li>
+    <li class="icon-box">
+      <button class="btn icon__button" (click)="goToPage('notes')" aria-label="Notes" [attr.tabindex]="footerTabIndexStatus? 0:-1">
+        <i class="icon-PDF_alt icon-footer" [ngClass]="{'active': activeNavItem=='Notes'}"></i>
+        <p [ngClass]="{'active': activeNavItem=='Notes'}">Notes</p>
+      </button>
+    </li>
+    <li class="icon-box">
+      <button class="btn icon__button" (click)="goToPage('media')" aria-label="Media" [attr.tabindex]="footerTabIndexStatus? 0:-1">
+        <i class="icon-media_library icon-footer" [ngClass]="{'active': activeNavItem=='Media'}"></i>
+        <p [ngClass]="{'active': activeNavItem=='Media'}">Media</p>
+      </button>
+    </li>
+    <li class="icon-box">
+      <button class="btn icon__button" (click)="goToPage('report')" aria-label="Reports" [attr.tabindex]="footerTabIndexStatus? 0:-1">
+        <i class="icon-poll icon-footer" [ngClass]="{'active': activeNavItem=='Reports'}"></i>
+        <p [ngClass]="{'active': activeNavItem=='Reports'}">Reports</p>
+      </button>
+    </li>
+    <li class="icon-box">
+      <button class="btn icon__button" (click)="goToPage('student')" aria-label="Students" [attr.tabindex]="footerTabIndexStatus? 0:-1">
+        <i class="icon-small_groups icon-footer" [ngClass]="{'active': activeNavItem=='Students'}"></i>
+        <p [ngClass]="{'active': activeNavItem=='Students'}">Students</p>
+      </button>
+    </li>
+    <li class="icon-box capture-btn-visibility">
+      <button class="btn icon__button" (click)="imgInput.click()" aria-label="Media Capture" [attr.tabindex]="footerTabIndexStatus? 0:-1">
+        <i class="icon-camera icon-footer"></i>
+        <p>Capture
+          <input type="file" class="hide-file" accept="media_type" capture="camcorder" (change)="triggerCamera($event)"
+            #imgInput>
+        </p>
+      </button>
+    </li>
+  </ul>
+
+</footer>

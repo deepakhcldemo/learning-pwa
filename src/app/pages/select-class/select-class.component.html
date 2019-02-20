@@ -1,0 +1,27 @@
+<div *ngIf='overlayStatus' class='app-container-side-overlay' aria-hidden="true"></div>
+<div class='app-container'>
+  <app-header></app-header>
+  <div class="page-container">
+    <div class="row">
+      <div class=" col-md-12 col-sm-12 col-12 allclass" *ngIf="hasClassList">
+        <h4 class="pickclass">Pick a Class</h4>
+        <div class="class-picker--scroll">
+          <button type="button" *ngFor="let class of allClasses" (click)="setCurrentClass(class)" class="btn btn-default btn-lg btn-block pickclass--choosebutton">
+            {{class?.className|truncate: classNameLength}}</button>
+        </div>
+      </div>
+      <div role="status" class="noclass-message-center" *ngIf="!hasClassList">
+        <p class="noclass-heading">
+          You don't have any Realize class with Scout-enabled programs.
+        </p>
+        <p class="noclass-description">
+          To use Scout, you must have Realize class that has a Scout-enabled program associated with it.
+        </p>
+        <p class="noclass-description">
+          You can manage your classes in Realize.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf='overlayStatus' class='app-container-side-overlay' aria-hidden="true"></div>

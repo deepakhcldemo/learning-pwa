@@ -1,0 +1,102 @@
+<div class="page-container container-mobile">
+  <div class="row row-without-margin">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-3 sidebar-container">
+      <div class="sidebar--box-shadow">
+        <div class="assessment--path item-container--focus" [attr.tabindex]="ongoingTabIndexStatus? 0:-1" attr.aria-label="breadcrumb Assessment path {{assessmentPath}}">{{assessmentPath}}</div>
+        <div class="col-12 assessment--quote item-container--focus" title="{{currentAssessment?.title}}" [attr.tabindex]="ongoingTabIndexStatus? 0:-1"
+          attr.aria-label="Assessment title {{currentAssessment?.title}}">{{currentAssessment?.title|
+          truncate : 100}}</div>
+      </div>
+      <div class="col-12 assessment--navigation" *ngFor="let assessmentItem of currentAssessment?.criteria; let j = index;">
+        <div class="row btn-group btn-group-toggle toggle-toggle-2" data-toggle="buttons" role="tab">
+          <label class="btn btn-light label-off active" (click)="isStudentDetails = true">
+            <input type="radio" class="item-container--focus" name="options" id="option1" autocomplete="off" checked
+              #details [attr.tabindex]="ongoingTabIndexStatus? 0:-1" aria-label="Assessment Details Tab"> Details
+          </label>
+          <label class="btn btn-light label-off" (click)="isStudentDetails = false">
+            <input type="radio" class="item-container--focus" name="options" id="option2" autocomplete="off"
+              #studentDetails [attr.tabindex]="ongoingTabIndexStatus? 0:-1" aria-label="Student Details Tab">
+            Students
+          </label>
+
+        </div>
+        <div class="col-md-12 assessment-item-container" *ngIf="isStudentDetails">
+          <div class="assessment-item--repeater">
+            <div class="assessment-item--title item-container--focus" [attr.tabindex]="ongoingTabIndexStatus? 0:-1"
+              attr.aria-label="Assessment item {{assessmentItem.title}}">
+              <p class="outer--para" [appSplitTitle]="assessmentItem.title">{{assessmentItem.title}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="assessment-item-list" *ngIf="!isStudentDetails">
+          <div *ngFor="let studentItem of studentList; let i = index;" class="student-list item-container--focus" (click)="current = i; setCurrentStudent(i);openStudentAssessmentItemDetails(assessmentItem,i)"
+            id="{{studentItem.userId +'_id'}}" (keyup.enter)="openStudentAssessmentItemDetails(assessmentItem,i)" [attr.tabindex]="ongoingTabIndexStatus? 0:-1"
+            attr.aria-label="open student details having Student name {{ studentItem.fullName }} expanded from right">
+            <div class="student-sidebar"><span class="gavatar">{{studentItem.avatar}}</span>
+              <span class="student-sidebar--name-padding"> {{ studentItem.fullName }} </span>
+              <button class="btn icon__button btn__font icon-chevron student-sidebar--name-icon" (click)="openStudentAssessmentItemDetails(assessmentItem,i)"
+                [attr.tabindex]="-1">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="student-sidebar--wrapper" [ngClass]="{'active': toggleStudentObservation}">
+
+    <div class="student-sidebar-container container-mobile">
+      <app-ongoing-student-detail [studentDetail]="currentStudent" (closeSideBar)="closeStudentAssessmentItemDetails()"></app-ongoing-student-detail>
+    </div>
+  </div>
+
+</div>
+<div class="page-container container-desktop">
+  <div class="row row-without-margin">
+    <nav class="item-container--focus" [attr.tabindex]="ongoingTabIndexStatus? 0: -1" attr.aria-label="breadcrumb assessment path {{assessmentPath}}">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">{{assessmentPath}}</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="assessment-container">
+    <div class="row assessment-container--height">
+      <div class="col-without-padding assessment-column-style">
+        <div class="row row-table">
+          <div class="assessment--data col-table-cell">
+            <div class="assessment--title item-container--focus" title="{{currentAssessment?.title}}" [attr.tabindex]="ongoingTabIndexStatus? 0: -1"
+              attr.aria-label="Assessment title {{currentAssessment?.title}}">{{currentAssessment?.title
+              | truncate : 100}}</div>
+          </div>
+        </div>
+        <div class="scrollable-content">
+          <div class="row row-table row-table-padding">
+            <div class="col-12 assessment-item--content col-table-cell item-container--focus" [attr.tabindex]="ongoingTabIndexStatus? 0: -1">
+              <div class="inner--para" [appSplitTitle]="currentAssessment?.assessment?.criteria[0].title">{{currentAssessment?.criteria[0].title}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="side-menu" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="isMobileView? true : false"
+        *ngIf="studentList.length > 1">
+        <div [ngClass]="{'side-menu': isMobileView}">
+          <div class="menu-options" aria-label="Alphabets to sort students">
+            <a class="item-container--focus alphabet--anchor" *ngFor="let alphabet of alphabetsArray" (click)="setFocusForAlphabetSorting(alphabet)"
+              (keyup.enter)="setFocusForAlphabetSorting(alphabet)" [attr.tabindex]="ongoingTabIndexStatus? 0:-1"
+              attr.aria-label="Sort the student by Alphabet {{alphabet}}">{{alphabet}}</a>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper-student-list student-list--height" id="student-list">
+        <div class="student-list-items" id="{{'id_'+student.userId}}" *ngFor="let student of studentList;index as i" [attr.tabindex]="ongoingTabIndexStatus? 0:-1">
+          <div class="student-desktop-view">
+            <a attr.data-studentid={{student.userId}} id="{{student.firstName[0].toLowerCase()}}"></a>
+            <app-ongoing-student-detail [studentDetail]="student" (closeSideBar)="closeStudentAssessmentItemDetails()">
+            </app-ongoing-student-detail>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,179 @@
+<div class="page-container container-mobile">
+  <div class="row row-without-margin container-height container-scroll">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-3 sidebar-style container-height">
+      <div class="container-height">
+        <div class="box-shadow-style">
+          <p class="checklist--path" attr.aria-label="Assessment Path {{assessmentPath}}">{{assessmentPath}}</p>
+          <div class="checklist--quote" attr.aria-label="Assessment title {{currentAssessment?.title}}">
+            {{currentAssessment?.title}}</div>
+        </div>
+        <div class="assessment-item-container">
+          <div *ngFor="let item of studentList; let i = index;" class="students-style"
+            (keyup.enter)="currentAssessmentIndex = i;" (click)="currentAssessmentIndex = i;"
+            id="{{item.userId +'_id'}}">
+            <div class="students-sidebar item-container--focus" [attr.tabindex]="tabIndexStatus? 0:-1"
+              attr.aria-label="Student name {{ item.fullName }}"><span class="gavatar">{{item.avatar}}</span>
+              {{ item.fullName }}
+              <i class='icon-style item-container--focus' [class.icon-chevron]="i !== currentAssessmentIndex"
+                [class.icon-menu_option]="i === currentAssessmentIndex" [attr.tabindex]="tabIndexStatus? 0:-1">
+              </i>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-9 assessment-style">
+              <div *ngFor="let assessmentItem of currentAssessment?.criteria; let j = index;"
+                [class.collapse]='currentAssessmentIndex !== i' class="card card-width">
+                <div class="card-body box-shadow-style">
+                  <div class="row">
+                    <div class="col-2">
+                      <span *ngIf="item.observed &&item.observed.length>0">
+                        <i class="icon-checkmark active item-container--focus"
+                          *ngIf="item.observed|showobserve:assessmentItem.id"
+                          (click)="saveIsObserved(currentAssessment,assessmentItem, item.userId, false, item.observed)"
+                          [attr.tabindex]="tabIndexStatus? 0:-1"
+                          (keyup.enter)="saveIsObserved(currentAssessment,assessmentItem, item.userId, false, item.observed)"
+                          aria-label="click to save observation"></i>
+                        <i class="icon-checkmark item-container--focus"
+                          *ngIf="!(item.observed|showobserve:assessmentItem.id)"
+                          (click)="saveIsObserved(currentAssessment,assessmentItem,item.userId, true, item.observed)"
+                          [attr.tabindex]="tabIndexStatus? 0:-1"
+                          (keyup.enter)="saveIsObserved(currentAssessment,assessmentItem,item.userId, true, item.observed)"
+                          aria-label="click to save observation"></i>
+                      </span>
+                      <span *ngIf="item.observed &&item.observed.length === 0">
+                        <i class="icon-checkmark item-container--focus"
+                          (click)="saveIsObserved(currentAssessment,assessmentItem,item.userId, true, item.observed)"
+                          (keyup.enter)="saveIsObserved(currentAssessment,assessmentItem,item.userId, true, item.observed)"
+                          [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="click to save observation"></i>
+                      </span>
+                    </div>
+                    <div class="col-10">
+                      <div class="assessment-item--title item-container--focus" [attr.tabindex]="tabIndexStatus? 0:-1"
+                        attr.aria-label="Assessment title {{assessmentItem.title}}"> {{assessmentItem.title}}</div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-10 observation--name item-container--focus"
+                      (click)="openStudentAssessmentItemDetails(assessmentItem,i)"
+                      [attr.tabindex]="tabIndexStatus? 0:-1"
+                      (keyup.enter)="openStudentAssessmentItemDetails(assessmentItem,i)"
+                      aria-label="open student asssessment details expanded">
+                      <span>Observations</span>
+                      <i class="icon-chevron icon-style icon-style--color">
+                      </i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <section [@slideInOut] *ngIf="selectedStudent === item.userId" class="student-detail-section">
+              <app-student-detail (closeSideBar)="closeStudentAssessmentItemDetails()"></app-student-detail>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-container container-desktop">
+  <div class="row row-without-margin">
+    <nav>
+      <ol class="breadcrumb" attr.aria-label="Assessment path {{assessmentPath}}" aria-current="page">
+        <li class="breadcrumb--path active">{{assessmentPath}}</li>
+      </ol>
+    </nav>
+  </div>
+
+
+  <div class="assessment assessment-width">
+    <div class="row height-assessment">
+      <div class="assessment-row">
+        <div class="row row-table">
+          <div class="assessment-row--data col-table-cell"
+            attr.aria-label="Assessment title {{currentAssessment?.title}}">
+            <div class="assessment-row--title"><span>{{currentAssessment?.title | truncate : 100}}</span></div>
+          </div>
+        </div>
+        <div class="row row-table" *ngFor="let assessmentItem of currentAssessment?.criteria; let i = index;"
+          attr.aria-label="Assessment item Title {{assessmentItem.title}}">
+          <div class="col-12 assessment-repeater col-table-cell">
+            <span class="item-container--focus"
+              [ngClass]="{'highlighted-assessment-item': assessmentItem.id === selectedAssessmentItem}">{{assessmentItem.title}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="side-menu" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="isMobileView? true : false"
+        *ngIf="studentList&&studentList.length > 1">
+        <div [ngClass]="{'side-menu': isMobileView}">
+          <div class="menu-options">
+            <a class="item-container--focus alphabet--anchor" *ngFor="let alphabet of alphabetsArray"
+              (click)="setFocusForAlphabetSorting(alphabet)" (keyup.enter)="setFocusForAlphabetSorting(alphabet)"
+              [attr.tabindex]="tabIndexStatus? 0:-1" attr.aria-label="Sorts Students by {{alphabet}}">{{alphabet}}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-8 wrapper-student-list" id="student-list">
+        <div class="student-item" *ngFor="let item of studentList; let k = index" id="{{'id_'+item.userId}}"
+          [attr.tabindex]="tabIndexStatus? 0:-1" attr.aria-label="Student Assessment Detail for {{item.firstName}}">
+          <div id="assItem_{{k}}">
+            <div class="student-details">
+              <a attr.data-studentid={{item.userId}} id="{{item.firstName[0].toLowerCase()}}"></a>
+              <span class="gavatar">{{item.avatar}}</span><span class="student-name" title="{{ item.fullName }}"> {{
+                item.fullName }}</span>
+              <a id="{{item.userId}}" #studentids></a>
+            </div>
+            <div class="scrollable-container">
+              <div class="student-data" *ngFor="let assessmentItem of currentAssessment?.criteria; let j = index;">
+                <span *ngIf="item.observed &&item.observed.length>0">
+                  <i class="icon-checkmark item-container--focus active"
+                    *ngIf="item.observed|showobserve:assessmentItem.id"
+                    (keyup.enter)="saveIsObserved(currentAssessment,assessmentItem, item.userId, false, item.observed)"
+                    (click)="saveIsObserved(currentAssessment,assessmentItem, item.userId, false, item.observed)"
+                    [attr.tabindex]="tabIndexStatus? 0:-1"
+                    attr.aria-label="click here to save observation for {{ item.fullName }}"></i>
+                  <i class="icon-checkmark item-container--focus" *ngIf="!(item.observed|showobserve:assessmentItem.id)"
+                    (keyup.enter)="saveIsObserved(currentAssessment,assessmentItem,item.userId, true, item.observed)"
+                    (click)="saveIsObserved(currentAssessment,assessmentItem,item.userId, true, item.observed)"
+                    [attr.tabindex]="tabIndexStatus? 0:-1"
+                    attr.aria-label="click here to save observation for {{ item.fullName }}"></i>
+                </span>
+                <span class="item-container--focus" *ngIf="item.observed &&item.observed.length === 0"
+                  [attr.tabindex]="tabIndexStatus? 0:-1">
+                  <i class="icon-checkmark item-container--focus"
+                    (click)="saveIsObserved(currentAssessment,assessmentItem,item.userId, true, item.observed)"
+                    attr.aria-label="click here to save observation for {{ item.fullName }}"></i>
+                </span>
+                <span class="observation--title"
+                  [ngClass]="{'text-disabled': (item.observed|showComment:assessmentItem.id: 'comment') <= 0}"
+                  (click)="setCurrentAssessmentItem(assessmentItem);openStudentAssessmentItemDetails(assessmentItem, k);">
+                  {{item.observed|showComment:assessmentItem.id: 'updatedComment'|truncate}}
+                </span>
+                <span class="icon-comments_bubble icon-comments--style item-container--focus"
+                  [ngClass]="{'icon-disabled': (item.observed|showComment:assessmentItem.id: 'comment') <= 0}"
+                  (keyup.enter)="setCurrentAssessmentItem(assessmentItem);openStudentAssessmentItemDetails(assessmentItem, k);"
+                  (click)="setCurrentAssessmentItem(assessmentItem);openStudentAssessmentItemDetails(assessmentItem, k);"
+                  [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="open student asssessment details expanded"><span
+                    class="observation-count--style"
+                    *ngIf="(item.observed|showComment:assessmentItem.id: 'comment') > 0">
+                    <p>{{item.observed|showComment:assessmentItem.id: 'comment'}}</p>
+                  </span></span>
+                <span class="icon-media_items icon-media--style item-container--focus"
+                  [ngClass]="{'icon-disabled': (item.observed|showComment:assessmentItem.id: 'media') == 0}"
+                  (keyup.enter)="setCurrentAssessmentItem(assessmentItem);openStudentAssessmentItemDetails(assessmentItem, k);"
+                  (click)="setCurrentAssessmentItem(assessmentItem);openStudentAssessmentItemDetails(assessmentItem, k);"
+                  [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="open student asssessment details expanded"><span
+                    class="observation-count--style" *ngIf="(item.observed|showComment:assessmentItem.id: 'media') > 0">
+                    <p>{{item.observed|showComment:assessmentItem.id: 'media'}}</p>
+                  </span></span>
+              </div>
+            </div>
+          </div>
+          <section [@slideInOut] *ngIf="selectedStudent === item.userId" class="student-detail-section">
+            <app-student-detail (closeSideBar)="closeStudentAssessmentItemDetails()"></app-student-detail>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

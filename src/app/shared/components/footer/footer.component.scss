@@ -1,0 +1,135 @@
+@import "../../../../styles/mixins";
+/* Applies style on footer of the application. */
+
+.footer {
+    background-color: $white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-ul-container {
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    li {
+        padding: 10px 0;
+    }
+}
+
+/* Applies style on icons in footer section. */
+
+.icon-bar {
+    overflow: hidden;
+    width: 62px;
+    background-color: $white;
+    box-shadow: 1px 0 4px 0 rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 44px;
+    height: calc(100vh - 44px);
+    z-index: 100;
+    ul {
+        list-style-type: none;
+    }
+}
+
+.icon-bar a {
+    cursor: pointer;
+    width: 60px;
+    text-align: center;
+    padding: 0;
+    transition: all 0.3s ease;
+    color: $white;
+    float: left;
+}
+
+/* Applies style on margin of icons in footer section. */
+
+.icon-box {
+    margin-bottom: 0px;
+    margin-left: 0px;
+    button {
+        padding: 0px;
+        height: unset;
+    }
+}
+
+.icon__button p {
+    height: 18px;
+    width: 56px;
+    color: $dark-grey;
+    font-family: $font-family-cabin;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.icon__button {
+    font-family: $font-family-cabin;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    p.active {
+        color: $sine-blue;
+    }
+}
+
+/* Applies style on icons in the footer section. */
+
+.icon-footer {
+    height: 25px;
+    width: 24px;
+    color: $dark-grey;
+    font-family: $font-family-k12_universal_icons;
+    font-size: 24px;
+    line-height: 25px;
+    text-align: center;
+}
+
+.icon-footer.active {
+    color: $sine-blue;
+}
+
+/* Applies style on capture button. */
+
+.capture-btn-visibility {
+    display: block;
+}
+
+.hide-file {
+    display: none;
+}
+
+/*Media Queries*/
+
+@media screen and (max-width: 768px) {
+    .footer-ul-container {
+        li {
+            padding: 8px 0;
+        }
+    }
+    .icon-bar {
+        overflow: hidden;
+        height: 62px;
+        background-color: $white;
+        box-shadow: 1px 0 4px 0 rgba(0, 0, 0, 0.2);
+        bottom: 0px;
+        width: 100%;
+        top: unset;
+        margin: 0 auto;
+        position: fixed;
+        text-align: center;
+    }
+    .icon-box {
+        float: left;
+        width: 20%;
+        button {
+            height: 45px;
+        }
+    }
+    .capture-btn-visibility {
+        display: none;
+    }
+}

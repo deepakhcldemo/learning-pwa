@@ -1,0 +1,296 @@
+@import "../../../styles/mixins";
+.page-container {
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    top: 0px;
+}
+
+.login-status {
+    display: inherit;
+}
+
+/* Header Section Css Formatting*/
+
+.header-logo {
+    height: 180px;
+    width: 100%;
+    background-color: $blue;
+    background-image: url('../../../assets/images/scout-rev.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: unset;
+}
+
+.container-fluid--min-height {
+    min-height: 300px;
+}
+
+/* Format The Whole Content Of Login*/
+
+.container-style {
+    .middle {
+        margin: auto;
+    }
+    background-image: url("../../../assets/images/Telescope@2x.png");
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    background-size: 320px;
+}
+
+/*Css Formatting For UserName,Password And Sign In*/
+
+.form-signin {
+    width: 100%;
+}
+
+/*Css Formatting For UserName,Password And Sign In*/
+
+.form-group {
+    margin-bottom: 13px;
+}
+
+/*Css Formatting For any error messages*/
+
+.inline--block {
+    display: inline-block;
+}
+
+/* Format The Whole Content Of Login*/
+
+.container--display {
+    display: block;
+}
+
+/* Validation Status Container */
+
+.container--position {
+    margin-top: 35px;
+    position: relative;
+}
+
+/* Login Form Fields */
+
+.input-style {
+    font-style: italic;
+    ::placeholder {
+        color: $light-grey;
+    }
+}
+
+/*Css Formatting For Password.*/
+
+.pass {
+    margin-bottom: 51px;
+}
+
+/*Css Formatting For Sign In Button*/
+
+.form-signin .btn {
+    font-size: 22px;
+    border-radius: 0; // font-weight: bold;
+    transition: all 0.2s;
+}
+
+/*Css Formatting For Sign In*/
+
+.sign--btn {
+    height: 44px;
+    color: $white;
+    background: $sine-blue;
+    box-shadow: 0 2px 2px 0 rgba(44, 44, 44, 0.5);
+}
+
+/*Formatting the tab displayed 'EasyBridge Auto or Plus Account?'*/
+
+.easy-bridge {
+    text-align: center;
+    color: $blue;
+    height: 22px;
+    font-family: $font-family-cabin;
+    font-size: 18px;
+    letter-spacing: 0.45px;
+    line-height: 22px;
+    .icon__button {
+        color: #495057;
+    }
+}
+
+.easy-bridge-btn {
+    background-color: $white;
+    border: 2px solid $blue !important;
+}
+
+/*Formatting the tab displayed 'EasyBridge Auto or Plus Account?'*/
+
+.easy-bridge-bold {
+    font-weight: bold;
+    color: $lightblue;
+    font-size: 17px;
+}
+
+/* Container For Status While Syncing After login */
+
+.loading-container {
+    height: 42px;
+    color: $blue;
+    font-family: $font-family-cabin;
+    font-size: 25px;
+    letter-spacing: 0.75px;
+    line-height: 42px;
+    text-align: center;
+}
+
+.mgs-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+/* Format The Text Displayed While Login:
+*'The Pearson Scout app requires a school-based subscription and valid Pearson account.' */
+
+.disclaimer {
+    width: 97%;
+    position: absolute; // bottom: 0px;
+    bottom: 45px;
+    margin: auto;
+    background: transparent;
+    color: $lightblue;
+    font-family: $font-family-cabin;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 500;
+}
+
+// class for '...' for animation
+.sync-data-animation {
+    display: inline-block;
+}
+
+@keyframes blink {
+    /**
+     * At the start of the animation the dot
+     * has an opacity of .2
+     */
+    0% {
+        opacity: .2;
+    }
+    /**
+     * At 20% the dot is fully visible and
+     * then fades out slowly
+     */
+    20% {
+        opacity: 1;
+    }
+    /**
+     * Until it reaches an opacity of .2 and
+     * the animation can start again
+     */
+    100% {
+        opacity: .2;
+    }
+}
+
+.sync-data-animation span {
+    /**
+     * Use the blink animation, which is defined above
+     */
+    animation-name: blink;
+    /**
+     * The animation should take 1.4 seconds
+     */
+    animation-duration: 1.4s;
+    /**
+     * It will repeat itself forever
+     */
+    animation-iteration-count: infinite;
+    /**
+     * This makes sure that the starting style (opacity: .2)
+     * of the animation is applied before the animation starts.
+     * Otherwise we would see a short flash or would have
+     * to set the default styling of the dots to the same
+     * as the animation. Same applies for the ending styles.
+     */
+    animation-fill-mode: both;
+}
+
+.sync-data-animation span:nth-child(2) {
+    /**
+     * Starts the animation of the third dot
+     * with a delay of .2s, otherwise all dots
+     * would animate at the same time
+     */
+    animation-delay: .2s;
+}
+
+.sync-data-animation span:nth-child(3) {
+    animation-delay: .4s;
+}
+
+@media screen and (max-height: 520px) {
+    .disclaimer {
+        bottom: unset;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header-logo {
+        height: 90px;
+        background-image: url('../../../assets/images/scout-rev.png');
+        background-size: auto 85%;
+    }
+    .container-style {
+        background-image: url("../../../assets/images/telescope.PNG");
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        background-size: 210px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .header-logo {
+        height: 90px;
+        background-image: url('../../../assets/images/scout-rev.png');
+        background-size: 90%;
+    }
+    .pass {
+        margin-bottom: 30px;
+    }
+    .disclaimer {
+        width: unset;
+        height: 50px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .container--position {
+        margin-top: 48px;
+        position: relative;
+    }
+    .container--display {
+        display: none;
+    }
+}
+
+@media screen and (max-height: 360px) {
+    .disclaimer {
+        padding-top: 20px;
+        position: relative;
+    }
+    .container-style {
+        background-image: url("../../../assets/images/telescope.PNG");
+        background-position: left bottom;
+        background-repeat: no-repeat;
+        background-size: 210px;
+    }
+    .mgs-container {
+        min-height: 200px;
+        position: relative;
+    }
+}

@@ -1,0 +1,82 @@
+@import "../../../../../styles/mixins";
+
+/* wrapper class  */
+.comments-container {
+  width: 100%;
+
+  /* class for assessment title*/
+  .assessment-title {
+    height: 100%;
+    color: $black;
+    font-family: $font-family-cabin;
+    font-size: 18px;
+    border-bottom: 1px solid $lightest-grey;
+    padding: 10px 0;
+  }
+}
+
+/* title text for assessment*/
+.assessment-title-description {
+  max-width: 500px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+  width: 350px;
+}
+
+/*class for restricting width for the comments*/
+.comments-button {
+  max-width: 480px;
+  text-align: left;
+}
+
+/*removing bullets points */
+.remove-bullets-points {
+  list-style: none;
+  display: block;
+}
+
+/* class for comments as media*/
+.media-comment {
+  width: 170px;
+  height: 127px;
+  padding-top: 20px !important;
+  cursor: pointer;
+}
+
+/* class for created date*/
+.comment-create-date {
+  position: absolute;
+  right: 10px;
+  color: $carbon-black;
+  font-size: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .assessment-title-title{
+    max-width: 500px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    width: 259px;
+  }
+  .comments-container {
+    .assessment-title {
+      border-bottom: 1px solid $lightest-grey;
+    }
+  }
+  .comments-button {
+    max-width: 400px;
+  }
+  .comment-date-section{
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .comments-button {
+    max-width: 175px;
+  }
+}

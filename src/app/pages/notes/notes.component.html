@@ -1,0 +1,132 @@
+<div class="page-container">
+  <app-teacher-class *ngIf="classSelectorStatus"></app-teacher-class>
+  <div class="top-nav col-12 col-sm-12 col-md-12">
+    <div class="btn-group btn-group-toggle toggle-toggle-2 col-10 col-sm-12 col-md-4" data-toggle="buttons">
+      <button class="btn btn-light__label label-off labelRadio icon_button active item-container--focus" (click)="setCurrentTab('AllNotes')"
+        [attr.tabindex]="tabIndexStatus? 0:-1">
+        <input type="radio" name="notes_todo" id="option1" value="AllNotes" autocomplete="off" aria-hidden="true"
+          [attr.tabindex]="tabIndexStatus? -1:-1">
+        All Notes
+      </button>
+      <button class="btn btn-light__label label-off icon_button item-container--focus" (click)="setCurrentTab('ToDo')"
+        [attr.tabindex]="tabIndexStatus? 0:-1">
+        <input type="radio" name="notes_todo" id="option2" value="ToDo" autocomplete="off" aria-hidden="true"
+          [attr.tabindex]="tabIndexStatus? -1:-1">
+        To-Do's
+      </button>
+    </div>
+    <div class="add-note" (click)="openAddEditSlider('Add')">
+      <i class="icon-addition add-note--button"></i>
+      <span class="addition-text item-container--focus" role="button" (keyup.enter)="openAddEditSlider('Add')"
+        [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="Click to expandStudents Add note popup from right">Add Note</span>
+
+    </div>
+  </div>
+
+  <div>
+    <div class="action-bar-margin">
+
+      <div class="add-note-popup action-bar item-container--focus" [attr.tabindex]="tabIndexStatus? -1:-1">
+        <div class="add-note-inner" *ngIf="isAddNote">
+          <i class="icon-addition add-note--button" (click)="openAddEditSlider('Add')"></i>
+          <span class="addition-text item-container--focus" (click)="openAddEditSlider('Add')" role="button"
+            (keyup.enter)="openAddEditSlider('Add')" [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="Click to expandStudents Add note popup from right">Add
+            Note</span>
+        </div>
+        <div class="edit-header">
+          <button id="edit" class="btn edit icon_button item-container--focus" *ngIf="!isEditable" [attr.tabindex]="tabIndexStatus? 0:-1"
+            (click)="toggleEdit()" (keyup.enter)="toggleEdit()" aria-label="Edit" [disabled]="displayAllNotes.length==0"><span
+              class="icon-edit"></span><span class="edit-family">Edit</span></button>
+          <button id="cancel" class="cancel item-container--focus" *ngIf="isEditable" aria-label="Cancel"
+            [attr.tabindex]="tabIndexStatus? 0:-1" (click)="toggleEdit()" (keyup.enter)="toggleEdit()">Cancel </button>
+          <button class="remove change item-container--focus" aria-label="Remove" (click)="deleteNotes()" *ngIf="isEditable"
+            [disabled]="!(this.selectedNotes.length > 0)" [attr.tabindex]="tabIndexStatus? 0:-1">Remove</button>
+        </div>
+      </div>
+      <div class="note-list ps" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="false">
+        <div *ngFor="let note of displayAllNotes; index as i" class="item-container--focus" [attr.data-index]="i"
+          [attr.tabindex]="tabIndexStatus? 0:-1" [attr.aria-label]="note.comment+'Click to expandStudents Add note popup from right'"
+          (keyup.enter)="openAddEditSlider('Edit',note)">
+          <div class="row border-class">
+            <div class="col-12 no-padding" [ngClass]="{'no-padding-right':!note.flagged}">
+
+              <div class="due-date-box">
+                <div class="check-boxes" *ngIf="isEnableCheckboxes">
+                  <label class="checkbox-container item-container--focus">
+                    <input [attr.tabindex]="tabIndexStatus? 0:-1" type="checkbox" class="custom-control-input checkbox-custom"
+                      id="{{note?.id}}" (click)="checkedUncheckedToDeleteNotes($event, note.id)">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <div class="due-date-checkboxes" *ngIf="note.flagged">
+                  <div class="to-do-span">To-Do</div>
+                  <div [ngClass]="{'no-date': note.flaggeddate?.seconds ==0 }" class="due-span">
+                    <span class="mobile-due">Due</span>
+                    {{note.flaggeddate?.seconds|dateFormat}}</div>
+                </div>
+                <div class="notes-list note-text-allign">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row">
+                        <div (click)="!isEnableCheckboxes? openAddEditSlider('Edit',note) : false" class="col-10 note-comment no-padding"
+                          [ngStyle]="isEnableCheckboxes && {'cursor':'not-allowed'} || !isEnableCheckboxes && {'cursor':'pointer'}">{{note.comment}}</div>
+                        <div class="col-2 date">{{note.createdat?.seconds|dateFormat}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 student-list-name">
+                      <div class="note-details">
+                        <div class="details note-details-show" *ngFor="let student of note.student; index as j">
+                          <div *ngIf="j < 2">
+                            <!-- {{j}} -->
+                            <span class="gavatar">{{student.avatar}}</span>
+                            <span class="student-avatar-padding item-container--focus" (click)="openAddEditSlider('Edit',note)"
+                              (keyup.enter)="openAddEditSlider('Edit',note)">{{student.firstName.charAt(0).toUpperCase()+student.firstName.slice(1)}}
+                              {{student.lastName.charAt(0).toUpperCase()+student.lastName.slice(1)}} </span>
+                          </div>
+
+                        </div>
+                        <div class="details note-details-show-mobile">
+                          <div class="student-padding open-students" *ngIf="note.student.length>2">
+                            {{note.student?.length}}{{' Students'}}
+                            <span><button class="icon-chevron item-container--focus" (click)="expandTaggedStudents(i)"
+                                (keyup.enter)="expandTaggedStudents(i)" aria-label="Click to expandStudents students list"
+                                [attr.tabindex]="tabIndexStatus? 0:-1"></button></span>
+                          </div>
+                        </div>
+
+
+                        <div class="details note-details-show-mobile" *ngFor="let student of note.student; index as j">
+                          <div *ngIf="note.student.length < 3">
+                            <!-- <span>{{j}}</span> -->
+                            <span class="gavatar">{{student.avatar}}</span>
+                            <span class="student-avatar-padding item-container--focus" (click)="openAddEditSlider('Edit',note)"
+                              (keyup.enter)="openAddEditSlider('Edit',note)">{{student.firstName.charAt(0).toUpperCase()+student.firstName.slice(1)}}
+                              {{student.lastName.charAt(0).toUpperCase()+student.lastName.slice(1)}} </span>
+                          </div>
+                          <div *ngIf="expandStudents[i] && note.student.length > 2">
+                            <!-- <span>{{j}}</span> -->
+                            <span class="gavatar">{{student.avatar}}</span>
+                            <span class="student-avatar-padding item-container--focus" (click)="openAddEditSlider('Edit',note)">{{student.firstName.charAt(0).toUpperCase()+student.firstName.slice(1)}}
+                              {{student.lastName.charAt(0).toUpperCase()+student.lastName.slice(1)}} </span>
+                          </div>
+
+                        </div>
+                        <div class="student-padding other-students" (click)="openAddEditSlider('Edit',note)" *ngIf="note.student.length>2">
+                          and {{note.student?.length-2}} {{note.student?.length-2==1?'other':'others'}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div role="document" class="overlay" (click)="openAddEditSlider('Add')" [ngClass]="{'active': isAddSliderOpen }"></div>
+<app-global-modal [headerTitle]="'Delete Confirmation'" [popupType]="'confirm'"></app-global-modal>

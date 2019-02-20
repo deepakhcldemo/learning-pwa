@@ -1,0 +1,376 @@
+@import "../../../styles/mixins";
+@import url("https://fonts.googleapis.com/css?family=Roboto:300, 500, 400");
+@import "../../../styles/mixins";
+/**
+  below CSS is used for smooth scrolling for I-pad
+**/
+
+* {
+    -webkit-overflow-scrolling: touch;
+}
+
+/*For Desktop View*/
+
+.container-desktop {
+    display: inline;
+}
+
+/*For Mobile View*/
+
+.container-mobile {
+    display: none;
+}
+
+/*Used For The breadcrumb Section*/
+
+nav {
+    width: 100%;
+}
+
+ol {
+    margin-bottom: 0;
+}
+
+/*Format The Path For The Assessment Selected.*/
+
+.breadcrumb {
+    height: 30px;
+    width: 100%;
+    background-color: $highlighter-green;
+    box-shadow: 0 5px 5px 0 $white-grey;
+    border-radius: 0px;
+    margin-bottom: 10px;
+}
+
+/*Format The Path For The Assessment Selected.*/
+
+.breadcrumb-item {
+    height: 14px;
+    color: $white;
+    font-family: $font-family-cabin;
+    font-size: 14px;
+    line-height: 6px;
+}
+
+.breadcrumb a {
+    color: $white;
+}
+
+.breadcrumb-item.active {
+    color: $white;
+}
+
+.assessment-container {
+    padding: 10px 0 0 0;
+    height: inherit;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 100%;
+    position: absolute;
+    top: 40px;
+    bottom: 0px;
+}
+
+.assessment-container--height {
+    height: 100%;
+}
+
+.assessment-column-style {
+    min-width: 35%;
+}
+
+/*Format The Assessment Title And Detail*/
+
+.assessment--data {
+    height: 79px;
+    width: 100%;
+    background-color: $highlighter-green;
+    padding: 0px 17px 0px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: $white;
+}
+
+/*Format the current assessment Details*/
+
+.assessment--title {
+    color: $white;
+    font-family: $font-family-cabin;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.scrollable-content {
+    overflow: hidden;
+    min-height: calc(100% - 90px);
+    width: 35%;
+    position: absolute;
+    background: $white;
+}
+
+.row-table-padding {
+    padding: 3px;
+}
+
+.assessment-item--content {
+    overflow: auto;
+    height: 100%;
+    position: absolute;
+}
+
+.inner--para {
+    color: $black;
+    padding-right: 15px;
+}
+
+/*Format The Alphabets*/
+
+.side-menu {
+    z-index: 1;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    bottom: 0;
+    padding: 0 2px;
+    cursor: pointer;
+    overflow: auto;
+    width: 44px;
+    background-color: $side-menu-color;
+    box-shadow: -1px 0 4px 0 $white-grey;
+}
+
+.side-menu a {
+    display: block;
+    margin: -2px 0;
+}
+
+/*Format The Alphabets*/
+
+.menu-options {
+    font-family: $font-family-cabin;
+    font-size: 16px;
+    line-height: 36px;
+    text-align: center;
+}
+
+.alphabet--anchor {
+    color: $lightblue;
+    font-weight: bold;
+}
+
+/*For The Student Detail Container*/
+
+.wrapper-student-list {
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-left: 20px;
+    margin-right: 40px;
+    background-color: $light-blue;
+    width: calc(65% - 64px);
+}
+
+/*For The Student Detail Container*/
+
+.student-list--height {
+    height: 100%;
+}
+
+/*Displaying The List Of Student Tagged.*/
+
+.student-list-items {
+    width: 400px;
+    display: inline-grid;
+    background-color: $white;
+    height: 100%;
+    margin-right: 26px;
+}
+
+/*For The Student Detail Container Where ongoing-student-detail component has been taken to context*/
+
+.student-desktop-view {
+    height: inherit;
+}
+
+@media screen and (min-width: 1400px) {
+    .assessment-container {
+        width: calc(100% - 64px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container-mobile {
+        display: block;
+    }
+    .container-desktop {
+        display: none;
+    }
+    .sidebar-container {
+        padding: 0px;
+    }
+    .sidebar--box-shadow {
+        box-shadow: 0 6px 10px 0 $black-lighter-shade, 0 1px 18px 0 $black-lightest-shade, 0 3px 5px -1px $white-grey;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .assessment--path {
+        margin: 3px;
+        font-size: 15px;
+        padding-left: 10px;
+        background: inherit;
+        color: inherit;
+    }
+    .assessment--quote {
+        line-height: 20px;
+        padding: 0px 10px;
+        font-size: 20px;
+        color: $white;
+        background-color: $highlighter-green;
+        height: 75px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .assessment--navigation {
+        border: none;
+        padding: 10px;
+        background: $white;
+        border: none;
+        padding: 10px;
+        background: $white;
+        position: fixed;
+        top: 162px;
+        bottom: 64px;
+    }
+    .toggle-toggle-2 {
+        width: unset;
+    }
+    .btn-light:not(:disabled):not(.disabled):active,
+    .btn-light:not(:disabled):not(.disabled).active,
+    .show>.btn-light.dropdown-toggle {
+        color: $white;
+        background-color: $dark-blue;
+        border-color: $dark-blue;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .label-off {
+        height: 30px !important;
+        height: 30px !important;
+        border: 1px solid $dark-blue;
+        border-radius: 0 !important;
+        padding: 5px;
+        width: 50% !important;
+    }
+    /*Format the current assessment Details And Title*/
+    .assessment-item-container {
+        background-color: $white;
+        box-shadow: 2px 0 4px 0 $black-light-shade;
+        padding: 0px;
+        height: 100%;
+        overflow-y: auto;
+    }
+    /*Format the current assessment Details And Title*/
+    .assessment-item--repeater {
+        width: 100%;
+        color: $black;
+        font-family: $font-family-cabin;
+        font-size: 20px;
+        line-height: 24px;
+        padding: 0px 17px 0px 19px;
+    }
+    .assessment-item--title {
+        padding: 5px 0px;
+        border-bottom: 1px solid $black;
+        font-size: 18px;
+        color: $black;
+        font-weight: bold;
+    }
+    .assessment-item-list {
+        overflow: auto;
+        position: fixed;
+        top: 192px;
+        bottom: 64px;
+        width: calc(100% - 20px);
+        margin-top: 10px;
+    }
+    .student-list {
+        margin: 0px;
+        padding: 2px 0px;
+    }
+    .student-sidebar {
+        font: bold 14pt "Trebuchet MS";
+        color: $white;
+        padding: 10px 10px 10px 10px;
+        background-color: $blue;
+    }
+    .student-sidebar:hover {
+        font: bold 14pt "Trebuchet MS";
+        cursor: pointer;
+    }
+    .student-sidebar:active {
+        font: bold 14pt "Trebuchet MS";
+    }
+    .gavatar {
+        color: $white;
+        background-color: $icon-color;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 35px;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        margin: 1px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .student-sidebar--name-padding {
+        padding-left: 10px;
+    }
+    .student-sidebar--name-icon {
+        font-size: 24px;
+        color: $white;
+        float: right;
+        line-height: 16px;
+        font-family: $font-family-cabin;
+    }
+    .student-sidebar--wrapper {
+        position: absolute;
+        display: flex;
+        align-items: stretch;
+        z-index: 100;
+        top: 56px;
+        right: 0;
+        width: 100%;
+        margin-right: -100%;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        -s-transition: all 0.5s ease;
+        &.active {
+            margin: 0px;
+        }
+    }
+    .student-sidebar-container {
+        min-width: 100%;
+        max-width: 100%;
+        background: $white;
+        color: $blue;
+        transition: all 0.3s;
+        overflow-y: auto;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+        top: 50px;
+        position: fixed;
+        bottom: 64px;
+        .col-12 {
+            padding-right: 0px !important;
+            padding-left: 0px !important;
+        }
+    }
+}

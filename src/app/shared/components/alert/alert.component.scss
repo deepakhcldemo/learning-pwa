@@ -1,0 +1,29 @@
+@import "../../../../styles/mixins";
+.parent {
+    position: absolute;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $black;
+    z-index: 100;
+    opacity: 0.8;
+}
+.child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+    background: $white;
+    border: 1px solid $red;
+    opacity: 1.0 !important;
+}
+ngb-alert {
+    span {
+        font-size: 24px !important;
+        color: $black !important;
+        font-family: $font-family-cabin;
+    }
+}

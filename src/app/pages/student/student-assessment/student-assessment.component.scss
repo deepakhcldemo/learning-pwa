@@ -1,0 +1,112 @@
+@import "../../../../styles/mixins";
+.assessment {
+  height: inherit;
+}
+
+.section-header {
+  padding-left: 8px;
+  height: 47px;
+}
+
+.item-container {
+  position: absolute;
+  height: calc(100% - 108px);
+  width: 100%;
+  overflow-y: auto;
+}
+
+/*Applied To Point The Cursor On Export Tab To Open A model On Click.*/
+
+.open-export {
+  cursor: pointer;
+}
+
+button:disabled,
+button[disabled] {
+  color: $lightest-grey;
+  cursor: not-allowed;
+}
+
+.icon-button__color {
+  background: transparent;
+  font-family: $font-family-cabin !important;
+  color: $white;
+  outline: none;
+  border: none;
+  padding-top: 5px;
+}
+
+.icon-assign__margin {
+  margin-right: 6px;
+}
+
+/*Format The Assessment Checklist On Selection Of Assessment.*/
+
+.card-header__assessmentchecklist {
+  cursor: pointer;
+}
+
+.assessment__tdata {
+  padding-bottom: 0px;
+  border-bottom: 1px solid $light-grey;
+}
+
+.assessment__checklist {
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  padding-left: 21px;
+  padding-top: 12px;
+  color: $dark-grey;
+  text-transform: capitalize;
+}
+
+.assessment__rows {
+  margin-bottom: 0.5rem;
+  font-family: $font-family-cabin;
+  padding-left: 21px;
+  font-size: 18px;
+  line-height: 24px;
+  color: $highlighter-green;
+}
+
+.assessment__title {
+  margin-bottom: 0.5rem;
+  font-size: 18px;
+  padding-left: 21px;
+  color: $black;
+}
+
+/*Format The CSS For The Students List Displayed On The Left Side*/
+
+.no-record {
+  width: 100%;
+  color: $black;
+  font-size: 20px;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .item-container {
+    position: unset;
+  }
+  .section-header {
+    padding-left: 7px;
+    height: 39px;
+  }
+
+  .icon-button__color {
+    padding-top: unset;
+  }
+  .assessment__checklist {
+    padding-left: 13px;
+    padding-right: 5px;
+  }
+  .assessment__rows {
+    padding-left: 13px;
+    padding-right: 5px;
+  }
+  .assessment__title {
+    padding-left: 13px;
+    padding-right: 5px;
+  }
+}

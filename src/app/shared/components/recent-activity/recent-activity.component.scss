@@ -1,0 +1,260 @@
+@import "../../../../styles/mixins";
+.card-container {
+    height: 252px; // margin-left: 28px;
+    border: 0px;
+    background: $light-blue;
+}
+
+.card-header-container {
+    height: 30px;
+    background-color: $lightblue;
+}
+
+.card-header-container>h5 {
+    height: 18px;
+    width: 150px;
+    color: $header-icon-color;
+    font-family: $font-family-cabin;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    line-height: 26px;
+    margin: 0px;
+}
+
+.card-body--position {
+    padding: 0px;
+    // max-height: 222px;
+    overflow-y: auto;
+    background: $light-blue;
+    position: relative;
+}
+
+.ul-padding-left {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.recent-item_list {
+    height: 71px;
+    background-color: $header-icon-color;
+    margin-bottom: 3px;
+}
+
+.notes-list {
+    height: 100%;
+    width: 100%;
+    color: $blue;
+    font-family: $font-family-cabin;
+    font-size: 14px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    background-color: $header-icon-color;
+    border: none;
+    padding-left: 0px;
+}
+
+.icon-PDF_alt,
+.icon-media_library {
+    height: 25px;
+    width: 26px;
+    color: $avatar-blue;
+    font-family: $font-family-k12_universal_icons;
+    font-size: 24px;
+    line-height: 25px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.recent-item-list--title {
+    text-align: left;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 24px;
+    height: 24px;
+    display: block;
+    color: $dark-grey !important;
+    width: 400px;
+    white-space: nowrap;
+}
+
+.recent-item-list--date {
+    margin-left: 94px;
+    height: 18px;
+    color: $carbon-black;
+    font-family: $font-family-cabin;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: right;
+    padding-right: 5px;
+}
+
+.no-record-msg {
+    height: 71px;
+    background: $white;
+    padding: 5px 0 0 15px;
+}
+
+.assessment-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    width: 100%;
+    color: $dark-green;
+    font-family: $font-family-cabin;
+    font-size: 14px;
+    line-height: 24px;
+    background-color: $header-icon-color;
+    border: none;
+    padding-left: 0px;
+}
+
+.assessment-list--assessment {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+}
+
+.assessment-list--icon {
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.icon-observational_assessment-inverted,
+.icon-assessment {
+    height: 25px;
+    width: 26px;
+    color: $dark-green;
+    font-family: $font-family-k12_universal_icons;
+    font-size: 24px;
+    line-height: 25px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.assessment-list--details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.assessment-recent-title {
+    color: $dark-green !important;
+}
+
+.recent-item-list--path {
+    text-align: left;
+    height: 24px;
+    color: $dark-grey;
+    font-family: $font-family-cabin;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 24px;
+    display: block;
+}
+
+.assessment-list--date {
+    float: right;
+    font-weight: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: $carbon-black;
+    font-family: $font-family-cabin;
+    font-size: 14px;
+    line-height: 18px;
+    padding-right: 5px;
+}
+
+.media-list {
+    height: 100%;
+    width: 100%;
+    color: $blue;
+    font-family: $font-family-cabin;
+    font-size: 14px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    background-color: $header-icon-color;
+    border: none;
+    padding-left: 0px;
+}
+
+.recent-item-list--more__button {
+    display: none;
+}
+
+// @media screen and (max-width: 768px) {
+//   .details {
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+//     overflow: hidden;
+//   }
+// }
+@media screen and (max-width: 1024px) {
+    .recent-item-list--title {
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        height: auto;
+    }
+    .card-body {
+        padding: 0px;
+        overflow-y: hidden;
+        // max-height: 222px;
+    }
+    .recent-item-list--title {
+        width: 458px;
+    }
+    .assessment-list--assessment {
+        width: 83.5%;
+        padding-right: 5px;
+    }
+    .recent-item-list--path {
+        width: 180px;
+    }
+    .assessment-list--date {
+        margin-left: 10px;
+    }
+    .recent-item-list--more__button {
+        display: inline;
+    }
+    .recent-item-list--less__button {
+        float: right;
+        font-weight: bold;
+    }
+    .icon-rotate-more {
+        display: inline-block;
+        transform: rotate(90deg);
+    }
+    .icon-rotate-less {
+        display: inline-block;
+        transform: rotate(270deg);
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .recent-item-list--title {
+        width: 180px;
+    }
+}

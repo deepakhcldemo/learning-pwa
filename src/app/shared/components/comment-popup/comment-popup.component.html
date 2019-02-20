@@ -1,0 +1,21 @@
+
+<ng-template #comment let-modal>
+  <div class="modal-header-global">
+      <span class="modal-title">Comment</span>
+      <button type=" button" class="btn done-button icon__button btn__white" aria-label="Done"
+        (click)="modal.dismiss('Cross click');" tabindex="0">Done
+        <!-- <span aria-hidden="true">&times;</span> -->
+      </button>
+  </div>
+  <div class="modal-body-global">
+    <div class="edit-popup">
+      <div class="comment-section">
+        <textarea rows="10" class="form-control" #updateCommentContent tabindex="0">{{commentText}}</textarea>
+      </div>
+      <div class="modal-footer">
+        <button [disabled]="updateCommentContent.value == '' " type="button" (click)="updateComment(commentId, updateCommentContent.value)"
+          class="btn btn-light__label btn__popup--bgcolor" tabindex="0">Update</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

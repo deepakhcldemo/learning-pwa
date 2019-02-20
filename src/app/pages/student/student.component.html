@@ -1,0 +1,160 @@
+<div class="page-container" role="application">
+  <div class="row row-without-margin" role="presentation">
+    <app-teacher-class *ngIf="classSelectorStatus"></app-teacher-class>
+    <div class="student-container" role="presentation">
+      <div class="student-list  ps" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="isMobileView? true : false" role="presentation">
+        <div [ngClass]="{'scrollable-student--list': isMobileView}">
+          <div class="box-shadow item-container--focus" role="listitem" attr.aria-label="student list with {{students.length}} students"
+            *ngIf="students.length">
+            <!-- Div For student list -->
+            <div class="student-item--container" *ngFor="let item of students; let i = index;" (keyup.enter)="current = i "
+              id="{{item.userId}}" (click)="current = i ;">
+              <div class="student-title item-container--focus" [ngClass]="{'highlighted-assessment-item': selectedIndex == i}"
+                (click)=" setSelectedStudentIndex(i); setTabStatus('Assessments')" (keyup.enter)="setSelectedStudentIndex(i); setTabStatus('Assessments')"
+                attr.aria-label="student name, {{item.fullName}}" [attr.tabindex]="tabindexStatus? 0: -1"><span class="gavatar"
+                  role="presentation">{{
+                  item.avatar }}</span> <span class="student-item-title" [ngClass]="{'highlighted-assessment': selectedIndex == i}"
+                  role="presentation">{{item.firstName.charAt(0).toUpperCase()+item.firstName.slice(1)
+                  + ' ' + item.lastName.charAt(0).toUpperCase()+item.lastName.slice(1) | truncate : 20}}
+                </span>
+                <button class="btn icon__button icon__button--position" *ngIf="i != current" aria-hidden="true"
+                  tabindex="-1"><i class="icon icon-chevron icon-chevron-show" aria-hidden="true">
+                  </i></button>
+                <button class="btn icon__button icon__button--position chevron__rotate-icon-90" aria-hidden="true"
+                  tabindex="-1"><i class="icon icon-chevron icon-chevron-show" *ngIf="i == current" aria-hidden="true">
+                  </i></button>
+              </div>
+              <!-- Div For student assessment, notes, media, contact info in mobile view -->
+              <div class="col-sm-12 col-md-12 col-lg-9 col-12 dropdiv" role="presentation">
+                <div class="card card-without--border mb-3  card-without-border dropdiv__info" [class.collapse]='current != i'
+                  role="presentation">
+                  <div class="card-body card-body-without-padding box-shadow" role="presentation">
+                    <div class="item-container--focus" id="m_studentDetails" attr.aria-label="Details Section for student
+                  {{students[selectedIndex]?.fullName}}"
+                      [attr.tabindex]="tabindexStatus && mob_studentDetailsStatus? 0: -1">
+                      <!-- Div For student assessment, notes, media, contact info buttons in mobile view -->
+                      <div class="btn-group btn-group-toggle toggle-btn col-sm-12" data-toggle="buttons" role="radiogroup">
+                        <button class="btn btn-light__label labelRadio item-container--focus active" (click)="setTabStatus('Assessments','Assessments')"
+                          [ngClass]="{'active': selectedLink == 'Assessments'}" aria-label="Assessments Tab"
+                          [attr.tabindex]="tabindexStatus && (selectedTab == '' || selectedTab =='Assessments' )? 0 : -1">
+                          <input type="radio" name="Assessments" id="Assessments" value="Assessments" autocomplete="off"
+                            [checked]='true' ngModel aria-hidden="true" [attr.tabindex]="selectedTab =='Assessments'? -1: -1">
+                          <span class="student-tab__label" role="radio">Assessments</span>
+                        </button>
+                        <button class="btn btn-light__label labelRadio item-container--focus" (click)="setTabStatus('Notes','Notes');"
+                          [ngClass]="{'active':  selectedLink =='Notes'}" aria-label="Notes Tab" [attr.tabindex]="tabindexStatus && (selectedTab =='' || selectedTab =='Notes')? 0: -1">
+                          <input type="radio" name="Notes" id="Notes" autocomplete="off" value="Notes" ngModel
+                            aria-hidden="true" [attr.tabindex]="selectedTab =='Notes'? -1: -1">
+                          <span class="student-tab__label" role="radio">Notes</span>
+                        </button>
+                        <button class="btn btn-light__label labelRadio item-container--focus" (click)="setTabStatus('Media','Media');"
+                          [ngClass]="{'active':  selectedLink =='Media'}" aria-label="Media Tab" [attr.tabindex]="tabindexStatus && (selectedTab =='' || selectedTab =='Media') ? 0: -1">
+                          <input type="radio" name="Media" id="Media" autocomplete="off" value="Media" ngModel
+                            aria-hidden="true" [attr.tabindex]="selectedTab =='Media'? -1: -1">
+                          <span class="student-tab__label" role="radio"> Media</span>
+                        </button>
+                        <button class="btn btn-light__label labelRadio item-container--focus" (click)="setTabStatus('Contact','Contact'); getContactInfo()"
+                          [ngClass]="{'active':  selectedLink =='Contact'}" aria-label="Contact Info Tab"
+                          [attr.tabindex]="tabindexStatus && (selectedTab =='' || selectedTab =='Contact') ? 0: -1">
+                          <input type="radio" name="Contact" id="Contact" autocomplete="off" value="Contact" ngModel
+                            aria-hidden="true" [attr.tabindex]="selectedTab =='Assessments'? -1: -1">
+                          <span class="student-tab__label" role="radio">Contact</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div>
+                      <!-- Div For student assessment in mobile view -->
+                      <div *ngIf=" selectedLink =='Assessments' && selectedIndex == i && isMobileView" id="{{students[selectedIndex].userId}}"
+                        role="presentation">
+                        <app-student-assessment></app-student-assessment>
+                      </div>
+
+                      <!-- Div For student notes in mobile view -->
+                      <div *ngIf=" selectedLink =='Notes' && selectedIndex == i  && isMobileView" id="{{students[selectedIndex].userId}}"
+                        role="presentation">
+                        <app-student-notes></app-student-notes>
+                      </div>
+
+                      <!-- Div For student media in mobile view -->
+                      <div *ngIf=" selectedLink =='Media' && selectedIndex == i  && isMobileView" id="{{students[selectedIndex].userId}}"
+                        role="presentation">
+                        <app-student-media></app-student-media>
+                      </div>
+
+                      <!-- Div For student contact info in mobile view -->
+                      <div *ngIf=" selectedLink =='Contact' && selectedIndex == i  && isMobileView" id="{{students[selectedIndex].userId}}"
+                        role="presentation">
+                        <app-contact-info [studentId]="setStudentId"></app-contact-info>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Div for no student message -->
+          <div class="box-shadow item-container--focus no-student-container" *ngIf="!students.length">
+            <span class="no-student-msg">{{noStudentMsg}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Div For student assessment, notes, media, contact info in desktop view -->
+      <div class="sidediv">
+        <div class="card mb-3  card-without-border student-details--container" role="presentation">
+          <div class="card-body card-body-without-padding box-shadow" role="presentation">
+            <div class="card-body__label item-container--focus" id="studentDetails" attr.aria-label="Details Section for student
+          {{students[selectedIndex]?.fullName}}"
+              [attr.tabindex]="tabindexStatus && studentDetailsStatus? 1: -1">
+              <!-- Div For student assessment, notes, media, contact info buttons in Desktop view -->
+              <div class="btn-group btn-group-toggle toggle-btn col-md-11 col-lg-9" data-toggle="buttons" role="radiogroup">
+                <button class="btn btn-light__label btn-border labelRadio item-container--focus" (click)="setTabStatus('Assessments', 'Assessments')"
+                  [ngClass]="{'active':  selectedLink =='Assessments'}" aria-label="Assessments Tab" [attr.tabindex]="tabindexStatus && (selectedTab == '' || selectedTab =='Assessments') ? 1 : -1">
+                  <input type="radio" name="Assessments" id="Assessments" value="Assessments" autocomplete="off"
+                    ngModel aria-hidden="true" [attr.tabindex]="selectedTab =='Assessments'? -1: -1"> Assessments
+                </button>
+                <button class="btn btn-light__label btn-border labelRadio item-container--focus" (click)="setTabStatus('Notes', 'Notes');"
+                  [ngClass]="{'active':  selectedLink =='Notes'}" aria-label="Notes Tab" [attr.tabindex]="tabindexStatus && (selectedTab =='' || selectedTab =='Notes')? 1: -1">
+                  <input type="radio" name="Notes" id="Notes" autocomplete="off" value="Notes" ngModel aria-hidden="true"
+                    [attr.tabindex]="selectedTab =='Notes'? -1: -1"> Notes
+                </button>
+                <button class="btn btn-light__label btn-border labelRadio item-container--focus" (click)="setTabStatus('Media', 'Media');"
+                  [ngClass]="{'active':  selectedLink =='Media'}" aria-label="Media Tab" [attr.tabindex]="tabindexStatus && (selectedTab =='' || selectedTab =='Media' )? 1: -1">
+                  <input type="radio" name="Media" id="Media" autocomplete="off" value="Media" ngModel aria-hidden="true"
+                    [attr.tabindex]="selectedTab =='Media'? -1: -1"> Media
+                </button>
+                <button class="btn btn-light__label btn-border labelRadio item-container--focus" (click)="setTabStatus('Contact', 'Contact'); getContactInfo()"
+                  [ngClass]="{'active':  selectedLink =='Contact'}" aria-label="Contact Info Tab" [attr.tabindex]="tabindexStatus && (selectedTab =='' || selectedTab =='Contact')? 1: -1">
+                  <input type="radio" name="Contact" id="Contact" autocomplete="off" value="Contact" ngModel
+                    aria-hidden="true" [attr.tabindex]="selectedTab =='Contact'? -1: -1"> Contact Info
+                </button>
+              </div>
+            </div>
+            <div class="scrollable" role="presentation">
+
+              <!-- Div For student assessment in Desktop view -->
+              <div *ngIf=" selectedLink =='Assessments' && !isMobileView" id="{{students[selectedIndex]?.userId}}" role="presentation">
+                <app-student-assessment></app-student-assessment>
+              </div>
+
+              <!-- Div For student notes in Desktop view -->
+              <div *ngIf=" selectedLink =='Notes' && !isMobileView" id="{{students[selectedIndex]?.userId}}" role="presentation">
+                <app-student-notes></app-student-notes>
+              </div>
+
+              <!-- Div For student media in Desktop view -->
+              <div *ngIf=" selectedLink =='Media' && !isMobileView" id="{{students[selectedIndex]?.userId}}" role="presentation">
+                <app-student-media></app-student-media>
+              </div>
+
+              <!-- Div For student contact info in Desktop view -->
+              <div *ngIf=" selectedLink =='Contact' && !isMobileView" id="{{students[selectedIndex]?.userId}}" role="presentation">
+                <app-contact-info [studentId]="setStudentId"></app-contact-info>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

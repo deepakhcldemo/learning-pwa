@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="87px" height="87px" viewBox="0 0 87 87" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>media/play</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="37.5" cy="37.5" r="37.5"></circle>
+        <filter x="-11.3%" y="-8.7%" width="122.7%" height="122.7%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="1.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Media" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Media-1" transform="translate(-169.000000, -235.000000)">
+            <g id="media/play" transform="translate(175.000000, 239.000000)">
+                <g id="Oval">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use stroke="#FFFFFF" stroke-width="3" fill-opacity="0.3" fill="#022C45" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <polygon id="Triangle" fill="#FFFFFF" fill-rule="evenodd" transform="translate(41.183786, 37.668097) rotate(90.000000) translate(-41.183786, -37.668097) " points="41.1837859 22.6008581 56.7532659 52.7353356 25.6143058 52.7353356"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

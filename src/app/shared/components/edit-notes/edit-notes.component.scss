@@ -1,0 +1,457 @@
+@import "../../../../styles/mixins";
+/** 
+  below CSS is used for smooth scrolling for I-pad
+**/
+
+* {
+    -webkit-overflow-scrolling: touch;
+}
+
+.overlay {
+    z-index: 101;
+}
+
+/* Applied style on date. */
+
+.date-style {
+    border: 0;
+    color: $dodger-blue;
+}
+
+#edit-note-wrapper {
+    width: 100%;
+    height: 100%;
+    background: $white;
+    color: $black !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    top: 0px;
+    .sidebar-header {
+        font-size: 16px;
+        background: $lightblue;
+        color: $white;
+        text-align: left;
+        height: 44px;
+        line-height: 56px;
+    }
+}
+
+/* Applied style on wrapper. */
+
+.note-wrapper {
+    position: absolute;
+    // display: none;
+    align-items: stretch;
+    z-index: 102;
+    top: 44px;
+    right: 0;
+    width: 40% !important;
+    // margin-right: -40%;
+    bottom: 0px;
+    /* &.active {
+        display: flex;
+        -webkit-animation: slide 0.5s linear forwards;
+        -moz-animation: slide 0.5s linear forwards;
+        -o-animation: slide 0.5s linear forwards;
+        animation: slide 0.5s linear forwards;
+        margin-right: 0;
+    }
+    @-webkit-keyframes slide {
+        100% {
+            margin-right: 0;
+        }
+        0% {
+            margin-right: -40%;
+        }
+    }
+    @keyframes slide {
+        100% {
+            margin-right: 0;
+        }
+        0% {
+            margin-right: -40%;
+        }
+    } */
+}
+/* Overwriting class from global modal */
+
+/* Applied style on "Done". */
+
+.save-note {
+    background: $lightblue;
+    color: $search-placeholder-color;
+    font-size: 18px;
+    right: right;
+    cursor: pointer;
+    position: absolute;
+    right: 35px; 
+    top: 0px;
+}
+
+.exit-icon {
+    height: 22px !important;
+    line-height: 8px !important;
+    width: 40px !important;
+    right: 10px; // top: 10px;
+}
+
+/* Applied style on checkbox. */
+
+.student-padding {
+    min-width: 100px;
+    padding-bottom: 20px;
+}
+
+/* Style on checkbox. */
+
+.student-checkmark {
+    display: inline-block;
+}
+
+/* Applied style on date and is hidden when todo mode is off. */
+
+.hideDate {
+    display: none;
+}
+
+/* Applied style on the To-Do switch. */
+
+.add-note {
+  font-size: 18px;
+  color: $search-placeholder-color
+}
+
+.bs-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-left: -70%;
+}
+
+.bs-switch input {
+    display: inline-block;
+    width: 50px;
+    height: 22px;
+    left: 25px;
+    bottom: 8px;
+}
+
+[type="checkbox"][_ngcontent-c7]:checked,
+[type="checkbox"][_ngcontent-c7]:not(:checked) {
+    position: absolute;
+    opacity: 1;
+    pointer-events: visible;
+    cursor: pointer;
+    left: 25px;
+    top: -2px;
+}
+
+.bs-switch input:checked+.slider {
+    background-color: $dodger-blue;
+}
+
+.bs-switch .slider.round {
+    -webkit-border-radius: 34px;
+    border-radius: 34px;
+}
+
+.bs-switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 2px;
+    left: 4px;
+    right: 5px;
+    bottom: 7px;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.bs-switch input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.bs-switch .slider.round:before {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.bs-switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #fff;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+}
+
+/* Applied style for To-Do label. */
+
+.to-do {
+    float: left;
+    color: $black;
+}
+
+/* Applied style on the date. */
+
+.date-picker-text {
+    float: left;
+    color: $black;
+}
+
+/* Applied style on the checkbox. */
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    border: 1px solid $checkbox-color;
+    border-radius: 4px;
+    background-color: $white;
+}
+
+/* Applied style on todo and its form. */
+
+.btm-border {
+    border-bottom: 1px solid $pink-swan;
+    padding-bottom: 20px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.btm-border-todo {
+    border-bottom: 1px solid $pink-swan;
+    padding-bottom: 50px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Applied style on complete block of students and toogle button of edit notes. */
+
+.set-note {
+    padding: 10px;
+    position: absolute;
+    top: 56px;
+    overflow: hidden;
+    overflow-y: auto;
+    bottom: 0px;
+    height: calc(100% - 56px);
+    width: 100%;
+}
+
+.icon-calendar {
+    position: relative;
+    right: 75px;
+    padding-left: 14px !important;
+}
+
+/* Applied style on the gavatar icon. */
+
+.gavatar {
+    color: $white;
+    background-color: $icon-color;
+    display: inline-block;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin: 1px;
+    text-align: center;
+    margin-top: 18px;
+    margin-right: 10px;
+}
+
+/* Applied style on the tag student header. */
+
+.tag-students-header {
+    margin-left: 0;
+    text-align: left !important;
+    color: $black;
+}
+
+/* Applied style on the list of the student. */
+
+.student-list {
+    text-align: left;
+    height: calc(100% - 430px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked) {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked) {
+    position: absolute;
+    opacity: 1;
+    pointer-events: visible;
+    cursor: pointer;
+    margin-left: -20px;
+    margin-top: 6px;
+    width: 12px;
+    height: 12px;
+}
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked) {
+    position: absolute;
+    opacity: 1;
+    pointer-events: visible;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:focus+span::before {
+    border-color: $checkbox-blue;
+}
+
+/* Applied style for checkbox container. */
+
+.side-bar-padding {
+    padding-bottom: 0px;
+    // color: $dark-blue;
+    color: $lightblue;
+    text-align: left;
+    ul {
+        padding: 0px;
+    }
+    li {
+        display: unset;
+    }
+}
+
+ul {
+    list-style-type: none;
+    padding: 0px 0px 0px 2px !important;
+}
+
+/* Applied style on student name. */
+
+.student-name {
+    margin-left: 10px;
+    color: $black;
+    font-size: 16px;
+    font-family: $font-family-cabin;
+}
+
+/* Applies style on the exit icon. */
+
+.exit-icon__top {
+    float: right;
+    position: absolute; // top: 11px !important;
+}
+
+/* Applies style on the edit notes title. */
+
+.notes-title {
+    margin: 0 !important;
+    padding: 0px 0 0 10px;
+    line-height: 44px;
+    // display: inline-block;
+}
+
+h4 {
+    margin-bottom: 0px;
+}
+
+/* Applies style on custom checkbox for students. */
+
+.checkbox-custom {
+    left: 20px;
+    z-index: unset;
+    top: -6px;
+    opacity: 1 !important;
+}
+
+.checkbox-custom :focus {
+    box-shadow: 7px 6px 0px 7px dodgerblue;
+}
+
+.tagged-student--border {
+    border-bottom: 1px solid $pink-swan;
+}
+
+@media screen and (max-width: 768px) {
+    .note-wrapper {
+        width: 100% !important;
+        // margin-right: -100%;
+    /* @-webkit-keyframes slide {
+          100% {
+              margin-right: 0;
+          }
+          0% {
+              margin-right: -100%;
+          }
+      }
+      @keyframes slide {
+          100% {
+              margin-right: 0;
+          }
+          0% {
+              margin-right: -100%;
+          }
+      }
+    } */
+    }
+
+    .edit-note-wrapper {
+        top: 44px;
+    }
+
+    .save-note {
+        right: 35px;
+    }
+    .student-list {
+        width: 100%;
+    }
+
+    .todo-label {
+        width: 440px;
+    }
+    .student-list {
+        width: 100%;
+    }
+    
+    [type="checkbox"]:checked,
+    [type="checkbox"]:not(:checked) {
+        position: absolute;
+        opacity: 1;
+        pointer-events: none;
+    }
+    input[type="checkbox"],
+    input[type="radio"] {
+        box-sizing: border-box;
+        opacity: 0;
+        padding: 0;
+    }
+
+    /* .exit-icon__top {
+        // padding-right:10px;
+    } */
+    .exit-icon{
+      right: 5px !important;
+    }
+}

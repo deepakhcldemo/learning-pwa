@@ -1,0 +1,689 @@
+@import "../../../styles/mixins";
+/*Displaying List Of Notes. */
+
+/** 
+  below CSS is used for smooth scrolling for I-pad
+**/
+
+* {
+    -webkit-overflow-scrolling: touch;
+}
+
+.top-nav {
+    padding: 15px 0;
+    width: 100%;
+    background-color: $white;
+    border-bottom: 1px solid $dark-blue;
+    position: unset;
+    top: unset;
+}
+
+/*Css Applied On All Notes And  ToDo's Button On The Top*/
+
+.btn-light__label:not(:disabled):not(.disabled):active,
+.btn-light__label:not(:disabled):not(.disabled).active,
+.show>.btn-light__label.dropdown-toggle {
+    color: $white;
+    background-color: $lightblue;
+    border-color: $lightblue;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.btn-light__label {
+    border: 1px solid $lightblue;
+    border-radius: 0;
+}
+
+/* Allows To Add New Notes On Users Request*/
+
+.add-note {
+    float: right;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: "Cabin";
+    line-height: 33px;
+    color: $lightblue;
+    text-align: right;
+    padding-right: 12px;
+}
+
+/*Applied For The Css Formatting Of Add Note */
+
+.add-note--button {
+    vertical-align: middle;
+    color: inherit;
+    font-size: 24px;
+    color: $lightblue;
+}
+
+/*For Action Bar Having Edit And Related Functionalities.*/
+
+.action-bar-margin {
+    padding: 20px;
+    position: unset;
+    top: unset;
+    width: unset;
+}
+
+.add-note-popup {
+    padding-top: 6px; // padding-left: 10px;
+    font-size: 18px;
+    color: $white;
+    background-color: $lightblue;
+    cursor: pointer;
+    font-family: $font-family-cabin;
+}
+
+
+/*Applied For Displaying The Add Note Only In Case Of Responsivness In Small Screens*/
+
+.add-note-inner {
+    display: none;
+    font-size: 18px;
+}
+
+/* Css Applied When Click On Edit To Display Cancel And Remove Respectively.*/
+
+.edit-header {
+    position: relative;
+    padding: 0px 0px 0px 15px;
+    display: inline-block;
+    font-weight: 400;
+    background-color: $lightblue;
+    border: none;
+}
+
+/*Applied For CSS Formating Of Edit */
+
+.edit {
+    padding: 10px 5px 5px 5px;
+    font-size: 18px;
+    line-height: 14px;
+    color: $white;
+    background-color: $lightblue;
+    cursor: pointer;
+    font-family: $font-family-cabin;
+    top: unset;
+    margin-top: unset;
+}
+
+/*Css For The Edit Icon*/
+
+.icon-edit {
+    font-size: 14px;
+}
+
+.edit-family {
+    font-family: $font-family-cabin;
+    padding-left: 5px;
+    font-size: 18px;
+}
+
+/*Css Applied While Removig The Particular Note*/
+
+.change {
+    position: absolute;
+    color: $white;
+    background: $lightblue;
+    border: none;
+    outline: 0;
+    left: 100px;
+    cursor: pointer;
+    top: 4px;
+    right: unset;
+}
+
+/*Applied After Click 0n The Edit For The Cancellation Of Editing Notes */
+
+.cancel {
+    background-color: $lightblue;
+    position: absolute;
+    margin-right: 20px;
+    left: 16px;
+    border: none;
+    float: left;
+    color: $white;
+    outline: 0; // left: unset;
+    padding: 5px 5px 5px 5px;
+}
+
+/* Applied When Display Listing Of Notes*/
+
+.note-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: left;
+    width: calc(100% - 100px);
+    position: fixed;
+    text-align: left;
+    top: 171px;
+    bottom: 15px;
+    padding: 0 20px 0px 0px;
+    background: $white;
+}
+
+.border-class {
+    // padding-top: 5px;
+    min-height: 50px;
+    color: $black;
+    // border-bottom: 1px solid $lightest-grey;
+    background: $white;
+    padding-left: 12px;
+}
+
+/*For Not Giving Padding*/
+
+.no-padding {
+    padding: 0;
+}
+
+/*For Not Giving Padding At Right*/
+
+.no-padding-right {
+    padding-right: 0;
+}
+
+/*Applied On Whole Container Of ToDo NAd Students*/
+
+.due-date-box {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $lightest-grey;
+}
+
+/*For CheckBoxes While Adding New Notes.*/
+
+.check-boxes {
+    margin-left: 3px;
+}
+
+/*Applied While Adding New Notes.*/
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background-color: $white;
+    border: 1px solid $checkbox-color;
+    border-radius: 4px;
+}
+
+/*Applied While Adding New Notes.*/
+
+.checkbox-container .checkmark:after {
+    top: 5px;
+    left: 9px;
+    width: 5px;
+    height: 10px;
+    border: solid $white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.checkbox-container {
+    padding-right: 10px;
+}
+
+.checkmark:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem $sine-blue !important;
+}
+
+/*CheckBox Applied On Students For Tagging While Adding The New Note.*/
+
+.custom-control-input:checked~.custom-control-label::before {
+    background-color: $black;
+}
+
+/*For Date Format On Click Of ToDo While Adding Notes.*/
+
+.due-date-checkboxes {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+/*For The ToDo In The SideBar On Click Of Add Note.*/
+
+.to-do-span {
+    padding: 0;
+    width: 88px;
+    color: $white;
+    text-align: center;
+    background: $sign-green-todo;
+}
+
+/*For Picking The Date When ToDo Is Enabled*/
+
+.due-span {
+    width: 87px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid $light-grey;
+}
+
+.notes-list {
+    width: 100%;
+}
+
+/*Formatting The Fonts And Color Whiler Typing The New Notes */
+
+.note-comment {
+    color: $black;
+    font-size: 20px;
+    font-family: $font-family-cabin;
+    line-height: 28px;
+    right: 7px;
+    word-break: break-all;
+    word-break: break-word;
+}
+
+/*Applied For The Date Formatting.*/
+
+.date {
+    padding-right: 25px;
+    float: right;
+    height: 18px;
+    font-size: 14px;
+    font-family: $font-family-cabin;
+    line-height: 18px;
+    color: $carbon-black;
+    text-align: right;
+    display: block;
+}
+
+.student-list-name {
+    right: 31px;
+    padding-left: 19px;
+}
+
+/*Formatting Detail While Adding Notes*/
+
+.note-details {
+    margin-top: 17px; //margin-left: -25px;
+}
+
+/*Applied While Getting The Detail Of Students.*/
+
+.details {
+    padding-right: 3px;
+    display: inline-block;
+}
+
+.note-details-show {
+    display: inline-block;
+}
+
+/* Slicing The Tag Student Name's First Letter Credentials */
+
+.gavatar {
+    margin-top: 0;
+    margin-right: 21px;
+    margin: 1px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    text-align: center;
+    line-height: 30px;
+    color: $white;
+    background-color: $icon-color;
+    border-radius: 30px;
+}
+
+/*Padding Between Icons Containing Names Credentials And The Students Displayed. */
+
+.student-avatar-padding {
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.note-details-show-mobile {
+    display: none;
+}
+
+/*Padding Between Students Displayed. */
+
+.student-padding {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.open-students {
+    display: none;
+    color: $sine-blue;
+}
+
+.icon-chevron {
+    color: $lightblue;
+    border: none;
+    background: $white;
+}
+
+.other-students {
+    display: inline;
+}
+
+.overlay {
+    z-index: 101;
+}
+
+/*For The ToDo In The SideBar On Click Of Add Note.*/
+
+.to-do {
+    float: left;
+    color: $black;
+}
+
+[type="checkbox"][_ngcontent-c8]:checked,
+[type="checkbox"][_ngcontent-c8]:not(:checked) {
+    position: absolute;
+    opacity: 1;
+    pointer-events: visible;
+    cursor: pointer;
+    left: 25px;
+    top: -2px;
+}
+
+/*Wrapper element for checkbox*/
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked) {
+    position: absolute;
+    opacity: 1;
+    pointer-events: none;
+}
+
+/* Applied for custom checkbox*/
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked) {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked) {
+    position: absolute;
+    opacity: 1;
+    pointer-events: visible;
+    cursor: pointer;
+    margin-left: -20px;
+    margin-top: 6px;
+    width: 12px;
+    height: 12px;
+}
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked) {
+    position: absolute;
+    opacity: 1;
+    pointer-events: visible;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:focus+span::before {
+    border-color: #135bcf;
+}
+
+.checkboxInput {
+    display: inline;
+}
+
+/*Wrapper element for checkbox*/
+
+input[type="checkbox"],
+input[type="radio"] {
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+/*Hidding The Date WHen ToDo Is Not Enabled In Adding The Notes.*/
+
+.no-date {
+    visibility: hidden;
+}
+
+.checkbox-custom {
+    left: 20px !important;
+    opacity: 1 !important;
+    z-index: unset !important;
+    top: -6px !important;
+}
+
+.checkbox-custom :focus {
+    box-shadow: 7px 6px 0px 7px dodgerblue !important;
+}
+
+.student-list {
+    width: 100%;
+    text-align: left;
+}
+
+app-global-modal.modal-content {
+    min-height: unset;
+    width: 600px !important;
+    position: absolute;
+    height: 350px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* Applied On Display Of Students Along With The CheckBoxes. */
+
+/*media Queries*/
+
+@media screen and (max-width: 768px) {
+    .action-bar-margin {
+        padding: 0px;
+        position: fixed;
+        top: 145px;
+        width: 100%;
+    }
+    .add-note-popup {
+        padding: 2px;
+        padding-right: 15px;
+        position: absolute;
+        right: 0px;
+        padding-top: 5px;
+    }
+    .top-nav {
+        border: none;
+        position: fixed;
+        top: 90px;
+    }
+    .add-note {
+        display: none;
+    }
+    .add-note--button {
+        font-size: 18px;
+        line-height: 22px;
+
+        border: 0px;
+        display: inline-block;
+        width: 120px;
+        font-family: $font-family-cabin;
+        width: 20px;
+        color: $white;
+    }
+    .add-note-inner {
+        display: inline-block !important;
+        padding-left: 10px;
+    }
+    .edit-header {
+        position: unset;
+        float: right;
+    }
+    .edit {
+        padding-right: 15px;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        padding-top: 5px;
+        margin-top: -2px;
+        margin-top: 0px;
+        line-height: 26px
+    }
+    .icon-edit {
+        font-size: 14px;
+        padding: 0px !important;
+    }
+    .change {
+        position: absolute;
+        right: 10px;
+        float: right;
+        color: $white;
+        border: none;
+        outline: 0;
+        left: unset;
+        line-height: 22px;
+        padding: 5px 0px 0px 0px
+    }
+    .cancel {
+        //position: absolute;
+        float: left; //margin-left: -5px;
+        font-size: 18px;
+        color: $white;
+        border: none;
+        outline: 0;
+        left: unset;
+        background-color: $lightblue;
+        padding: 3px 0 0 6px;
+        line-height: 22px;
+    }
+    .note-list {
+        top: 185px;
+        bottom: 64px;
+        width: 100%;
+        padding: 0px;
+    }
+    .due-date-box {
+        float: left;
+        display: flex;
+        width: 100%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .border-class {
+        padding-top: 15px;
+        padding-right: 21px;
+        padding-left: 10px;
+        margin: 0;
+    }
+    .note-text-allign {
+        padding-left: 11px;
+    }
+    .checkbox-container {
+        padding: 10px;
+        float: left;
+        display: block;
+        width: 10%;
+    }
+    .due-date-checkboxes {
+        margin-right: 10px;
+    }
+    .to-do-span {
+        width: 60px;
+    }
+    .due-span {
+        width: 60px;
+    }
+    .note-comment {
+        color: $black;
+        font-size: 18px;
+        font-family: $font-family-cabin;
+        line-height: 24px;
+        right: 10px;
+    }
+    .date {
+        text-align: right;
+        display: block;
+        padding-right: 0px;
+    }
+    .note-details {
+        font-size: 14px;
+        margin-left: 0px;
+    }
+    .details {
+        padding-top: 9px;
+    }
+    .note-details-show {
+        display: none;
+    }
+    .gavatar {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
+    }
+    .note-details-show-mobile {
+        display: inline;
+    }
+    .student-padding {
+        font-size: 16px;
+        padding-left: 20px;
+    }
+    .open-students {
+        display: inline;
+    }
+    .other-students {
+        display: none;
+    } 
+    [type="checkbox"]:checked,
+    [type="checkbox"]:not(:checked) {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+    input[type="checkbox"],
+    input[type="radio"] {
+        box-sizing: border-box;
+        opacity: 0;
+        padding: 0;
+    }
+    .col-sm-12 {
+        max-width: 100%;
+        text-align: center;
+        flex: 0 0 100%;
+    } 
+    .action-bar {
+        width: 100%;
+        height: 39px;
+    }
+    .mobile-due {
+        display: none;
+    }
+    .note-details {
+        margin-top: 0px;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .note-list {
+        max-width: 1266px;
+    }
+}

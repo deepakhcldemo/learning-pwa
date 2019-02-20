@@ -1,0 +1,181 @@
+<div class="page-container">
+    <app-teacher-class *ngIf="classSelectorStatus"></app-teacher-class>
+    <div class="row">
+        <div class="accordian-container">
+            <div id="assessment-checklist-sidebar" class="assessment-checkilist-accordion ac-container">
+                <div class="assessment-checklist-sidebar-header">
+                    <span class="assessment-checklist-report-heading"
+                        [attr.aria-label]=asessmentNavigationHeading>{{asessmentNavigationHeading}}</span>
+                    <!-- <button class="btn icon-exit exit-icon exit-icon-padding icon__button" aria-hidden=true></button> -->
+                </div>
+                <div class="assessment-checklist-sideber-container" [ngClass]="{'remove-sidebar' : removeSideBar}">
+                    <!--nested Ul Li for Program list program first level and Tags -->
+                    <ul class="programs programs-box-shadow">
+                        <li *ngFor="let program of programListByClassId; let l = index"
+                            (click)="getHirerachyData(program, $event); getCommentsForSelectedProgram(program)"
+                            class="program-list">
+                            <div class="program-list-item-container">
+                                <span class="program-list-item">{{program.program.titleInSequence}}</span>
+                                <button class="icon-chevron icon-chevron__color caret__icon arrow-left icon__button"
+                                    *ngIf="!program.firstLevelHirerachy"></button>
+                                <button class="icon-chevron icon-chevron__color caret__icon rotate-arrow icon__button"
+                                    *ngIf="program.firstLevelHirerachy"></button>
+                            </div>
+
+                            <ul *ngIf=program.firstLevelHirerachy class="programs">
+                                <li *ngFor="let programChild of firstLevelAssessment['hierarchyDetails']; let w= index"
+                                    (click)="getAssessmentDataByProgramID(program, programChild , $event, programChild.titleInSequence , firstLevelAssessment['hierarchyDetails'], w)"
+                                    class="program-list">
+                                    <div class="program-list-item-container">
+                                        <span class="program-list-item" (click)="clearBorder()">
+                                            {{programChild?.titleInSequence}}</span>
+                                        <button class="icon-chevron icon-chevron__color caret__icon icon__button"
+                                            (click)="clearBorder()" *ngIf="!programChild.showArrow"></button>
+                                        <button (click)="clearBorder()"
+                                            class="icon-chevron icon-chevron__color caret__icon rotate-arrow icon__button"
+                                            *ngIf="programChild.showArrow"></button>
+                                    </div>
+                                    <ul class="programs" *ngIf="programChild.secondLevelHirerachy">
+                                        <li *ngFor="let hirerachy of hirerachyData; let m = index">
+                                            <ul class="programs" *ngIf="programChild.secondLevelHirerachy">
+                                                <li *ngFor="let tag of hirerachy.tags; let j = index"
+                                                    (click)="getAllCommentsForTag($event, j , tag, m, programChild.titleInSequence)"
+                                                    class="program-list program-list__backgroundColor"
+                                                    [ngClass]="{'program-list-item__active': selectTags == j}">
+                                                    <div class="program-list-item-container">
+                                                        <span class="program-list-item"
+                                                            [ngClass]="{'apply-class':  j !==0}">
+                                                            {{tag?.title}}
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="side_comment_section assessment-checkilist-desktop-view"
+            aria-label="press tab for description and comments for specific student"
+            (keydown.Tab)="ontabOnForNoRecord()" [attr.tabindex]="tabIndexStatus? 1:-1"
+            *ngIf="showAssessment && noRecord">
+            <div class="student-list" id="student-list-ids">
+                <div *ngFor="let student of students; let k = index"
+                    [attr.aria-label]="'description and comment for' + student.detail.fullName"
+                    [attr.tabindex]="tabIndexStatus? 1:-1">
+                    <div class="row card card-without-border" id="assItem_{{k}}" *ngIf="student.assessmentitem.length">
+                        <a id="id_{{student?.detail?.firstName[0].toLowerCase()}}"></a>
+                        <div class="col-sm-3 col-md-3 col-lg-3 col-12 card-body card-body-without-padding">
+                            <div aria-hidden="true" class="student-gavtar">
+                                <span class=" gavatar gavatar--margin">
+
+                                    {{
+                                student.detail.firstName.charAt(0).toUpperCase() }}{{
+                                student.detail.lastName.charAt(0).toUpperCase()
+                                }}
+
+                                </span>
+                            </div>
+                            <div class="std_details">
+                                <div class="std_name">{{student.detail.firstName.charAt(0).toUpperCase()+student.detail.firstName.slice(1)
+                                + ' ' +
+                                student.detail.lastName.charAt(0).toUpperCase()+student.detail.lastName.slice(1)}}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-9 col-md-9 col-lg-9 col-12 assessment-practice-col">
+                            <app-comment [assessmentItem]="student.assessmentitem"></app-comment>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="side-menu-sorting" id="assessment-side-menu-sorting">
+                    <div class="menu-options">
+                        <div class="menu-options" aria-label="Alphabets to sort students">
+                            <a class="item-container--focus alphabet--anchor" *ngFor="let alphabet of alphabetsArray"
+                                (click)="setFocusForStudentBasedOnAlphabetSelection(alphabet)"
+                                (keyup.enter)="setFocusForStudentBasedOnAlphabetSelection(alphabet)"
+                                attr.aria-label="Sort the student by Alphabet {{alphabet}}">{{alphabet}}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="assessment-checlist-mobile-view" [attr.tabindex]="tabIndexStatus? 1:-1"
+            *ngIf="showAssessment && noRecord">
+            
+            <div [attr.tabindex]="tabIndexStatus? 1:-1" id="selected-unit" id="student-list-ids">
+                
+                <div class="selected-tag">
+                        <div class="back-button">
+                                <button class="icon__button" (click)="backToAssessmentCheckList()"><span>&#x2039;
+                                        Back</span>
+                                </button>
+                            </div>
+                    <p>{{selectedTitle}}</p>
+                </div>
+                <div class="assessment-mobile-view" id="student-list-ids-mobile">
+                    <div *ngFor="let student of students; let k = index" class="row card card-without-border"
+                        id="assItem_{{k}}" [attr.aria-label]="'description and comment for' + student.detail.fullName"
+                        [attr.tabindex]="tabIndexStatus? 1:-1">
+
+                        <a id="{{student?.detail?.firstName[0].toLowerCase()}}"></a>
+                        <div class="col-sm-3 col-md-3 col-lg-3 col-12 card-body card-body-without-padding">
+                            <div aria-hidden="true" class="student-gavtar">
+                                <span class=" gavatar gavatar--margin">{{
+                                student.detail.firstName.charAt(0).toUpperCase() }}{{
+                                student.detail.lastName.charAt(0).toUpperCase()
+                                }}
+
+                                </span>
+                            </div>
+                            <div class="std_details">
+                                <div class="std_name">{{student.detail.firstName.charAt(0).toUpperCase()+student.detail.firstName.slice(1)
+                                + ' ' +
+                                student.detail.lastName.charAt(0).toUpperCase()+student.detail.lastName.slice(1)}}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-9 col-md-9 col-lg-9 col-12 assessment-practice-col">
+                            <app-comment [assessmentItem]="student.assessmentitem"></app-comment>
+                        </div>
+                    </div>
+                </div>
+                <div class="side-menu-sorting" id="assessment-side-menu-sorting">
+                    <div class="menu-options">
+                        <div class="menu-options" aria-label="Alphabets to sort students">
+                            <a class="item-container--focus alphabet--anchor" *ngFor="let alphabet of alphabetsArray"
+                                (click)="setFocusForStudentBasedOnAlphabetSelection(alphabet)"
+                                (keyup.enter)="setFocusForStudentBasedOnAlphabetSelection(alphabet)"
+                                attr.aria-label="Sort the student by Alphabet {{alphabet}}">{{alphabet}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="no-record-mobile" *ngIf="!noRecord && noRecordForMobile">
+                    <button class="icon__button" (click)="backToAssessmentCheckList()"><span>&#x2039;
+                            Back</span></button>
+
+                    <p class="no-record-text"> There is no record for {{selectedTitle}}</p>
+        </div>
+        <div *ngIf="!noRecord" class="no-record no-record-desktop">
+            <p class="no-record-text"> There is no record for {{selectedTitle}}</p>
+        </div>
+    </div>

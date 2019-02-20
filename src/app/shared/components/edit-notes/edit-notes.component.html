@@ -1,0 +1,107 @@
+<div class="overlay" (click)="closePopup();" [ngClass]="{'active': notePopupStatus }" aria-hidden="!notePopupStatus"></div>
+<div class="note-wrapper" @slideInOut *ngIf="notePopupStatus" [ngClass]="{'active': notePopupStatus}" aria-hidden="!notePopupStatus">
+  <div id="edit-note-wrapper">
+
+    <nav>
+        <div class="head">
+          <div class="sidebar-header">
+
+            <div class="notes-title">
+              <span class="add-note" *ngIf="addEditOperation == 'Edit'">Edit Note</span>
+              <span class="add-note" *ngIf="addEditOperation == 'Add'">Add Note</span>
+            </div>
+
+            <button id="done_button" role="button" class="btn icon_button save-note item-container--focus" (click)="saveNote(addEditOperation)" (keyup.enter)="saveNote(addEditOperation)" [attr.tabindex]="secondTabIndexStatus? 0:-1" aria-label="Save note and move to the notes landing page">Done</button>
+            <button class="btn icon__button icon-exit exit-icon exit-icon__top item-container--focus" (click)="closePopup()"
+              (keyup.enter)="closePopup()" aria-label="Close the edit popup to move at the notes landing page"
+              [attr.tabindex]="secondTabIndexStatus? 0:-1"></button>
+          </div>
+
+          <div class="set-note ps" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="false" #scrolltop>
+
+            <div class="form-group btm-border">
+              <textarea class="form-control item-container--focus" [(ngModel)]="noteForm.comment" name="comment" id="comment" rows="3"
+                placeholder="Type Note" aria-label="Edit note in the textarea" [attr.tabindex]="secondTabIndexStatus? 0:-1"></textarea>
+              <p class="alert-danger" *ngIf="commentRequired && noteForm.comment ===''">
+                Comment is required
+              </p>
+            </div>
+            <div class="form-group btm-border-todo">
+                <div class ="todo-label">
+              <div class="to-do">To-Do: </div>
+              <div>
+              <label class="bs-switch">
+                <input class="item-container--focus" type="checkbox" name="noteFlag" [(ngModel)]="noteForm.noteFlag" checked="false" (click)="checkToDo($event)" id="noteFlag"
+                  (keyup.enter)="checkToDo($event)" aria-label="Mark note as todo" [attr.tabindex]="secondTabIndexStatus? 0:-1">
+                <span class="slider round item-container--focus"></span>
+              </label>
+              </div>
+            </div>
+            
+            
+              <div>
+                <div [ngClass]="{'hideDate':!showDate}">
+                  <span class="date-picker-text item-container--focus" [attr.tabindex]="secondTabIndexStatus? 0:-1"
+                    (keyup.enter)="df.toggle()" *ngIf="showDate || noteDetail?.flagged">Due:
+                    <input readonly class="date-style" placeholder="mm/dd/yyyy" [attr.aria-label]="(todoDate.month)?todoDate.month+ '/' +todoDate.day + '/' +todoDate.year:''" name="flaggedDate" value="{{((todoDate?.month)?(((todoDate?.month<10)?'0'+todoDate?.month:todoDate?.month)+ '/' + ((todoDate?.day<10)?'0'+todoDate?.day: todoDate?.day)+'/' + todoDate?.year):'')}}" ngbDatepicker #df="ngbDatepicker" (dateSelect)="todoDateSelection($event)" (click)="df.toggle()" [disabled]="" [navigation]="'arrows'">
+                    <i class="icon-calendar" (click)="df.toggle()"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="content">
+
+              <div class="form-group tagged-student--border" *ngIf="addEditOperation == 'Edit'">
+                <h5 class="tag-students-header">Tagged Students</h5>
+                <div class="student-list">
+                  <div class="">
+                    <ul>
+                      <li class="student-padding" *ngFor="let student of taggedStudents">
+                        <div class="student-checkmark">
+                          <label class="checkbox-container side-bar-padding  item-container--focus" aria-label="'List of tagged students'+student.fullName">
+                            <input id="{{student.fullName}}" class="custom-control-input checkbox-custom" type="checkbox" [attr.tabindex]="secondTabIndexStatus? 0:-1"
+                               (change)="taggedUntaggedStudent($event, student.userId)" [checked]="student.tagged">
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+    
+                        <span class="gavatar">{{student?.avatar}}</span> <label class="student-name"
+                          for="{{student.fullName}}">
+                          {{student.firstName.charAt(0).toUpperCase()+student.firstName.slice(1)}}
+                          {{student.lastName.charAt(0).toUpperCase()+student.lastName.slice(1)}} </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <h5 class="tag-students-header">Tag Students</h5>
+                <div class="student-list">
+                  <div>
+                    <ul>
+                      <li class="student-padding" *ngFor="let student of (addEditOperation ==='Edit')?untaggedStudents:allStudentList">
+                        <div class="student-checkmark">
+                          <label class="checkbox-container side-bar-padding item-container--focus" aria-label="'Mark checkbox to tag students'+student.fullName">
+                            <input id="{{student.fullName}}" class="custom-control-input checkbox-custom" type="checkbox"
+                               (change)="taggedUntaggedStudent($event, student.userId)" [checked]="student.tagged" [attr.tabindex]="secondTabIndexStatus? 0:-1">
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+    
+                        <span class="gavatar">{{student?.avatar}}</span> <label class="student-name"
+                          for="{{student.fullName}}">
+                          {{student.firstName.charAt(0).toUpperCase()+student.firstName.slice(1)}}
+                          {{student.lastName.charAt(0).toUpperCase()+student.lastName.slice(1)}} </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+          </div>
+          <div tabindex="0" (focus)="setFocus('done_button')"></div>
+        </div>
+    </nav>
+  </div>
+</div>

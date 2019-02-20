@@ -1,0 +1,115 @@
+<!-- Student Contact Info in Non-Editable Mode -->
+<div *ngIf="!editable">
+    <div class="contact-section card-header section-header">
+        <span class="contact--edit__position">
+            <button class="icon-button__color edit-contact__edit item-container--focus" (click)="toggleEdit()"
+                aria-label="Edit button click to edit or add guardian info for student" [attr.tabindex]="tabIndexStatus && (studentDetailsStatus || m_studentDetailsStatus)? 0: -1"
+                [disabled]="!studentId">
+                <i class="icon-edit icon-edit__size" aria-hidden="true"></i> Edit</button>
+        </span>
+    </div>
+    <div class="contact-container ps" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="false">
+        <div class="contact-section--avatar-a" *ngIf="studentId && studentId.userId">
+            <span class="gavatar">{{studentId?.avatar.toUpperCase()}}</span>
+            <b class="edit-contact__student item-container--focus" attr.aria-label="Student Name {{studentId.fullName}}"
+                [attr.tabindex]="tabIndexStatus && (studentDetailsStatus||m_studentDetailsStatus)? 0: -1">{{studentId.firstName.charAt(0).toUpperCase()+studentId.firstName.slice(1)}}
+                {{studentId.lastName.charAt(0).toUpperCase()+studentId.lastName.slice(1)}} </b>
+        </div>
+        <div>
+            <div class="contact-section--permission-a deskview">
+                <b class="item-container--focus" [attr.tabindex]="tabIndexStatus && (studentDetailsStatus||m_studentDetailsStatus)? 0: -1">Camera
+                    Permission </b><br>
+                <b *ngIf="contactInfo?.camerapermission" [attr.tabindex]="tabIndexStatus && (studentDetailsStatus||m_studentDetailsStatus)? 0: -1">YES</b>
+                <b class="item-container--focus" *ngIf="!contactInfo?.camerapermission" [attr.tabindex]="tabIndexStatus && (studentDetailsStatus||m_studentDetailsStatus)? 0: -1">NO</b>
+            </div>
+            <div class="contact-section--permission-a mobview">
+                <b class="item-container--focus" [attr.tabindex]="tabIndexStatus && (studentDetailsStatus||m_studentDetailsStatus)? 0: -1">Camera
+                    Permission: </b><b class="item-container--focus" *ngIf="contactInfo?.camerapermission"
+                    [attr.tabindex]="tabIndexStatus && (studentDetailsStatus||m_studentDetailsStatus)? 0: -1">YES</b>
+                <b class="item-container--focus" *ngIf="!contactInfo?.camerapermission" [attr.tabindex]="tabIndexStatus && (studentDetailsStatus||m_studentDetailsStatus)? 0: -1">NO</b>
+            </div>
+            <div *ngIf="contactInfo && contactInfo.guardian">
+                <div class="contact-section--guardian" *ngFor="let guardian of contactInfo.guardian; let m = index;">
+                    <b>Guardian {{m+1}}</b><br>
+                    <label class="item-container--focus" for="name" attr.aria-label="Guardian {{m+1}} name {{contactInfo?.guardian[m]?.name }}"
+                        [attr.tabindex]="tabIndexStatus && !editable? 0: -1">{{contactInfo?.guardian[m]?.name }}</label><br>
+                    <label class="item-container--focus" for="email" attr.aria-label="Guardian {{m+1}} email id {{contactInfo?.guardian[m]?.email}}"
+                        [attr.tabindex]="tabIndexStatus && !editable? 0: -1">{{contactInfo?.guardian[m]?.email}}</label><br>
+                    <label class="item-container--focus" for="phone" attr.aria-label="Guardian {{m+1}} mobile number {{contactInfo?.guardian[m]?.mob}}"
+                        [attr.tabindex]="tabIndexStatus && !editable? 0: -1">{{contactInfo?.guardian[m]?.mob}}</label><br>
+                </div>
+            </div>
+            <div class="no-guardian-info--msg" [ngClass]="{'active': !contactInfo &&contactInfoVisibilityStatus}">
+                <span>{{noGuardianInfo}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Student Contact Info in Editable Mode -->
+<div *ngIf="editable && contactInfoEdit">
+    <form #contactForm='ngForm' (ngSubmit)="addContactInfo(contactForm)">
+        <div class="edit-contact card-header section-header">
+            <button class="edit-contact__cancel icon-button__color item-container--focus" (click)="toggleEdit()"
+                [attr.tabindex]="tabIndexStatus && (studentDetailsStatus||m_studentDetailsStatus)? 0: -1"> Cancel
+            </button>
+            <button class="edit-contact__save icon-button__color item-container--focus" (click)="toggleEdit(); addContactInfo(contactForm)"
+                [attr.tabindex]="tabIndexStatus && (studentDetailsStatus||m_studentDetailsStatus)? 0: -1"> Save
+            </button>
+        </div>
+        <div class="contact-container ps" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="false">
+            <div class="edit-contact--avatar item-container--focus" aria-label="edit contact info form" [attr.tabindex]="tabIndexStatus && (studentDetailsStatus||m_studentDetailsStatus)? 0: -1">
+
+                <span class="gavatar">{{studentId.avatar.toUpperCase()}}</span>
+                <b class="edit-contact__student item-container--focus" attr.aria-label="Student Name {{studentId.fullName}}"
+                    [attr.tabindex]="tabIndexStatus && (studentDetailsStatus||m_studentDetailsStatus)? 0: -1">{{studentId.firstName.charAt(0).toUpperCase()+studentId.firstName.slice(1)}}
+                    {{studentId.lastName.charAt(0).toUpperCase()+studentId.lastName.slice(1)}} </b><br>
+            </div>
+            <div class="edit-contact--permission">
+                <label class="item-container--focus" [attr.tabindex]="tabIndexStatus && (studentDetailsStatus||m_studentDetailsStatus)? 0: -1">
+                    <b>Camera Permission: </b>
+                </label>
+                <label class="item-container--focus" class="edit-contact__switch" [attr.tabindex]="tabIndexStatus && (studentDetailsStatus||m_studentDetailsStatus)? 0: -1">
+                    <input type="checkbox" checked [(ngModel)]="contactInfoEdit.camerapermission" name="camerapermission">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div>
+                <h5 class="edit-contact__guardian-margin">Guardian 1</h5>
+            </div>
+            <div>
+                <input type="text" id="name" class="edit-contact--form form-control item-container--focus" placeholder="Guardian Name"
+                    [(ngModel)]="contactInfoEdit.guardian[0].name" name="firstname" attr.aria-label="Enter Guardian 1 name "
+                    [attr.tabindex]="tabIndexStatus && editable? 0: -1">
+            </div>
+            <div>
+                <input type="email" id="email" class="edit-contact--form form-control item-container--focus"
+                    placeholder="Email" [(ngModel)]="contactInfoEdit.guardian[0].email" name="firstemail"
+                    attr.aria-label="Enter Guardian 1 email " [attr.tabindex]="tabIndexStatus && editable? 0: -1">
+            </div>
+            <div>
+                <input type="number" id="phone" class="edit-contact--form form-control item-container--focus"
+                    placeholder="Mobile No." [(ngModel)]="contactInfoEdit.guardian[0].mob" name="firstmob"
+                    attr.aria-label="Enter Guardian 1 mobile number " [attr.tabindex]="tabIndexStatus && editable? 0: -1">
+            </div>
+            <div>
+                <h5 class="edit-contact__guardian-margin">Guardian 2</h5>
+            </div>
+            <div>
+                <input type="text" id="name" class="edit-contact--form form-control item-container--focus" placeholder="Guardian Name"
+                    [(ngModel)]="contactInfoEdit.guardian[1].name" name="secondname" attr.aria-label="Enter Guardian 2 name "
+                    [attr.tabindex]="tabIndexStatus && editable? 0: -1">
+            </div>
+            <div>
+                <input type="email" id="email" class="edit-contact--form form-control item-container--focus"
+                    placeholder="Email" [(ngModel)]="contactInfoEdit.guardian[1].email" name="secondemail"
+                    attr.aria-label="Enter Guardian 2  email id " [attr.tabindex]="tabIndexStatus && editable? 0: -1">
+            </div>
+            <div>
+                <input type="number" id="phone" class="edit-contact--form form-control item-container--focus"
+                    placeholder="Mobile No." [(ngModel)]="contactInfoEdit.guardian[1].mob" name="secondmob"
+                    attr.aria-label="Enter Guardian 2 mobile number " [attr.tabindex]="tabIndexStatus && editable? 0: -1">
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,420 @@
+@import "../../../../styles/mixins";
+
+/*Main container css*/
+.search-wrapper {
+  position: absolute;
+  align-items: stretch;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  width: 540px;
+  /* margin-right: -40%;
+  display: none;
+  &.active {
+    display: flex;
+    -webkit-animation: slide 0.5s linear forwards;
+    -moz-animation: slide 0.5s linear forwards;
+    -o-animation: slide 0.5s linear forwards;
+    animation: slide 0.5s linear forwards;
+    margin-right: 0;
+  }
+  @-webkit-keyframes slide {
+    100% {
+      margin-right: 0;
+    }
+    0% {
+      margin-right: -40%;
+    }
+  }
+  @keyframes slide {
+    100% {
+      margin-right: 0;
+    }
+    0% {
+      margin-right: -40%;
+    }
+  } */
+}
+
+/*Serach result container css*/
+.search-wrapper-innerbody {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  background: $white;
+  color: $blue;
+  transition: all 0.3s;
+  overflow: hidden;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  top: 0px;
+  position: absolute;
+  .col-12 {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+  ul {
+    margin-bottom: 0px;
+    padding: 0px;
+    list-style-type: none;
+    width: 100%;
+    &.components {
+      padding: 20px 0;
+    }
+    li {
+      line-height: 71px;
+      cursor: pointer;
+    }
+    li:hover,
+    li.active {
+      p {
+        color: $white !important;
+      }
+      background: $lightest-grey;
+    }
+    li.active > a,
+    a[aria-expanded="true"] {
+      color: $white !important;
+      text-decoration: none;
+    }
+  }
+}
+
+/*Second container to hold search result css*/
+.search-wrapper-innerbody-header {
+  height: 44px;
+  background-color: $blue;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+  color: $white;
+  text-align: left;
+  .input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: calc(100% - 50px);
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/*Css for search place holder*/
+::placeholder {
+  color: $link-water;
+  opacity: 1;
+  /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: $link-water;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: $link-water;
+}
+
+/*input type css*/
+.form-control,
+.form-control:focus {
+  background-color: transparent;
+  border-color: none;
+  border: none;
+}
+
+/* search icon css*/
+.icon-button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.search-icon {
+  width: 45px;
+  left: 0px;
+  padding: 9px;
+  position: absolute;
+  color: $header-icon-color;
+  font-family: $font-family-k12_universal_icons;
+  font-size: 24px;
+}
+
+.search-icon--align {
+  width: 45px;
+}
+
+/*search box css*/
+.search-box {
+  width: 1rem;
+  padding-left: 46px;
+}
+/*place holder css*/
+.enter-keyword-to-sea {
+  color: $search-placeholder-color;
+  font-family: $font-family-cabin;
+  font-size: 18px;
+  letter-spacing: 0.45px;
+  line-height: 22px;
+  position: relative;
+  top: 4px;
+  margin-right: 135px;
+}
+
+/*clear button css*/
+.clear-btn {
+  cursor: pointer;
+  position: absolute;
+  color: $white;
+  font-family: "Cabin" !important;
+  font-size: 18px;
+  letter-spacing: 0.45px;
+  right: 40px;
+  top: 8px;
+}
+
+/*Exit icon css*/
+.exit-icon__top {
+  top: 3px;
+  height: unset;
+  width: unset;
+  line-height: unset;
+  color: $header-icon-color;
+  font-family: "k12_universal_icons";
+  font-size: 18px !important;
+  text-align: center;
+  position: absolute;
+  right: 5px;
+  cursor: pointer;
+}
+
+/*search block css*/
+.search-panel-container {
+  padding-right: 0px;
+  display: flex;
+  position: absolute;
+  height: calc(95% - 32px);
+  width: 100%;
+  overflow-y: auto;
+}
+
+/*Css for Search Panel*/
+.search-panel {
+  margin-right: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+/*today and week searched box css*/
+.border-design {
+  max-width: 94%;
+  padding-top: 12px;
+  margin-left: 16px;
+}
+
+/*today heading css*/
+.today-heading {
+  margin-top: 6px;
+  color: $dark-grey;
+  font-family: Cabin;
+  font-size: 14px;
+  letter-spacing: 0.35px;
+  line-height: 18px;
+  padding-right: 4px;
+}
+.horizontal-line-divider {
+  padding-left: 17px;
+  margin: 0px;
+  padding-bottom: 0px;
+  padding-top: 10px;
+  hr {
+    color: solid $grey;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+
+/*Css for today keywords*/
+.today-keywords-list {
+  border-bottom: 1px solid $grey;
+  margin-left: 17px;
+}
+/*week day heading css*/
+.week-day-heading {
+  color: $dark-grey;
+  font-family: Cabin;
+  font-size: 14px;
+  letter-spacing: 0.35px;
+  line-height: 18px;
+}
+
+/*Css for week history keywords*/
+.week-keywords-list {
+  border-bottom: 1px solid $grey;
+  margin-left: 17px;
+}
+
+.no-result {
+  padding-left: 190px;
+  padding-top: 50px;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: $font-family-cabin;
+}
+/*search div css*/
+.searchrow {
+  padding-left: 25px;
+  height: 71px;
+  border-bottom: 1px $lightest-grey solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/*CSS for  media title*/
+.media-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  padding-left: 18px;
+  width: calc(100% - 25px);
+  text-align: left;
+  padding-bottom: 3px;
+  font-family: $font-family-cabin;
+  font-weight: bold;
+}
+
+/* notes icon css*/
+.icon-notes {
+  color: $avatar-blue;
+  line-height: 25px;
+  padding-top: 0px;
+  position: absolute;
+  padding-left: 0px;
+}
+
+/*CSS for notes-title*/
+.notes-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  margin-left: 18px;
+  padding-left: 18px;
+  width: calc(100% - 25px);
+  text-align: left;
+  padding-bottom: 3px;
+  font-family: $font-family-cabin;
+  font-weight: bold;
+}
+
+.notes-alignment {
+  padding-left: 1px;
+}
+
+/*css for media and notes type*/
+.media,
+.notes {
+  color: $lightblue;
+  font-family: $font-family-cabin;
+  font-size: 18px;
+}
+/*assessment icon library*/
+.icon-assessment-library {
+  color: $dark-green;
+  line-height: 25px;
+  padding-top: 0px;
+  position: absolute;
+}
+
+/*Css for assessment-title*/
+.assessment-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  margin-left: 18px;
+  padding-left: 18px;
+  width: calc(100% - 25px);
+  text-align: left;
+  padding-bottom: 3px;
+  font-family: $font-family-cabin;
+  font-weight: bold;
+}
+
+.assessment {
+  color: $dark-green;
+  font-family: $font-family-cabin;
+  font-size: 18px;
+}
+
+.assessment-allignment {
+  padding-left: 3px;
+}
+
+/*search path css*/
+.path {
+  height: 24px;
+  color: $dark-grey;
+  font-family: $font-family-cabin;
+  font-size: 14px;
+  line-height: 24px;
+  padding-left: 40px;
+  text-align: left;
+  padding-top: 3px;
+}
+
+/*Media Queries*/
+@media screen and (max-width: 768px) {
+  .search-wrapper {
+    width: 100%;
+    /* margin-right: -100%;
+    &:active {
+      margin-right: 0;
+    } */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search-wrapper-innerbody {
+    top: 56px;
+    ul,
+    li {
+      padding-left: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  ::placeholder {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .enter-keyword-to-sea {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .exit-icon__top {
+    top: 6px !important;
+    line-height: 5px !important;
+    padding-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .border-design {
+    max-width: 94%;
+    margin-left: 3%;
+  }
+}

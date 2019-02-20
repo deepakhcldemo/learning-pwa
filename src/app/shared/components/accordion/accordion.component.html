@@ -1,0 +1,98 @@
+<!-- Tabs container start -->
+<section class="navigation-tabs-container">
+  <div class="btn-group btn-group-toggle navigation-tabs col-md-12 col-sm-12 col-12" data-toggle="buttons">
+    <button class="btn label-off item-container--focus" [ngClass]="{active: selectedView === 'TOC'}" (click)="toggleSelectedView('TOC')">
+      <input type="radio" name="toc" id="toc" value="toc" autocomplete="off" aria-hidden="true" [attr.tabindex]="accordionTabIndexStatusFlag? 0:-1">
+      View by TOC
+    </button>
+    <button class="btn label-off item-container--focus" [attr.tabindex]="accordionTabIndexStatusFlag? 0:-1" (click)="toggleSelectedView('viewAll')"
+    [ngClass]="{active: selectedView === 'viewAll'}">
+      <input type="radio" name="viewAll" id="viewAll" value="viewAll" autocomplete="off" aria-hidden="true"
+        [attr.tabindex]="accordionTabIndexStatusFlag? 0:-1">
+      View All
+    </button>
+  </div>
+
+</section>
+<!-- Tabs container end -->
+
+<!-- TOC Container start -->
+<div class="row" *ngIf="selectedView == 'TOC'">
+  <section id="navigator" class="col-12 accordion">
+    <div class="grade-container" [ngClass]="isUnit ? 'grade-container' : 'parentHidden'" *ngFor="let parent of openedGridsStack;index as i"
+      [attr.data-index]="i">
+      <div *ngIf="!checkList" class="accordSpan col-12" [ngClass]="i == openedGridsStack.length-1 ? 'accordSpan' : 'accordSpan parent-container-flex'">
+        <div class="item-container--focus open-grid-font-style" (keyup.enter)="closeAccordion(parent)" (click)="closeAccordion(parent)"
+          attr.aria-label="{{parent.titleInSequence}}, Press enter to collapse Naviagtion" [attr.tabindex]="accordionTabIndexStatusFlag? 0:-1"
+          [ngStyle]="{'padding-left': parent['padding-left']}">
+          {{parent.titleInSequence}}
+        </div>
+      </div>
+      <div *ngIf="checkList" class="accordSpan-checkList" [ngClass]="i == openedGridsStack.length-1 ? 'accordSpan-checkList parent-container-text' : 'accordSpan parent-container-flex'"
+        [ngStyle]="{'padding-left': parent['padding-left']}" [attr.tabindex]="accordionTabIndexStatusFlag? 0:-1">{{parent.titleInSequence}}</div>
+      <div class="parent-icon-rotate">
+        <button class="btn icon-chevron caret icon__button" *ngIf="openedGridsStack.length-1 == i" [attr.tabindex]="-1">
+        </button>
+      </div>
+    </div>
+    <!-- Assessments Inside TOC -->
+    <div id="assessment-{{j}}" class="assessment-accordion-style item-container--focus" *ngFor="let assessment of assessments;index as j"
+      [ngClass]="noData ? 'assessments-space' : 'noAssessment'" [attr.tabindex]="accordionTabIndexStatusFlag? 0:-1">
+      <div class="cursor-pointer" *ngIf="assessment.type == 'ongoing'"  [ngStyle]="{'padding-left': assessment['padding-left']}"  (click)="goToAssessment(assessment, 'ongoing')" (keyup.enter)="goToAssessment(assessment, 'ongoing')">
+        <div class="assessment-style" *ngIf="noData">Ongoing
+          Assessment</div>
+        <div class="assessment-color-style" *ngIf="noData">
+          <i class="icon-assessment" aria-hidden="true"></i>
+          {{assessment.id }}:{{ assessment.title }}
+        </div>
+      </div>
+      <div class="cursor-pointer" *ngIf="assessment.type == 'checklist'"  [ngStyle]="{'padding-left': assessment['padding-left']}"  (click)="goToAssessment(assessment, 'checklist')"
+        (keyup.enter)="goToAssessment(assessment, 'checklist')">
+        <div class="assessment-style"*ngIf="noData">Assessment Checklist</div>
+        <div class="assessment-color-style" *ngIf="noData">
+          <i class="icon-observational_assessment icon-observational_assessment-inverted" aria-hidden="true"></i>
+          {{assessment.id }}:{{ assessment.title }}
+        </div>
+      </div>
+    </div>
+    <!-- Expandale Grids in TOC start -->
+    <div class="grade-container col-12" [ngClass]="{'change-background' : checkList , 'gradeColor' : !checkList }"
+      *ngFor="let grid of childGrids; let i = index">
+      <div id="lastnode-{{i}}" class="item-container--focus" (keyup.enter)="expandGrids(grid)" (click)="expandGrids(grid)"
+        attr.aria-label="{{grid.titleInSequence}},Press Enter to expand navigation" [attr.tabindex]="accordionTabIndexStatusFlag? 0:-1">
+        <div class="accordSpan" [ngClass]="{'change-text' : checkList , 'grade-text' : !checkList }" [ngStyle]="{'padding-left': grid['padding-left']}">{{grid.titleInSequence}}
+        </div>
+        <button class="btn icon-chevron caret icon__button" [attr.tabindex]="-1"></button>
+      </div>
+    </div>
+    <!-- Expandale Grids in TOC end -->
+  </section>
+  <!-- Back button start -->
+  <div tabindex="0" (focus)="setFocus('asessment_close_button')">
+  </div>
+  <!-- Back button end -->
+</div>
+<!-- TOC Container end -->
+
+<!-- Assessments container start-->
+<section *ngIf="selectedView == 'viewAll'">
+  <div class="assessment-accordion-style item-container--focus" *ngFor="let currentAssessment of allAssessments;index as j"
+    [ngClass]="allAssessments? 'assessments-space' : 'noAssessment'" [attr.tabindex]="accordionTabIndexStatusFlag? 0:-1">
+    <div class="cursor-pointer" *ngIf="currentAssessment.type == 'ongoing'" (click)="goToAssessment(currentAssessment, 'ongoing')">
+      <div class="assessment-style">Ongoing
+        Assessment</div>
+      <div class="assessment-color-style">
+        <i class="icon-assessment" aria-hidden="true"></i>
+        {{currentAssessment.id }}:{{ currentAssessment.title }}
+      </div>
+    </div>
+    <div class="cursor-pointer" *ngIf="currentAssessment.type == 'checklist'" (click)="goToAssessment(currentAssessment, 'checklist')">
+      <div class="assessment-style">Assessment Checklist</div>
+      <div class="assessment-color-style">
+        <i class="icon-observational_assessment icon-observational_assessment-inverted" aria-hidden="true"></i>
+        {{currentAssessment.id }}:{{ currentAssessment.title }}
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Assessments container end-->

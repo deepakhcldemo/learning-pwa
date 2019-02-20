@@ -1,0 +1,147 @@
+@import "../../../../styles/mixins";
+.card-container {
+    height: 252px; // margin-right: 49px;
+    border: 0px;
+    background: $light-blue;
+}
+
+.to-do__text-align {
+    text-align: left;
+}
+
+.card-header-container {
+    height: 30px;
+    background-color: $lightblue;
+}
+
+.card-header-container>h5 {
+    height: 18px;
+    width: 150px;
+    color: $header-icon-color;
+    font-family: $font-family-cabin;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    line-height: 8px;
+    margin: 0px;
+    margin-left: -5px;
+}
+
+.card-body--position {
+    padding: 0px;
+    max-height: 222px;
+    overflow-y: auto;
+    background: $light-blue;
+    position: relative;
+}
+
+.ul-padding-left {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.notes-list-row {
+    height: 71px;
+    background-color: $header-icon-color;
+    margin-bottom: 3px;
+}
+
+.notes-list {
+    display: list-item;
+    list-style-type: none;
+    width: 100%;
+    color: $icon-color;
+    cursor: pointer;
+}
+
+.notes-list--title {
+    color: $lightblue;
+    font-family: $font-family-cabin;
+    font-size: 15px;
+    margin-left: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: calc(100% - 120px);
+    display: block;
+    overflow: hidden;
+}
+
+.to-do-display {
+    display: inline-block;
+}
+
+.notes-list--gavatar {
+    color: $search-placeholder-color;
+    background-color: $avatar-blue;
+    display: inline-block;
+    font-family: $font-family-cabin;
+    font-size: 11px;
+    border-radius: 20px;
+    width: 24px;
+    height: 24px;
+    line-height: 23px;
+    margin: 0px 4px 0px 6px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.notes-list--name {
+    height: 48px;
+    color: $dark-grey;
+    font-family: $font-family-cabin;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.notes-list--date {
+    float: right;
+    color: $carbon-black;
+    font-family: $font-family-cabin;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid $light-grey;
+    margin-right: 8px;
+    padding: 2px 2px 2px 3px;
+}
+
+.notes-list--no-record-msg {
+    height: 71px;
+    background-color: $header-icon-color;
+    margin-bottom: 3px;
+    padding: 5px 0 0 15px;
+}
+
+.notes-list--more__button {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        height: auto;
+    }
+    .card-body {
+        padding: 0px;
+        overflow-y: hidden;
+        max-height: 222px;
+    }
+    .to-do-display {
+        display: inline-block;
+    }
+    .notes-list--more__button {
+        display: inline;
+    }
+    .notes-list--less__button {
+        float: right;
+        font-weight: bold;
+    }
+    .icon-rotate-more {
+        display: inline-block;
+        transform: rotate(90deg);
+    }
+    .icon-rotate-less {
+        display: inline-block;
+        transform: rotate(270deg);
+    }
+}

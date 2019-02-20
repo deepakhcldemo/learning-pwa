@@ -1,0 +1,42 @@
+<ul class="comments-container" *ngFor="let comment of comments; let i = index;">
+  <li *ngFor="let tagComment of comment.value; let j = index;" class="icon__button remove-bullets-points"
+    [attr.tabindex]="tabIndexStatus? 1:-1" role="button">
+    <div class="assessment-title">
+      <p class="assessment-title-description icon__button" *ngIf="j===0">
+        <span class="icon__button assessment-title-title"
+          [attr.aria-label]="'title is ' + tagComment.comment.assessmentitemdetails?.description ">
+          This is the description of {{trackTitle }}
+        </span>
+      </p>
+    </div>
+    <div class="comment-date-section">
+      <button *ngIf="tagComment?.comment?.ctype == 'comment'" role="button" [attr.tabindex]="tabIndexStatus? 1:-1"
+        (click)="navigateToAssessmentDetailsBasedOnItsType(tagComment)"
+        [attr.aria-label]="'comments is' + tagComment.comment?.comments"
+        class="icon__button comments-button">{{tagComment?.comment?.comments}}
+
+      </button>
+      <button class="icon__button"
+        *ngIf="tagComment?.comment?.ctype == 'media' && tagComment?.comment?.mediaData?.mediakind == 'image'"
+        [attr.tabindex]="tabIndexStatus? 1:-1" (click)="navigateToAssessmentDetailsBasedOnItsType(tagComment)">
+        <img *ngIf="tagComment?.comment?.ctype == 'media' && tagComment?.comment?.mediaData?.mediakind == 'image'"
+          class="media-comment" src={{tagComment?.comment?.mediaData?.path}} role="button"
+          [attr.tabindex]="tabIndexStatus? 1:-1">
+      </button>
+      <button class="icon__button"
+        *ngIf="tagComment?.comment?.ctype == 'media' && tagComment?.comment?.mediaData?.mediakind == 'video'"
+        [attr.tabindex]="tabIndexStatus? 1:-1" (click)="navigateToAssessmentDetailsBasedOnItsType(tagComment)">
+        <video *ngIf="tagComment?.comment?.ctype == 'media' && tagComment?.comment?.mediaData?.mediakind == 'video'"
+          controls [attr.tabindex]="tabIndexStatus? 1:-1" class="media-comment" role="button"
+          (click)="navigateToAssessmentDetailsBasedOnItsType(comment)">
+          <source src="{{tagComment?.comment?.mediaData?.path}}">
+        </video>
+      </button>
+      <span class="comment-create-date" aria-hidden=true [attr.tabindex]="secondTabIndexStatus? 1:-1">{{tagComment?.comment?.createdat?.seconds|dateFormat
+      :
+      'MM/DD/YYYY'}}
+      </span>
+    </div>
+  </li>
+
+</ul>

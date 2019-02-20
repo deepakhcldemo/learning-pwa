@@ -1,0 +1,56 @@
+<!-- Div for notes list for selected student -->
+<div class="notes-section custom-control" role="presentation">
+  <div class="card-header section-header card-header__editactionbar" role="presentation">
+    <button class="notes-section--cancel icon-button__color item-container--focus" (click)="toggleEdit()" *ngIf="editable"
+      [attr.tabindex]="tabIndexStatus && studentDetailsStatus? 0: -1">
+      Cancel </button>
+    <button class="notes-section--remove icon-button__color item-container--focus" (click)="toggleEdit(); removeNotes()"
+      *ngIf="editable" [attr.tabindex]="tabIndexStatus && studentDetailsStatus? 0: -1">
+      Remove
+    </button>
+    <button class="notes-section--edit icon-button__color item-container--focus" (click)="toggleEdit()" *ngIf="!editable"
+      id="{{students[selectedIndex]?.userId}}" [attr.tabindex]="tabIndexStatus && studentDetailsStatus? 0: -1"
+      [disabled]="!students.length || showNoRec">
+      <i class="icon-edit card-header__edit" aria-hidden="true"></i>
+      Edit </button>
+  </div>
+  <div class="item-container ps" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="false">
+    <div class="notes-section--notes item-container--focus" *ngFor=" let note of noteList; let j = index;" role="presentation">
+      <div class="card-header__checkbox" *ngIf="editable" role="presentation">
+        <label class="checkbox-container">
+          <input type="checkbox" class="custom-control-input item-container--focus" id="checkItem_{{j}}" (click)="prepareNotesToDelete($event, note)"
+            [attr.tabindex]="tabIndexStatus && studentDetailsStatus? 0: -1">
+          <span class="checkmark" role="checkbox"></span>
+        </label>
+      </div>
+      <div *ngIf="note.data.flagged" class="to-do to-do__div " role="presentation">
+        <span class="to-do__todoSpan item-container--focus" *ngIf="note.data.flaggeddate?.seconds !=0" role="presentation">To-Do</span>
+        <span class="to-do__dueSpan item-container--focus" *ngIf="note.data.flaggeddate?.seconds !=0" role="presentation">Due
+          {{note.data.flaggeddate?.seconds|dateFormat}}</span>
+      </div>
+
+      <div class="cardheader__addednotes" role="presentation">
+        <span class="item-container--focus" (click)="!editable ?editStudentNotes(note) : false" title="{{note.data.comment}}"
+          (keyup.enter)="!editable ?editStudentNotes(note) : false" [ngStyle]="!editable && {'cursor':'pointer'}  || editable && {'cursor':'not-allowed'}"
+          attr.aria-label="Note details, click to open in a slider, Note Comment is {{note.data.comment}}"
+          [attr.tabindex]="tabIndexStatus && studentDetailsStatus? 0: -1"> {{note.data.comment|truncate:100}}
+        </span>
+        <div>
+          <div class="gavatarstudents" *ngFor="let taggedStudent of note.data.student  | slice:0:2; let k = index;"
+            role="presentation">
+            <span class="gavatar gavatarstudents__icon " aria-hidden="true" role="presentation">{{taggedStudent.avatar}}</span>
+            <span class=" gavatarstudents__studentname item-container--focus" role="presentation">{{taggedStudent.fullName}}
+            </span>
+            <span class=" gavatarstudents__studentlength" role="presentation" *ngIf="note.data.students.length > 2 && k == 1">
+              and
+              {{note.data.students.length-2}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="no-record item-container--focus" *ngIf="showNoRec" [attr.tabindex]="tabIndexStatus && studentDetailsStatus? 0: -1"
+    role="status">
+    <p>{{noResult}}</p>
+  </div>
+</div>

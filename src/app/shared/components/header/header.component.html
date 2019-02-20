@@ -1,0 +1,17 @@
+<header role="heading" class="card header" aria-label="header">
+    <div class="card-body">
+        <a class="logo" title="SCOUT PWA Logo" aria-hidden="true" aria-label="SCOUT PWA Logo" tabindex="-1" (click)="navigatetoDashboard()"></a>
+        <label [attr.aria-label]="headerTitle" class="header-title" [ngStyle]="{'border-left': headerBorderToggle ? '3px solid grey': 'none'}"
+            tabindex="-1">
+            <h4 class="header-heading">{{headerTitle}}</h4>
+        </label>
+        <app-teacher-class class="class-selector-status" [ngClass]="{'active': !classSelectorStatus}"></app-teacher-class>
+        <button class="btn icon__button search-icon icon-search header-icon" (click)="openSearch()" [attr.tabindex]="headerpageTabIndex? 0:-1"
+            aria-label="Search, press enter or click to search" [disabled]='!hasClassList'></button>
+        <button class="btn icon__button icon-camera camera-capture-header" (click)="imgInput.click()" aria-label="Press enter to capture or upload media"
+            [attr.tabindex]="headerpageTabIndex? 0:-1" *ngIf='showCameraIcon'></button>
+        <input class="camera-capture-header__input" type="file" accept="media_type" capture="camcorder" (change)="triggerCamera($event)"
+            #imgInput>
+        <app-avatar  [attr.tabindex]="-1"></app-avatar>
+    </div>
+</header>

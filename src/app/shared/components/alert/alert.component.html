@@ -1,0 +1,7 @@
+<!-- <ngb-alert style=' position: absolute;z-index: 1000;background: #fff;border: 1px solid red;left: calc(50% - 100px); min-width: 200px;' *ngIf="alertMsg" type="alertType" (close)="alertMsg = null">{{ alertMsg }}</ngb-alert> -->
+<div class="parent" *ngIf="alertService.setConfig().message">
+  <ngb-alert *ngIf="alertService.setConfig().message" class="child" type="alertService.setConfig().status"
+    (close)="CloseAlert()">
+    {{ this.alertService.setConfig().message }}
+  </ngb-alert>
+</div>

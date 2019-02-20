@@ -1,0 +1,277 @@
+@import '../../../../styles/mixins';
+/** 
+  below CSS is used for smooth scrolling for I-pad
+**/
+
+* {
+    -webkit-overflow-scrolling: touch;
+}
+
+.student-container {
+    height: 100%;
+    display: contents;
+    width: 100%;
+}
+
+.student-header {
+    font-size: 20px;
+    color: $white;
+    padding: 5px 10px 10px 10px;
+    background-color: $blue;
+    margin: 0px;
+    height: 78.53px;
+    line-height: 65px;
+}
+
+.icon-any {
+    padding: 7px 0px;
+    position: absolute;
+    color: $header-icon-color;
+    font-family: $font-family-k12_universal_icons;
+    font-size: 24px;
+    left: -5px;
+    display: none;
+}
+
+.gavatar {
+    color: $white;
+    background-color: $icon-color;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 35px;
+    width: 35px !important;
+    height: 35px !important;
+    line-height: 35px !important;
+    margin-left: 13px !important;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    left: 5px !important;
+}
+
+.student-header--title {
+    padding-left: 14px;
+    color: $header-icon-color;
+    font-family: $font-family-cabin;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    line-height: 18px;
+    text-overflow: ellipsis;
+    max-width: 300px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 145px;
+    text-transform: capitalize;
+    overflow: visible;
+    white-space: normal;
+    height: auto;
+}
+
+.editbutton-container {
+    float: right;
+    right: 0px;
+    font-size: 14px !important;
+    padding-top: 0px;
+}
+
+.editbutton-style {
+    font-size: 14px;
+    line-height: 16px;
+    font-family: "Cabin" !important;
+}
+
+.editbutton-style--remove {
+    float: right;
+}
+
+.editbutton--cancel {
+    float: left;
+    margin-top: 14px;
+    font-size: 20px;
+    color: $white;
+    position: absolute;
+    margin-left: -40px;
+}
+
+.editbutton--remove {
+    float: right;
+    right: 10px;
+    margin-top: 14px;
+    font-size: 20px;
+    color: $white;
+    font-family: "Cabin" !important;
+}
+
+.student-item-list {
+    padding: 5px;
+    height: calc(100vh - 250px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.student-row {
+    padding: 7px;
+}
+
+.student-row--width {
+    min-width: 100px;
+    padding-left: 0px;
+}
+
+.student-row--checkbox {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.custom-control-input:focus {
+    left: 0px;
+    width: 24px !important;
+    height: 24px !important;
+    box-shadow: 0 0 0 0.2rem $sine-blue;
+    z-index: unset !important;
+}
+
+.student-row--date {
+    display: inline-block;
+    vertical-align: middle;
+    color: $black;
+}
+
+.student-item--padding {
+    padding: 0px;
+    text-align: left;
+}
+
+.comment-type {
+    text-align: left;
+    white-space: initial;
+    word-break: break-word;
+    cursor: pointer;
+}
+
+.comment-type--media {
+    cursor: pointer;
+}
+
+.disable-click-event {
+    pointer-events: none;
+}
+
+.image--placeholder {
+    border: 2px solid $white-grey;
+}
+
+.student-item-list--blank {
+    color: $dark-grey;
+    text-align: center;
+    padding-top: 200px;
+}
+
+.comment-section {
+    z-index: 100;
+    bottom: 0px;
+    border: 1px solid $white-grey;
+    width: 100%;
+    display: inline-table;
+    padding: 0 10px;
+    background: $endeavour;
+}
+
+.comment-section--row {
+    margin: 8px 0px;
+    border: 1px solid;
+    height: 42px;
+    display: flex;
+    background: $white;
+    border-color: $light-grey;
+    border-radius: 5px;
+}
+
+input::placeholder {
+    color: $light-grey;
+}
+
+.comment-section-row__input {
+    border: none;
+    font-size: 20px;
+}
+
+.media-upload__button {
+    position: absolute;
+    right: 0px;
+    top: -5px;
+    font-size: 30px;
+}
+
+.image-file-display {
+    display: none;
+}
+
+.icon-style {
+    position: relative;
+}
+
+.btn__font--capture {
+    font-size: 30px;
+    color: $avatar-blue;
+    &.focus {
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem $sine-blue !important;
+    }
+}
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+    .comment-type--media {
+        width: 400px;
+        height: 220px;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width:1400px) {
+    .student-item-list {
+        padding: 5px;
+        height: calc(100vh - 290px);
+    }
+}
+
+@media screen and (max-width:768px) {
+    .student-container {
+        height: 100%;
+        width: 100%;
+    }
+    .student-container--padding {
+        padding: 10px;
+    }
+    .student-header {
+        height: 54px;
+        line-height: 38px;
+    }
+    .icon-any {
+        padding: 9px 9px;
+        position: absolute;
+        color: $header-icon-color;
+        font-family: $font-family-k12_universal_icons;
+        font-size: 24px;
+        left: -5px;
+        display: block;
+    }
+    .editbutton--cancel {
+        float: left;
+        position: absolute;
+        margin-top: 10px;
+        padding: 0px;
+    }
+    .editbutton--remove {
+        float: right;
+        margin-top: 10px;
+        padding: 0px;
+    }
+    .student-item-list {
+        height: calc(100% - 118px);
+    }
+    .comment-section {
+        width: 100%;
+    }
+}

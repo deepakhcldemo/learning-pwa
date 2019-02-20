@@ -1,0 +1,33 @@
+<div class="avatar-overlay" (click)="toggleWithGreeting();" [ngClass]="{'active': profileStatus }" aria-hidden="profileStatus"></div>
+<button id="avatar_btn_desk" class="btn icon__button avatar avatar-icon-container icon-assessments header-icon" (click)="toggleWithGreeting(p1)"
+    [autoClose]="false" triggers="manual" [placement]="'bottom'" [ngbPopover]="popContent" triggers="manual" #p1="ngbPopover"
+    [attr.aria-label]="!profileStatus? 'open user profile menu': 'close user profile menu'" [attr.tabindex]="profileStatus || avatarTabIndexStatus? 0:-1">
+</button>
+<button id="avatar_btn_mob" class="btn avatar icon__button icon-test avatar-icon-content header-icon avatar-icon--padding"
+    (click)="toggleWithGreeting(p2)" [placement]="'bottom'" [ngbPopover]="popContent" [autoClose]="false" triggers="manual"
+    #p2="ngbPopover" [attr.aria-label]="!profileStatus? 'open user profile menu': 'close user profile menu'"
+    [attr.tabindex]="profileStatus || avatarTabIndexStatus ? 0 : -1">
+</button>
+
+<ng-template #popContent let-greeting="greeting">
+    <ul class="ul-padding-left ul-list-style-type" autofocus>
+        <li>
+            <div class="user" attr.aria-label="Title of Logged in user is {{name}}">{{name}}
+            </div>
+            <div class="currentuser " attr.aria-label="User name of Logged in user is {{username}}">{{username}}</div>
+        </li>
+        <li class="search-item" [ngClass]="{'disabled':!hasClassList}">
+            <a class="btn icon__button avatar-link" (click)="openSearch();" tabindex="0">Search</a>
+        </li>
+        <li>
+            <a class="btn icon__button avatar-link" (click)="openFaq()" tabindex="0">
+                FAQs
+            </a>
+        </li>
+        <li>
+            <a class="btn icon__button avatar-link" (click)="logout();" tabindex="0">Log
+                Out</a>
+        </li>
+    </ul>
+    <div (focus)="setFocus('avatar_btn_desk', 'avatar_btn_mob')" tabindex="0"></div>
+</ng-template>

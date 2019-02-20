@@ -1,0 +1,31 @@
+<div class="progress-card text-white item-container--focus" tabindex="0" [attr.tabindex]="tabIndexStatus? 0: -1"
+  attr.aria-label="{{checklist.type}} {{checklist.path}}
+{{checklist.title }} {{checklist.progressCount}}">
+  <div class="card-title">
+    <div class="grade-1-unit-3-i" id="assessmentpath" title="{{checklist.path.split('|').join(' > ')}}"
+      [attr.aria-label]="checklist.path" tabindex="-1">{{checklist.path.split('|').join(' > ')|truncate:50}}</div>
+  </div>
+  <div class="card-body">
+    <div class="assessment-type" *ngIf="checklist.type == 'ongoing'" tabindex="-1">Ongoing Assessment</div>
+    <div class="assessment-type" *ngIf="checklist.type == 'checklist'" tabindex="-1">Assessment Checklist</div>
+    <div class="assessment-subject" *ngIf="checklist.type == 'ongoing'" title="{{checklist.title}}" tabindex="-1"><i
+        class="icon-assessment" aria-hidden="true"></i> {{checklist.title|truncate : 120}}</div>
+    <div class="assessment-subject" *ngIf="checklist.type == 'checklist'" title="{{checklist.title}}" tabindex="-1"><i
+        class="icon-observational_assessment icon-observational_assessment-inverted" aria-hidden="true"></i>
+      {{checklist.title|truncate : 120}}</div>
+
+    <div class="blue">
+      <circle-progress [space]="-14" [subtitle]="'Observed'" [percent]="checklist['progressCount']" [radius]="50"
+        [outerStrokeWidth]="14" [titleFontSize]="16" [unitsColor]="'#0BAD8C'" [unitsFontSize]="16"
+        [subtitleColor]="'#0BAD8C'" [subtitleFontSize]="14" [titleColor]="'#0BAD8C'" [innerStrokeWidth]="12"
+        [outerStrokeColor]="checklist.progressCount==0 ? '#D4F4ED' : '#0BAD8C'" [innerStrokeColor]="'#D4F4ED'"
+        [animation]="true" [animationDuration]="50" tabindex="-1">
+      </circle-progress>
+
+    </div>
+
+    <div *ngIf="checklist.updatedat && checklist.updatedat.seconds && checklist.updatedat.seconds != 0"
+      class="last-updated" tabindex="-1">Last updated
+      {{checklist.updatedat?.seconds|dateFormat :'MM/DD/YYYY'}}</div>
+  </div>
+</div>

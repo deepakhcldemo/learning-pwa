@@ -1,0 +1,450 @@
+@import "../../../styles/mixins";
+@import url("https://fonts.googleapis.com/css?family=Roboto:300, 500, 400");
+/**
+  below CSS is used for smooth scrolling for I-pad
+**/
+
+* {
+    -webkit-overflow-scrolling: touch;
+}
+
+/*Formatting the whole container*/
+
+.page-container {
+    overflow: hidden !important;
+}
+
+/*Container For The Desktop View.*/
+
+.container-desktop {
+    display: inline;
+}
+
+/*Container For The Mobile View.*/
+
+.container-mobile {
+    display: none;
+}
+
+nav {
+    width: 100%;
+}
+
+ol {
+    margin-bottom: 0;
+}
+
+/*Format The Path Displaying Section*/
+
+.breadcrumb {
+    height: 30px;
+    width: 100%;
+    background-color: $highlighter-green;
+    border-radius: 0px;
+    margin-bottom: 10px;
+}
+
+.breadcrumb a {
+    color: $white;
+}
+
+/*Format The Path Displaying Section*/
+
+.breadcrumb--path {
+    height: 14px;
+    color: $white;
+    font-family: $font-family-cabin;
+    font-size: 14px;
+    line-height: 6px;
+}
+
+/*Format The Path Displaying Section*/
+
+.breadcrumb--path.active {
+    color: $white;
+}
+
+.assessment {
+    padding: 10px 0 0 0;
+    height: calc(100% - 70px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.assessment-width {
+    width: calc(100% - 44px);
+}
+
+/*Displaying the current assessment title*/
+
+.assessment-row {
+    min-width: 35%;
+    width: 35%;
+    background-color: $white;
+    box-shadow: 2px 0 4px 0 $black-light-shade;
+    padding: 0px;
+    height: 100%;
+}
+
+/*Displaying the current assessment Details And Title*/
+
+.assessment-row--data {
+    height: 79px;
+    width: 100%;
+    background-color: $highlighter-green;
+    padding: 0px 17px 0px 19px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*Format the current assessment Details And Title*/
+
+.assessment-row--title {
+    color: $white;
+    font-family: $font-family-cabin;
+    font-size: 20px;
+}
+
+/*For Assessment Details.*/
+
+.assessment-repeater {
+    height: 96px;
+    width: 100%;
+    border-bottom: 1px solid $grey;
+    color: $black;
+    font-family: $font-family-cabin;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 0px 17px 0px 19px;
+}
+
+/*Assessment item to be displayed in the highlighted format*/
+
+.highlighted-assessment-item {
+    color: $highlighter-green;
+    padding-left: 15px;
+    border-left: 4px solid $highlighter-green;
+    display: block;
+}
+
+.side-menu {
+    z-index: 1;
+    position: absolute;
+    right: 0px;
+    top: 32px;
+    bottom: 0;
+    padding: 0 2px;
+    width: 44px;
+    cursor: pointer;
+    overflow: auto;
+    background-color: $side-menu-color;
+    box-shadow: -1px 0 4px 0 $white-grey;
+}
+
+.side-menu a {
+    display: block;
+    margin: -2px 0;
+}
+
+.menu-options {
+    color: $blue;
+    font-family: $font-family-cabin;
+    font-size: 16px;
+    line-height: 36px;
+    text-align: center;
+}
+
+.alphabet--anchor {
+    color: $lightblue;
+    font-weight: bold;
+}
+
+/*Applied On The SideBar Opened To Look Up On The Observations.*/
+
+.wrapper-student-list {
+    position: relative;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-left: 0px;
+    background-color: $light-blue;
+    margin-left: 20px;
+    max-width: calc(65% - 20px) !important;
+}
+
+/*Dispalying The Tagged Students Detail*/
+
+.student-item {
+    width: 400px;
+    display: inline-table;
+    background-color: $white;
+    height: 100%;
+    margin-right: 26px;
+    position: relative;
+    overflow: hidden;
+}
+
+/*Dispalying The Tagged Students Detail*/
+
+.student-details {
+    height: 78.53px;
+    background-color: $blue;
+    padding-top: 22px;
+}
+
+/*For The Display Of First Credential Of The Tagged Students Name*/
+
+.gavatar {
+    width: 36px !important;
+    height: 36px !important;
+    line-height: 35px !important;
+    left: 2px;
+}
+
+/*Format The Tagged Students Detail And Name*/
+
+.student-name {
+    padding-left: 3px;
+    height: 18px;
+    color: $header-icon-color;
+    font-family: $font-family-cabin;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    line-height: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 150px;
+    text-transform: capitalize;
+}
+
+/*For Assessment Items*/
+
+.scrollable-container {
+    height: calc(100% - 100px);
+    overflow: hidden;
+}
+
+/*Format The Tagged Students Details*/
+
+.student-data {
+    height: 96px;
+    width: 100%;
+    border-bottom: 1px solid $grey;
+    color: $black;
+    font-family: $font-family-cabin;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 26px 21px 16px 29px;
+    position: relative;
+}
+
+/*Icon Checkmark.*/
+
+.icon-checkmark {
+    border-radius: 35px;
+    font-size: 42px;
+    color: $disabled-grey;
+}
+
+/*Formatting the 'Observations' Keyword*/
+
+.observation--title {
+    padding-top: 10px;
+    position: absolute;
+    cursor: pointer;
+    width: 78%;
+    padding-left: 22px;
+    color: $dark-grey;
+    font-size: 18px;
+    font-family: $font-family-cabin;
+}
+
+.icon-disabled {
+    color: $disabled-grey;
+    font-family: $font-family-cabin;
+}
+
+.text-disabled {
+    color: $disabled-text-grey;
+    font-family: $font-family-cabin;
+}
+
+/*Icon Chevron Along The 'Observations' Keyword.*/
+
+.icon-chevron {
+    color: $blue;
+    height: 36px;
+    width: 24px;
+    font-size: 36px;
+    line-height: 36px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.icon-comments--style {
+    font-size: 30px;
+    right: 15px;
+    position: absolute;
+    top: 10px;
+    cursor: pointer;
+}
+
+.observation-count--style {
+    border-radius: 50%;
+    position: absolute;
+    right: -5px;
+    top: 0px;
+    width: 16px;
+    height: 16px;
+    padding: 8px;
+    background: $highlighter-green;
+    color: $white;
+    text-align: center;
+    p {
+        position: absolute;
+        font-size: 13px;
+        height: 16px;
+        top: 0px;
+        margin: 0;
+        width: 16px;
+        left: 0px;
+    }
+}
+
+.icon-media--style {
+    font-size: 30px;
+    right: 15px;
+    position: absolute;
+    top: 55px;
+    cursor: pointer;
+}
+
+.student-detail-section {
+    position: absolute;
+    top: 0px;
+    width: inherit;
+    height: calc(100vh - 125px);
+    background: $white;
+    left: 0;
+}
+
+.active {
+    color: $highlighter-green;
+}
+
+@media screen and (max-width: 768px) {
+    .container-mobile {
+        display: block;
+    }
+    .container-desktop {
+        display: none;
+    }
+    .container-height {
+        height: 100%;
+    }
+    .container-scroll {
+        overflow-y: scroll !important;
+    }
+    .sidebar-style {
+        padding: 0px;
+    }
+    .box-shadow-style {
+        box-shadow: 0 6px 10px 0 $black-lighter-shade, 0 1px 18px 0 $black-lightest-shade, 0 3px 5px -1px $white-grey;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .checklist--path {
+        font-size: 15px;
+        color: $white;
+        background-color: $highlighter-green;
+        padding: 5px 0px 5px 10px;
+    }
+    .checklist--quote {
+        padding: 0px 10px;
+        font-size: 16px;
+        display: table-cell;
+        height: 50px;
+        vertical-align: middle;
+    }
+    .assessment-item-container {
+        margin: 22px 10px 10px 10px;
+        top: 150px;
+        bottom: 64px;
+        width: calc(100% - 20px)
+    }
+    .students-style {
+        margin: 0px;
+        position: relative;
+        border: 1px solid $white;
+        overflow: hidden;
+    }
+    .students-sidebar {
+        font: bold 14pt "Trebuchet MS";
+        color: $white;
+        padding: 10px 10px 10px 10px;
+        background-color: $blue;
+    }
+    .students-sidebar:hover {
+        font: bold 14pt "Trebuchet MS";
+        cursor: pointer;
+    }
+    .students-sidebar:active {
+        font: bold 14pt "Trebuchet MS";
+    }
+    .gavatar {
+        margin: 0px 10px;
+    }
+    .icon-style {
+        font-size: 26px;
+        right: 10px;
+        position: absolute;
+        top: 12px;
+    }
+    .assessment-style {
+        display: inherit;
+        padding: 0px;
+    }
+    .card-width {
+        width: 100%;
+    }
+    .icon-checkmark {
+        border-radius: 35px;
+        font-size: 35px;
+        color: $disabled-grey;
+    }
+    .assessment-item--title {
+        padding: 5px 0px;
+        border-bottom: 1px solid $black;
+        font-size: 18px;
+        color: $black;
+        font-weight: bold;
+    }
+    .observation--name {
+        color: $blue;
+        font-size: 24px;
+        padding-top: 10px;
+    }
+    .icon-chevron {
+        color: $white;
+    }
+    .icon-style--color {
+        color: $blue;
+    }
+    .active {
+        color: $highlighter-green;
+    }
+    .student-detail-section {
+        height: calc(100% - 120px);
+        z-index: 1;
+        width: 100%;
+        position: fixed;
+        top: 56px;
+        background: $white;
+        left: 0;
+        overflow: scroll;
+    }
+}

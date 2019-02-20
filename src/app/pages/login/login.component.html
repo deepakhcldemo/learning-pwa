@@ -1,0 +1,66 @@
+<div class="page-container container-style">
+  <h1 aria-label="realize scout">
+    <div class="header-logo">
+    </div>
+  </h1>
+  <div class="container-fluid container-fluid--min-height">
+    <div class="row">
+      <div class="col-sm-2 col-md-2 col-lg-4 col-12 container--display"></div>
+      <div class="col-sm-8 col-md-8 col-lg-4 col-12 container--position"
+        *ngIf="progressStatus === PROGRESSSTATUS.Initial">
+        <form class="form-signin" [formGroup]="loginForm">
+          <div class="form-group">
+            <span role="status" class="alert alert-danger login-status inline--block" *ngIf="msg!=''">
+              {{msg}}
+            </span>
+          </div>
+
+          <div class="form-group">
+            <input type="text" id="username" (keyup.enter)="login()" [formControl]="username"
+              class="form-control input-style" placeholder="user name..." required aria-label="user name" autofocus>
+          </div>
+
+          <div class="form-group pass">
+            <input type="password" id="password" (keyup.enter)="login()" [formControl]="password"
+              class="form-control input-style" placeholder="password..." required aria-label="Password">
+          </div>
+
+          <div class="form-group">
+            <button type="button" (click)="login()" class="btn form-control sign--btn">Sign in</button>
+          </div>
+        </form>
+
+        <div class="easy-bridge">
+          <a class="btn icon__button link" [href]="easyBridgeUrl">
+            <span class="easy-bridge-bold">EasyBridge Auto or Plus Account?</span>
+          </a>
+        </div>
+
+      </div>
+      <div class="col-sm-8 col-md-8 col-lg-4 col-12 middle loading-container mgs-container"
+        *ngIf="progressStatus === PROGRESSSTATUS.Login">
+        <span>Logging in</span>
+        <!--added '...' for animation-->
+        <p class='sync-data-animation'> <span>...</span></p>
+      </div>
+      <div class="col-sm-8 col-md-8 col-lg-4 col-12  middle loading-container mgs-container"
+        *ngIf="progressStatus === PROGRESSSTATUS.Sync">
+        <div>
+          <span role="status"> Syncing your data for the first time.</span>
+          <span role="status">This may take a few moments</span>
+          <!--added '...' for animation-->
+          <p class='sync-data-animation'> <span>...</span></p>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-2 col-lg-4 col-12"></div>
+    </div>
+    <div class="row disclaimer">
+      <div class="col-12">
+        <span>Note: App requires a school-based subscription and valid
+          account.</span>
+        <span class="badge badge-secondary ml-2" *ngIf="!isProduction">env.{{ environmentName }} -
+          rev.{{ appVersion }}</span>
+      </div>
+    </div>
+  </div>
+</div>

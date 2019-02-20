@@ -1,0 +1,305 @@
+@import "../../../styles/mixins";
+/* Parent div element container */
+
+.page-container {
+    overflow-y: auto;
+}
+
+/* Bootstrap .row modifier */
+
+.dashboard-row {
+    margin-bottom: 28px;
+}
+
+.carousel-container-padding {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 35px;
+    padding-right: 35px;
+    min-height: 290px;
+}
+
+/* Modified bootstrap's row class */
+
+.row--custom {
+    width: 100%;
+    height: 22px;
+    right: 0px;
+    margin-right: 9px;
+    margin-top: 24.98px;
+}
+
+/*
+*Css Used To Format the TAb
+*All
+*Recent
+*Change Grade For Dashboard.
+*/
+
+.navbar-toggler {
+    padding: 0px 0px 0px 10px;
+    font-size: 14px !important;
+    line-height: 14px !important;
+    font-family: $font-family-cabin;
+    color: $dark-grey;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:hover {
+    outline: none;
+}
+
+.all-assessment-button {
+    position: absolute;
+    right: 3%;
+    color: $dark-green;
+}
+
+/* 'Recent' and 'change grade' icons*/
+
+.navbar-toggler-icon {
+    height: 18px;
+    width: 20px;
+    color: $dark-green !important;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+/* Navigation custom icons */
+
+.navbar-toggler-custom-icon {
+    height: 18px;
+    width: 20px;
+    color: $dark-green !important;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.recent-button {
+    position: absolute;
+    right: 45%;
+    .recent-button__color {
+        color: $dark-grey !important;
+    }
+}
+
+/* Align elements vertically center */
+
+.align-middle {
+    vertical-align: middle;
+}
+
+/* K_12 'icon-clock' modifier */
+
+.icon-clock {
+    font-size: 18px;
+    line-height: 18px;
+}
+
+/* Carousel without margin */
+
+.row-without-margin-carousel {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 0px;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 39px;
+}
+
+.recent-todo-container--padding {
+    padding-top: 39px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+}
+
+/* Wrapper element for 'assessment' slider */
+
+.wrapper {
+    position: absolute;
+    // display: none;
+    align-items: stretch;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    width: 40% !important;
+    // margin-right: -40%;
+  
+    /* &.active {
+      display: flex;
+      -webkit-animation: slide 0.5s linear forwards;
+      -moz-animation: slide 0.5s linear forwards;
+      -o-animation: slide 0.5s linear forwards;
+      animation: slide 0.5s linear forwards;
+      margin-right: 0;
+    }
+  
+    @-webkit-keyframes slide {
+      100% {
+        margin-right: 0;
+      }
+  
+      0% {
+        margin-right: -40%;
+      }
+    }
+  
+    @keyframes slide {
+      100% {
+        margin-right: 0;
+      }
+  
+      0% {
+        margin-right: -40%;
+      }
+    } */
+  }
+  /* Wrapping element for #sidebar , .sidebar-header and .back-arrow */
+  
+  #sidebar {
+    min-width: 100%;
+    max-width: 100%;
+    top: 44px;
+    min-height: calc(100% - 44px);
+    background: $white;
+    color: $black !important;
+    /* transition: all 0.3s;
+    overflow-y: auto;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease; */
+    position: absolute;
+    .sidebar-header {
+        height: 44px;
+        width: 100%;
+        font-family: $font-family-cabin;
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        background: $dark-green;
+        color: $white;
+        text-align: left;
+        padding-left: 5px;
+        line-height: 44px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+    }
+    .back-arrow {
+        position: absolute;
+        right: 0.5rem;
+        padding-top: 0.2rem;
+        cursor: pointer;
+    }
+}
+
+/* Custom accordion */
+
+.accordion {
+    display: block;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+/* Accordion container */
+
+.accordion-container {
+    display: block;
+    position: relative;
+    flex-wrap: wrap;
+    text-align: left;
+    top: 43px;
+}
+
+/* Sidebar's header margin */
+
+.sidebar-header-heading {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 0px !important;
+    line-height: unset !important;
+}
+
+/* K_12 icon-exit modifier*/
+
+.exit-icon__height {
+    height: 45px !important;
+    width: 40px !important;
+    right: 0px;
+    font-size: 18px !important;
+}
+
+.nav-item--scroll {
+    height: calc(100vh - 90px);
+    overflow-y: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard-row {
+        margin-bottom: 14px;
+    }
+    .carousel-container-padding {
+        padding-left: 0;
+        padding-right: 0;
+        min-height: 242.65px;
+    }
+    .row-css {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .row--custom {
+        margin-top: 100.98px;
+    }
+    .all-assessment-button {
+        left: 8%;
+    }
+    .recent-button {
+        right: 8%;
+    }
+    .navbar-toggler {
+        padding: 0;
+        font-size: 14px !important;
+        line-height: 14px !important;
+        font-family: $font-family-cabin;
+        color: $dark-grey;
+    }
+    .row-without-margin-carousel {
+        margin-top: 10px;
+    }
+    .recent-todo-container--padding {
+        padding: 39px 0 0 0;
+    }
+    .wrapper {
+        width: 100% !important;
+        margin-right: -100%;
+    }
+    .wrapper.active {
+        margin-right: 0;
+    }
+    #sidebar {
+        min-width: 100%;
+        max-width: 100%;
+        top: 56px;
+        min-height: calc(100% - 56px);
+        .sidebar-header {
+            text-align: left;
+            padding-left: 8px;
+        }
+    }
+    .accordion-container {
+        text-align: left;
+        top: 56px;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .recent-button {
+        right: 43%;
+    }
+}

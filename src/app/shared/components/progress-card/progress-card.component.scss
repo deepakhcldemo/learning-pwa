@@ -1,0 +1,314 @@
+@import "../../../../styles/mixins";
+/* Applies style on progress card of the carousel. */
+
+.progress-card {
+    height: 290px;
+    width: 340px;
+    border: 1px solid $gainsboro;
+    border-radius: 2px;
+    background-color: $side-menu-color;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer !important;
+    padding: 0px;
+}
+
+/* Applies style on the title of the progress card. */
+
+.card-title {
+    height: 26px;
+    margin: 0px;
+    border-radius: 2px 2px 0 0;
+    background-color: $dark-green;
+}
+
+/* Applies style on the path mentioned on the progress card. */
+
+.grade-1-unit-3-i {
+    height: 26px;
+    color: $white;
+    font-family: $font-family-cabin;
+    font-size: 14px;
+    line-height: 25px;
+    text-align: center;
+}
+
+/* Applies style on the progress card except card-title. */
+
+.card-body {
+    padding: 0px;
+}
+
+/* Applies style on the data of the assessment type. */
+
+.assessment-type {
+    height: 18px;
+    margin: 5px 0px 0px 10px;
+    text-align: start;
+    color: $dark-grey;
+    font-family: $font-family-cabin;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+/* Applies style on the data inside the progress card. */
+
+.assessment-subject {
+    height: 60px;
+    color: $dark-green;
+    font-family: $font-family-cabin;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    text-align: start;
+    margin: 5px 0px 0px 10px;
+}
+
+/* Applies style on the date. */
+
+.last-updated {
+    height: 24px;
+    color: $carbon-black;
+    font-family: $font-family-cabin;
+    font-size: 12px;
+    line-height: 16px;
+    margin: 10px 0px 0px 10px;
+    text-align: start;
+}
+
+.progress {
+    height: 157px;
+    line-height: 100px;
+    background: none;
+    margin: 0 auto;
+    box-shadow: none;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .progress {
+        height: 125px;
+        line-height: 100px;
+    }
+}
+
+.progress:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 12px solid #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.progress>span {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+.progress .progress-left {
+    left: 0;
+}
+
+.progress .progress-bar {
+    width: 100%;
+    height: 100%;
+    background: none;
+    border-width: 16px;
+    border-style: solid;
+    position: absolute;
+    top: 0;
+}
+
+.progress .progress-left .progress-bar {
+    left: 100%;
+    border-top-right-radius: 80px;
+    border-bottom-right-radius: 80px;
+    border-left: 0;
+    -webkit-transform-origin: center left;
+    transform-origin: center left;
+}
+
+.progress .progress-right {
+    right: 0;
+}
+
+.progress .progress-right .progress-bar {
+    left: -100%;
+    border-top-left-radius: 80px;
+    border-bottom-left-radius: 80px;
+    border-right: 0;
+    -webkit-transform-origin: center right;
+    transform-origin: center right;
+    animation: loading-1 1.8s linear forwards;
+}
+
+.progress .progress-value {
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background: $white;
+    font-size: 15px;
+    color: $light-sea-green;
+    line-height: 1;
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    left: 5%;
+}
+
+.progress.blue .progress-bar {
+    border-color: $light-sea-green;
+}
+
+.progress.blue .progress-left .progress-bar {
+    animation: loading-3 1.5s linear forwards 1.8s;
+}
+
+.progress.yellow .progress-bar {
+    border-color: $light-yellow;
+}
+
+.progress.yellow .progress-left .progress-bar {
+    animation: loading-3 1s linear forwards 1.8s;
+}
+
+.progress.pink .progress-bar {
+    border-color: $peach;
+}
+
+.progress.pink .progress-left .progress-bar {
+    animation: loading-4 0.4s linear forwards 1.8s;
+}
+
+.progress.green .progress-bar {
+    border-color: $light-sea-green;
+}
+
+.progress.green .progress-left .progress-bar {
+    animation: loading-5 1.2s linear forwards 1.8s;
+}
+
+@keyframes loading-1 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes loading-2 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(144deg);
+        transform: rotate(144deg);
+    }
+}
+
+@keyframes loading-3 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+}
+
+@keyframes loading-4 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(36deg);
+        transform: rotate(36deg);
+    }
+}
+
+@keyframes loading-5 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(126deg);
+        transform: rotate(126deg);
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .progress {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .card-title {
+        height: 19.12px;
+        border-radius: 1.47px 1.47px 0 0;
+        background-color: $dark-green;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    }
+    .progress-card {
+        height: 242.65px;
+        width: 300px;
+        border-radius: 1.47px;
+        background-color: $white;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    }
+    .grade-1-unit-3-i {
+        height: 13px;
+        color: $white;
+        font-family: $font-family-cabin;
+        font-size: 11px;
+        line-height: 20px;
+        text-align: center;
+    }
+    .assessment-subject {
+        height: 17.52px;
+        color: $dark-green;
+        font-family: $font-family-cabin;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 17px;
+    }
+    .last-updated {
+        height: 24px;
+        color: $carbon-black;
+        font-family: $font-family-cabin;
+        font-size: 12px;
+        margin: 0px 0px 0px 10px;
+        line-height: 16px;
+        text-align: start;
+    }
+    .progress .progress-bar {
+        width: 100%;
+        height: 100%;
+        border-width: 12.35px;
+    }
+    .assessment-checklist {
+        height: 14px;
+        width: 100px;
+        color: $dark-grey;
+        font-family: $font-family-cabin;
+        font-size: 11px;
+        line-height: 14px;
+    }
+    .blue {
+        transform: scale(0.8);
+        padding-top: 20px;
+    }
+}

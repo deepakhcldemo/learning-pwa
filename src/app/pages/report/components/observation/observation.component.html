@@ -1,0 +1,16 @@
+<div class="page-container">
+  <app-teacher-class *ngIf="classSelectorStatus"></app-teacher-class>
+  <app-report-filter (showFilter)="toggleFilter($event)"></app-report-filter>
+
+  <div class="row text-title">
+    <div class="col-12 text-center item-container--focus">
+      Number of Observations
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 column-table">
+      <app-observation-chart></app-observation-chart>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,138 @@
+<!-- Media page container start -->
+<div class="container-fluid">
+  <div class="page-container" *ngIf="!noClassFlag">
+    <!-- teacher class selection start -->
+    <app-teacher-class *ngIf="classSelectorStatus"></app-teacher-class>
+    <!-- teacher class selection end -->
+    <div class="top-nav row">
+      <div class="col-md-12 col-sm-12 col-12">
+        <!-- Media container start -->
+        <div class="btn-group btn-group-toggle media--toggle" data-toggle="buttons">
+          <label for="AllMedia" class="btn btn-light label-off active all__media item-container--focus" (click)="flterMediaOnTabSelect('AllMedia')"
+            (keyup.enter)="flterMediaOnTabSelect('AllMedia')">
+            <input type="radio" name="AllMedia" id="AllMedia" class="all__media" value="AllMedia" autocomplete="off"
+              [attr.tabindex]="tabIndexStatus? 0:-1">All Media
+          </label>
+          <label for="Pictures" class="btn btn-light label-off pictures item-container--focus" (click)="flterMediaOnTabSelect('image')"
+            (keyup.enter)="flterMediaOnTabSelect('image')">
+            <input class="pictures" type="radio" name="Pictures" id="Pictures" value="Pictures" autocomplete="off"
+              [attr.tabindex]="tabIndexStatus? 0:-1">Pictures
+          </label>
+          <label for="Videos" class="btn btn-light label-off videos item-container--focus" (click)="flterMediaOnTabSelect('Video')"
+            (keyup.enter)="flterMediaOnTabSelect('Video')">
+            <input type="radio" name="Video" id="Video" class="videos" autocomplete="off" [attr.tabindex]="tabIndexStatus? 0:-1">Videos
+          </label>
+        </div>
+        <!-- Media container end -->
+        <div class="add-media-container" (click)="captureDeskTopMedia.click()" (keyup.enter)="captureDeskTopMedia.click()">
+          <input class="media__input--display" type="file" capture="camcorder" (change)="onMediaUpload($event)"
+            #captureDeskTopMedia>
+          <button class="btn icon__button btn-add--media item-container--focus" [attr.tabindex]="tabIndexStatus? 0:-1"><i
+              class="icon-addition addition"></i>Add Media</button>
+          <!-- <span class="vertical-alignment"></span> -->
+        </div>
+      </div>
+    </div>
+    <div class="row container--padding">
+      <div class="col-12 subheading no-padding">
+        <!--Edit div start -->
+        <div *ngIf="!(isSelected('Edit'))">
+          <div class="edit action-bar">
+            <button class="btn icon__button btn__white add-media-display item-container--focus" *ngIf="!editable"
+              (click)="captureMobileMedia.click()" (keyup.enter)="captureMobileMedia.click()" [attr.tabindex]="tabIndexStatus? 0:-1">
+              <input class="media__input--display" type="file" accept="media_type" capture="camcorder" (change)="onMediaUpload($event)"
+                #captureMobileMedia>
+              <i class="icon-addition"></i>
+              <span class="addmedia-font">Add Media 11</span>
+            </button>
+            <button class="edit-control edit-padding item-container--focus" *ngIf="!editable && !noMedia" [ngClass]="{'disable-click-event': editable}" (click)="toggleEdit()"
+              (keyup.enter)="toggleEdit()" aria-label="edit media" [attr.tabindex]="tabIndexStatus? 0 : -1">
+              <i class="icon-edit"></i> Edit</button>
+            <!-- <p *ngIf="noMedia" class="no-media-text" aria-label="No Media Available, please add media by clicking 'Add Media' button"
+              [attr.tabindex]="tabIndexStatus? 0 : -1">No Media Available</p> -->
+            <!--Cancel/Delete div start -->
+            <div *ngIf="editable" class="cancel-delete-container">
+              <button class="btn icon__button cancel item-container--focus" (click)="toggleEdit()" (keyup.enter)="toggleEdit()"
+                role="button" [attr.tabindex]="tabIndexStatus? 0:-1">
+                Cancel
+              </button>
+              <button class="btn icon__button remove item-container--focus" (click)="deleteMedia()" (keyup.enter)="deleteMedia()"
+                role="button" [attr.tabindex]="tabIndexStatus? 0:-1">
+                Delete </button>
+            </div>
+            <!--Cancel/Delete div end -->
+          </div>
+        </div>
+        <!--Edit div end -->
+      </div>
+    </div>
+    <!--For All Media-->
+    <div class="row container--padding">
+      <!--Pictures-->
+      <div class="col-12 images--container ps" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="isMobileView? true : false"
+        role="presentation">
+        <div [ngClass]="{'scrollable-student--list': isMobileView}">
+          <!-- No media message container start -->
+          <p *ngIf="noMedia" class="no-media-text" aria-label="No Media Available, please add media by clicking 'Add Media' button"
+            [attr.tabindex]="tabIndexStatus? 0 : -1">No Media Available</p>
+          <!-- No media message container end -->
+          <div class="media-container" *ngFor="let item of allMedia;index as i">
+            <div class="img-triangle" *ngIf="item['status']=='not synced'|| item['status'] =='toSync'" (click)="downloadMedia(item)"
+              (keyup.enter)="downloadMedia(item)">
+            </div>
+            <div class="img-triangle" *ngIf="item['status']=='synced'|| item['status'] =='syncError'">
+            </div>
+            <section [ngClass]="{'disable-click-event': editable}" (click)="editMedia(item)" (keyup.enter)="editMedia(item)">
+              <div class="image-placeholder">
+                <img *ngIf="item.mediakind =='image'" name="item.caption" [src]="item.path?item.path: item['encodedPath']"
+                  alt="Image" width="221" height="168" class="image-placeholder">
+                <img *ngIf="!(item.mediakind =='image') && (!(item.mediakind ==='video')) && item['status'] =='syncError'"
+                  name="item.caption" [src]="item.path?item.path: item['encodedPath']" alt="Image" width="221" height="168">
+                <video *ngIf="item.mediakind ==='video'" controls class="image-placeholder" width="221px" height="168px">
+                  <source src="{{item.path?item.path: item['encodedPath']}}" type="video/mp4">
+                </video>
+              </div>
+              <div class="item-container--focus" [attr.tabindex]="tabIndexStatus? 0:-1" attr.aria-label="{{item?.caption}} media, open to inlarge view">
+                <p class="picture" *ngIf="item.caption">{{((item?.caption).length>15)
+                  ? (item.caption |
+                  slice:0:15)+'..':(item?.caption) }}</p>
+                <p class="picture" *ngIf="!item.caption">untitled</p>
+                <p class="date">{{item.createdat?.seconds|dateFormat
+                  :'MM/DD/YYYY'}}</p>
+              </div>
+            </section>
+            <div class="imgStatus-div" *ngIf="item['status']">
+              <label class="checkbox-container">
+                <span class="img-status">
+                  <img src="../../../assets/images/media-cloud.png" *ngIf="item['status'] =='not synced'" (click)="uploadMedia(item)"
+                    (keyup.enter)="uploadMedia(item)" [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="upload local media to server">
+                  <i class="icon-error_intervention  item-container--focus" *ngIf="item['status'] =='syncError'"
+                    [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="media not found"></i>
+                  <i class="icon-download item-container--focus" *ngIf="item['status'] =='toSync'" (click)="downloadMedia(item)"
+                    (keyup.enter)="downloadMedia(item)" [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="download media from server to local"></i>
+                  <i class="icon-checkmark item-container--focus" *ngIf="item['status'] =='synced'"></i>
+                </span>
+              </label>
+            </div>
+            <div class="checkbox-div">
+              <label for="{{item['id']}}" class="checkbox-container" *ngIf="editable">
+                <input class="checkboxInput" id="{{item['id']}}" (click)="mediaToDelete($event, item['id']);$event.stopPropagation();"
+                  (keyup.enter)="mediaToDelete($event, item['id']);$event.stopPropagation();" type="checkbox"
+                  [attr.tabindex]="tabIndexStatus? 0:-1" aria-label="checkbox to edit this media" role="checkbox">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Media message container start -->
+  <div class="no-class-container" *ngIf="noClassFlag">
+    <span>No media available for selected class</span>
+  </div>
+  <!-- No Media message container end -->
+
+</div>
+<!-- Media page container end -->

@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="page-container">
+    <app-teacher-class *ngIf="classSelectorStatus"></app-teacher-class>
+    <div class="row h-100 row-without-margin">
+      <div class="col-sm-12 col-md-12 col-lg-6 col-12 col-container--center">
+        <div class="h-100 card-layout-right">
+          <button class="card card-block report-card icon__button item-container--focus" [attr.tabindex]="tabIndexStatus? 0:-1"
+            aria-label='enter here to view observation report card' (click)="goToPage('observation')">
+            <div class="head-title">Observation Report</div>
+            <div class="body reports-body">Review your students' observation summaries over time.</div>
+            <div class="report-image">
+              <picture>
+                <img src="../../../assets/images/magnifier.png" alt="Observation Report">
+              </picture>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-6 col-12 col-container--center">
+        <div class="row h-100 card-layout-left">
+          <button class="card card-block report-card icon__button item-container--focus" tabindex="0" aria-label='enter here to view assessment checklist report'
+            role="card" (click)="goToPage('check-list')">
+
+            <div class="head-title">Assessment Checklist Report</div>
+            <div class="body reports-body">Review your students' progress against benchmarks.</div>
+            <div class="report-image">
+              <picture>
+                <img src="../../../assets/images/checklist_report.png" alt="Assessment Checklist Report">
+              </picture>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

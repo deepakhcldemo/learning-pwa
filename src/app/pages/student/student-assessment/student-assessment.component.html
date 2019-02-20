@@ -1,0 +1,39 @@
+<!-- Div for Assessment List of selected student -->
+<div class="assessment">
+  <div class="card-header section-header" role="definition">
+    <button *ngIf="exportStatus" class="open-export icon-button__color item-container--focus"
+      (click)="openExportPopup()"
+      aria-label="Export button, click to export the assessment details for this student in an excel sheet"
+      [attr.tabindex]="tabIndexStatus && studentDetailsStatus? 0: -1"
+      [disabled]="!students.length || !assessmentArrayData.length">
+      <i class="icon-assign icon-assign__margin"></i>
+      <span class="export__font" role="presentation">Export</span>
+    </button>
+  </div>
+  <div class="item-container ps" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="isMobileView? true : false"
+    *ngIf="assessmentArrayData.length">
+    <div class="card-header__assessmentchecklist item-container--focus"
+      *ngFor="let item of assessmentArrayData|uniqueArray:'path'; let k = index;" (click)="openAssessment(item)"
+      (keyup.enter)="openAssessment(item)"
+      attr.aria-label="Assessment Details, Assessment Path {{item?.path?.split('>').join(' ')}}, Assessment Type {{item?.assessment?.type}}, Assessment Title {{item?.assessment?.title}}, click to go to the respective assessment page"
+      [attr.tabindex]="tabIndexStatus && studentDetailsStatus? 0: -1">
+      <div class="assessment__tdata">
+        <p class="assessment__checklist">{{item.path}}</p>
+        <p class="assessment__rows" *ngIf="item?.assessment?.type == 'checklist'"><i
+            class="icon-observational_assessment icon-observational_assessment-inverted" aria-hidden="true"></i>
+          Assessment Checklist</p>
+        <p class="assessment__rows" *ngIf="item?.assessment?.type == 'ongoing'"><i class="icon-assessment"
+            aria-hidden="true"></i>
+          Ongoing Assessment</p>
+        <p class="assessment__title">{{item?.assessment?.title}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="no-record item-container--focus" *ngIf="showNoAssessment"
+    [attr.tabindex]="tabIndexStatus && studentDetailsStatus? 0: -1" role="presentation">
+    <p>{{noResult}}</p>
+  </div>
+</div>
+<!-- Export Popup -->
+<app-global-modal [popupType]="'export'" [headerTitle]="'Export Completed'" [studentName]='studentName'
+  [dataPreparedCSV]='itemsFormatted'></app-global-modal>

@@ -1,0 +1,178 @@
+@import "../../../../../styles/mixins";
+.chart-container {
+    position: absolute;
+    height: auto;
+    margin: 0;
+    width: 90%;
+    margin: auto;
+    top: -15px;
+}
+
+.inner-table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    height: calc(100vh - 270px);
+    border: 0px;
+    overflow-x: hidden;
+}
+
+/* Displaying count in observation chart. */
+
+table {
+    border: 0px;
+    padding: 0;
+    margin: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    .middle-text {
+        position: relative;
+        text-align: center;
+        font-size: 14px;
+        width: 11px;
+        line-height: 14px;
+        color: $dark-grey;
+    }
+}
+
+.header-caption {
+    display: table-caption;
+    padding-left: 0px;
+}
+
+.cell-table {
+    text-align: left;
+    color: $dark-grey;
+}
+
+/* Applied style on student name and outer area. */
+
+.student-cell {
+    color: $dark-grey;
+    font-family: $font-family-cabin;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: right;
+    width: 24%;
+}
+
+.cell-width {
+    height: 5px;
+    width: 7.5%;
+}
+
+.device-view--mobile {
+    display: none;
+}
+
+.device-view--desktop {
+    display: block;
+}
+
+/* Applied style on cell with borders. */
+
+.cell-withborder {
+    height: 5px;
+    border-right: 1px solid #ccc;
+    width: 7.5%;
+}
+
+.cell-border {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.scrollable-table {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    overflow-y: auto;
+    margin-top: 25px;
+}
+
+.chart-table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    position: absolute;
+    height: auto;
+    border: 0px;
+    overflow-x: hidden;
+}
+
+/* Styling student's full name. */
+
+.ellipses {
+    padding-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+    float: right;
+    text-transform: capitalize;
+}
+
+.cell-bar {
+    width: 75%;
+    padding: 5px 0px;
+}
+
+/* Applied style on outer chart. */
+
+.chart-outer-bar {
+    background: $search-placeholder-color;
+    display: flex;
+    height: 36px;
+    border-radius: 2px;
+    width: 100%;
+}
+
+/* Styling the count of chart according to interval. */
+
+.chart-inner-bar {
+    background: $lightblue;
+    display: flex;
+    height: 36px;
+    border-radius: 2px;
+}
+
+.no-student-msg {
+    letter-spacing: 0.45px;
+    font-weight: 600;
+    margin-top: 30px;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    table {
+        .middle-text {
+            font-size: 10px;
+        }
+    }
+    .inner-table {
+        height: calc(100vh - 315px);
+    }
+    .device-view--mobile {
+        display: block;
+    }
+    .device-view--desktop {
+        display: none;
+    }
+    .ellipses {
+        white-space: nowrap;
+        width: 140px;
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .ellipses {
+        white-space: nowrap;
+        width: 60px;
+        font-size: 15px;
+    }
+    .chart-outer-bar {
+        width: 100%;
+    }
+}

@@ -1,0 +1,19 @@
+<!--Start of Program List Dropdown-->
+<div class="program-list--container" *ngIf="allProgramList.length > 0">
+  <div class="program-title--position"> Program </div>
+  <div class="dropdown program-dropdown--position">
+    <button class="btn program-menu--selector program-dropdown-toggle" type="button" data-toggle="dropdown">
+      <span class="caret">{{currentSelectedProgram?.program?.titleInSequence}}</span><img class="down-arrow" src="../../../../assets/icons/drop-down-arrow.svg"
+        alt="down arrow"></button>
+    <ul class="dropdown-menu col-without-padding program-list--style">
+      <li class="program-menu--options" *ngFor="let programObj of allProgramList"
+        (click)="setCurrentProgram(programObj)">{{programObj?.program?.titleInSequence | truncate : classNameLength}}</li>
+    </ul>
+  </div>
+</div>
+<!--End of Program List Dropdown-->
+<!--Start of No Program Section-->
+<div class="dropdown program-dropdown--position no-program" *ngIf="allProgramList.length === 0">
+  <span class="no-program--message">No Program Available</span>
+</div>
+<!--End of No Program Section-->

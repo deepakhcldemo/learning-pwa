@@ -1,0 +1,27 @@
+<!-- Div for Media list for selected student -->
+<div class="row item-container ps" [perfectScrollbar]="perfectScrollbarConfig" [disabled]="false" role="definition">
+  <div class="media-list--column item-container--focus" *ngFor="let item of studentMedia; let media = index;" (click)="openMediaPopup(item)"
+    (keyup.enter)="openMediaPopup(item)" attr.aria-label="Media Details, Media Type {{item.mediakind}}, Media caption is
+      {{item.caption}} and catured date is {{item?.createdat?.seconds|dateFormat :'MM/DD/YYYY'}}, click to open in a slider"
+    [attr.tabindex]="tabIndexStatus && studentDetailsStatus? 0: -1">
+    <div class="media-list--image-placeholder" role="img">
+      <img *ngIf="item.mediakind === 'image'" [src]="item.path" alt="Image" width="221" height="168" (click)="openMediaPopup(item);"
+        class="media-list--image-placeholder">
+      <img *ngIf="!(item.mediakind === 'image') && (!(item.mediakind ==='video'))" src="../../../assets/images/no-image.png"
+        width="221" height="168" alt="Image" (click)="openMediaPopup(item)" class="media-list--image-placeholder">
+      <video *ngIf="item.mediakind ==='video'" controls class="media-list--image-placeholder" width="221px" height="168px"
+        (click)="openMediaPopup(item)">
+        <source src="{{item.path}}" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="media-list--caption" role="presentation">
+      <p class="media-list--caption__picture" title="{{item.caption}}">{{item.caption|truncate:30}}</p>
+      <p class="media-list--caption__date">{{item?.createdat?.seconds|dateFormat
+        :'MM/DD/YYYY'}}</p>
+    </div>
+  </div>
+  <div class="no-record item-container--focus" *ngIf="showNoMedia || students.length == 0" [attr.tabindex]="tabIndexStatus && studentDetailsStatus? 0: -1" role="status">
+    <p>{{noResult}}</p>
+  </div>
+</div>

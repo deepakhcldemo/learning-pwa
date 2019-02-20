@@ -1,0 +1,46 @@
+<div class="card card-container to-do__text-align item-container--focus" role="region">
+    <div class="card-header card-header-container">
+        <h5>{{toDoActivityHeading}}</h5>
+    </div>
+    <div class="card-body card-body--position ps" [perfectScrollbar]="perfectScrollbarConfig" [ngStyle]="{'max-height':contentHidden ? '222px' : 'unset'}"
+        [disabled]="isMobileView? true : false">
+        <div [ngClass]="{'card-body card-body--position': isMobileView}">
+            <div *ngIf="recenttoDo && recenttoDo.length > 0">
+                <ul class="row ul-padding-left notes-list-row" *ngFor="let todo of recenttoDo">
+                    <li class="row notes-list item-container--focus" (keyup.enter)="editNotesToggle(todo)" *ngIf="todo.flagged"
+                        (click)="editNotesToggle(todo)" style="cursor: pointer;" [attr.tabindex]="todoTabindexStatus? 0: -1"
+                        attr.aria-label="Notes {{todo?.comment}} with due date {{todo?.flaggeddate?.seconds|dateFormat}}">
+                        <div>
+                            <span class="notes-list--title" title="{{todo.comment}}">{{todo?.comment}}</span>
+                        </div>
+                        <div *ngIf="(todo.student.length == 1)">
+                            <span class="notes-list--gavatar">{{todo?.student[0]?.avatar}}</span>
+                            <span class="notes-list--name">{{todo?.student[0]?.fullName}}</span>
+                            <span class="notes-list--date"> Due {{todo?.flaggeddate?.seconds|dateFormat}}</span>
+                        </div>
+                        <div *ngIf="(todo.student.length != 1)">
+                            <div *ngIf="(todo.student.length > 1)" class="to-do-display">
+                                <span class="notes-list--gavatar">{{todo?.student[0]?.avatar}}</span>
+                                <span class="notes-list--name" *ngIf="todo.student.length>1">{{todo.student[0]?.fullName}}
+                                    and {{todo.student?.length-1}} {{todo.student?.length-1==1?'other':'others'}}</span></div>
+                            <span class="notes-list--date"> Due {{todo?.flaggeddate?.seconds|dateFormat}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="notes-list--no-record-msg" *ngIf="recenttoDo.length===0"> no record found</div>
+        </div>
+    </div>
+    <div class="notes-list--more__button" *ngIf="contentHidden && recenttoDo.length > 3">
+        <span class="notes-list--less__button" (click)="toggleContentHidden()">
+            <div class="icon-rotate-more">
+                <i class="icon-chevron"></i>
+            </div> more
+        </span>
+    </div>
+    <div class="notes-list--more__button" *ngIf="!contentHidden">
+        <span class="notes-list--less__button" (click)="toggleContentHidden()">
+            <div class="icon-rotate-less">
+                <i class="icon-chevron"></i></div> less
+        </span></div>
+</div>

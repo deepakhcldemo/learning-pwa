@@ -1,0 +1,96 @@
+<!--Start of dashboard page main section-->
+<main aria-live="polite">
+  <div class="page-container">
+    <!--teacher class selector present in shared module-->
+    <app-teacher-class *ngIf="classSelectorStatus"></app-teacher-class>
+    <!--program list selector present in shared module-->
+    <app-program-list selectedClass="currentSelectedClass"></app-program-list>
+    <div class="dashboard-row row--custom">
+      <button
+        type="button"
+        class="btn navbar-toggler all-assessment-button"
+        id="sidebarCollapse"
+        (click)="toggleAssessSideBarAcordian()"
+        aria-label="All button, press enter to open assessment sidebar navigation"
+        [attr.tabindex]="dashboardTabindexStatus ? 0 : -1"
+      >
+        <i
+          class=" navbar-toggler-icon navbar-toggler-custom-icon icon-menu_open"
+        ></i
+        ><span class="align-middle">All Assessments</span>
+      </button>
+      <button
+        type="button"
+        *ngIf="showRecent"
+        class="btn navbar-toggler recent-button"
+        id="sidebarCollapse"
+        (click)="goToMostRecent()"
+        [attr.tabindex]="dashboardTabindexStatus ? 0 : -1"
+        aria-label="Recent"
+      >
+        <i class="navbar-toggler-icon icon-clock recent-button__color"></i>
+        <span class="align-middle">Go To Most Recent</span>
+      </button>
+    </div>
+
+    <div class="dashboard-row row-without-margin-carousel" tabindex="-1">
+      <div class="col-sm-12 col-12 col-md-12 carousel-container-padding">
+        <!--Slick Carousel Selector present in Shared Module-->
+        <app-carousel [showRecent]="recent"></app-carousel>
+      </div>
+      <div
+        class="dashboard-row row-without-margin recent-todo-container--padding"
+      >
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+          <!--selector element from recent-activity component present in shared module-->
+          <app-recent-activity
+            (valueChange)="toggleEditNote($event)"
+            (valueMediaPopupChange)="toggleEditMedia($event)"
+          ></app-recent-activity>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+          <!--Selector from to-do component present in shared module-->
+          <app-to-do (valueChange)="toggleEditNote($event)"></app-to-do>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<!--End of dashboard page main section-->
+
+<!--Start of Accordian/TOC Section-->
+<div
+  class="overlay"
+  (click)="toggleAssessSideBarAcordian()"
+  [ngClass]="{ active: toggleAssessment }"
+  aria-hidden="true"
+></div>
+<div
+  class="wrapper"
+  @slideInOut
+  *ngIf="toggleAssessment"
+  [ngClass]="{ active: toggleAssessment }"
+  aria-hidden="!toggleAssessment"
+>
+  <!--remove autofocus on this button-->
+  <div
+    id="sidebar"
+    class="accordion accordion-container"
+    aria-label="SideBar Navigation for assessment"
+  >
+    <div class="sidebar-header">
+      <h4 class="sidebar-header-heading">Assessments</h4>
+      <!--remove autofocus on this button--><button
+        id="asessment_close_button"
+        class="btn icon-exit exit-icon__height icon__button"
+        (click)="toggleAssessSideBarAcordian()"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="nav-item--scroll">
+      <!--Selector from accordian component present-->
+      <app-accordion></app-accordion>
+    </div>
+  </div>
+</div>
+<!--End of Accordian/TOC Section-->

@@ -1,0 +1,44 @@
+{
+    "grade": [
+        {
+            "id": 1,
+            "name": "grade1",
+            "shortname": "G1",
+            "sequence": "",
+            "createdAt": "",
+            "updatedAt": "",
+            "deleted": false,
+            "version": ""
+        },
+        {
+            "id": 2,
+            "name": "grade2",
+            "shortname": "G2",
+            "sequence": "",
+            "createdAt": "",
+            "updatedAt": "",
+            "deleted": false,
+            "version": ""
+        },
+        {
+            "id": 3,
+            "name": "grade3",
+            "shortname": "G3",
+            "sequence": "",
+            "createdAt": "",
+            "updatedAt": "",
+            "deleted": false,
+            "version": ""
+        },
+        {
+            "id": 4,
+            "name": "grade4",
+            "shortname": "G4",
+            "sequence": "",
+            "createdAt": "",
+            "updatedAt": "",
+            "deleted": false,
+            "version": ""
+        }
+    ]
+}

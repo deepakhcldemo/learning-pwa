@@ -1,0 +1,60 @@
+{
+  "type": "checklist",
+  "title": "Assessment Checklist 3",
+  "id": "CHECKLIST_3",
+  "keywords": ["checklist", "assessment", "3"],
+  "criteria": [
+    {
+      "id": "CHK_3_CRIT_2",
+      "title": "Checklist criteria 2",
+      "sequence": 2,
+      "tags": [
+        {
+          "title": "Criteria tag 1",
+          "description": "This is the description of criteria tag 1"
+        },
+        {
+          "title": "Criteria tag 2",
+          "description": "This is the description of criteria tag 2"
+        }
+      ]
+    },
+    {
+      "id": "CHK_3_CRIT_1",
+      "title": "Checklist criteria 1",
+      "sequence": 1,
+      "tags": [
+        {
+          "title": "Criteria tag 2",
+          "description": "This is the description of criteria tag 2"
+        },
+        {
+          "title": "Criteria tag 3",
+          "description": "This is the description of criteria tag 3"
+        }
+      ]
+    },
+    {
+      "id": "CHK_3_CRIT_3",
+      "title": "Checklist criteria 3",
+      "sequence": 3,
+      "tags": [
+        {
+          "title": "Criteria tag 3",
+          "description": "This is the description of criteria tag 3"
+        }
+      ]
+    },
+    {
+      "id": "CHK_3_CRIT_4",
+      "title": "Checklist criteria 4",
+      "sequence": 4,
+      "tags": [
+        {
+          "title": "Criteria tag 4",
+          "description": "This is the description of criteria tag 4"
+        }
+      ]
+    }
+  ]
+}

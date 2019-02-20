@@ -1,0 +1,233 @@
+@import "../../../../styles/mixins";
+
+.custom-control {
+  padding-left: 0px;
+  color: $black;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: $black;
+}
+
+.section-header {
+  padding-left: 8px;
+  height: 47px;
+}
+
+/*Format The Edit ActionBar.*/
+
+.card-header__editactionbar {
+  padding-left: 0.25rem;
+}
+
+.notes-section {
+  height: calc(100% - 108px);
+  position: inherit;
+}
+
+.notes-section--edit,
+.notes-section--cancel,
+.notes-section--remove {
+  margin-left: 8px;
+  margin-right: 12px;
+  cursor: pointer;
+  position: unset;
+  right: unset;
+  padding-top: unset;
+}
+
+button:disabled,
+button[disabled] {
+  color: $lightest-grey;
+  cursor: not-allowed;
+  i {
+    cursor: not-allowed;
+  }
+}
+
+.icon-button__color {
+  background: transparent;
+  font-family: $font-family-cabin !important;
+  color: $white;
+  outline: none;
+  border: none;
+  padding-top: 8px;
+}
+
+/*Format The Edit Tab.*/
+.card-header__edit {
+  font-size: 13px;
+  margin-right: unset;
+}
+
+.item-container {
+  position: absolute;
+  width: 100%;
+  height: inherit;
+  overflow-y: auto;
+}
+
+.notes-section--notes {
+  display: flex;
+  border-bottom: 0.5px $lightest-grey solid;
+  width: 100%;
+  padding-top: 20px;
+  padding-right: 0px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+}
+
+/*Format The CheckBox On Enabling The Edit.*/
+.card-header__checkbox {
+  display: inline-block;
+  margin-right: 21px;
+}
+
+/*Formatted On The CheckBox Container.*/
+.checkbox-container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid $white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/*Formatted On The CheckBox Container.*/
+.checkbox-container {
+  margin-bottom: 20px;
+}
+
+/*Applied On The Notes Section While Selecting The Particular Note.*/
+.to-do {
+  display: inline-block;
+}
+
+/*Format The ToDo Tab.*/
+
+.to-do__div {
+  float: left;
+  margin-right: 12px;
+  width: 100px;
+}
+
+/*Handling The To Do Portion Of The Notes.*/
+.to-do__todoSpan {
+  width: 80px;
+  font-size: 14px;
+  float: left;
+  margin-right: 2%;
+  background: $sign-green;
+  padding: 0 20.5px;
+  color: $white;
+}
+
+/*Format The Date Section Below The ToDo Tab.*/
+
+.to-do__dueSpan {
+  float: left;
+  font-size: 14px;
+  border: 1px solid $grey;
+  width: 80px;
+  text-align: center;
+}
+
+/*Formatting The Css For New Notes Added Respective To The Tagged Student */
+
+.cardheader__addednotes {
+  display: inline-block;
+  font-size: 20px;
+}
+
+// /*Formatting The Css For New Notes Added Respective To The Tagged Student */
+
+// .cardheader__addednotes--comment {
+//   cursor: pointer;
+// }
+
+.gavatarstudents {
+  margin-left: -3px;
+  display: inline-block;
+}
+
+/*Helps In Formatting Css By Adding The Credentials Of Taggged Students Name In:
+*The Student List
+* In The Notes Section*/
+
+.gavatar {
+  color: $white;
+  background-color: $avatar-blue;
+  display: inline-block;
+  font-family: $font-family-cabin;
+  font-size: 16px;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  // margin: 1px 15px 1px -7px !important;
+  text-align: center;
+}
+
+/*Css Applied For Displaying The First Credential Of Tag Students Name*/
+.gavatarstudents__icon {
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 11px !important;
+  line-height: 24px !important;
+  margin-left: -5px !important;
+  margin-right: 15px !important;
+}
+
+/*Css Applied For Displaying The  Credential Of Tag Students Name*/
+.gavatarstudents__studentname {
+  font-size: 14px;
+  margin-right: 15px;
+}
+
+/*Css Applied For Displaying The Credential Of Tag Students */
+
+.gavatarstudents__studentlength {
+  margin-left: -9px;
+  font-size: 14px;
+  font-family: $font-family-cabin;
+}
+
+/*Format The CSS For The Students List Displayed On The Left Side*/
+.no-record {
+  width: 100%;
+  color: $black;
+  font-size: 20px;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .item-container {
+    position: unset;
+  }
+
+  .section-header {
+    height: 39px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .icon-button__color {
+    padding-top: unset;
+  }
+
+  .card-header__edit {
+    margin-right: -4px;
+  }
+
+  .notes-section--remove {
+    position: absolute;
+    right: 0px;
+    padding-top: 3px;
+  }
+
+  .gavatarstudents {
+    display: block;
+  }
+}

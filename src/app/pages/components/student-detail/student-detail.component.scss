@@ -1,0 +1,298 @@
+@import "../../../../styles/mixins";
+/** 
+  below CSS is used for smooth scrolling for I-pad
+**/
+
+* {
+    -webkit-overflow-scrolling: touch;
+}
+
+.student-container {
+    width: 100%;
+    pointer-events: auto;
+    cursor: pointer;
+    background: unset;
+}
+
+/* Applied styles on student name. */
+
+.student-header {
+    font-size: 20px;
+    color: $white;
+    padding: 5px 10px 10px 10px;
+    background-color: $blue;
+    margin: 0px;
+    height: 78.53px;
+}
+
+.student-container--margin {
+    line-height: 60px;
+    font-size: 24px;
+}
+
+.btn__font {
+    padding: 0px;
+    font-size: 20px;
+}
+
+/* Applied to icon and is hidden in desktop mode. */
+
+.icon-any {
+    padding: 21px 0px;
+    position: absolute;
+    color: $header-icon-color;
+    font-family: $font-family-k12_universal_icons;
+    font-size: 24px;
+    left: -5px;
+}
+
+/* Applies style on the student full name. */
+
+.student--name {
+    padding-left: 25px;
+    height: auto;
+    color: $header-icon-color;
+    font-family: $font-family-cabin;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    line-height: 18px;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: ellipsis;
+    max-width: 180px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 180px;
+    text-transform: capitalize;
+}
+
+/* Applies style on the Edit button. */
+
+.editbutton-container {
+    float: right;
+    right: 0px;
+    font-size: 18px;
+}
+
+.editbutton__font {
+    font-size: 14px;
+    line-height: 16px;
+    font-family: "Cabin" !important;
+}
+
+.editbutton__font--remove {
+    float: right;
+}
+
+/* Applies style on the Cancel button. */
+
+.editbutton--cancel {
+    cursor: pointer;
+    padding-top: 12px;
+    padding-left: initial;
+    font-family: "Cabin" !important;
+}
+
+/* Applies style on the Remove button. */
+
+.editbutton--remove {
+    position: absolute;
+    right: 10px;
+    padding-top: 20px;
+    cursor: pointer;
+    font-family: "Cabin" !important;
+}
+
+/* Applies scroll bar on the student list. */
+
+.student-item-list {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: calc(100% - 140px);
+    padding: 5px;
+    position: absolute;
+    width: 100%;
+}
+
+.student-item-row {
+    padding: 7px;
+}
+
+/* Applies style on comment line. */
+
+.comment-container {
+    min-width: 100px;
+}
+
+.comment--style {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.custom-control-input:focus {
+    left: 0px;
+    width: 24px !important;
+    height: 24px !important;
+    box-shadow: 0 0 0 0.2rem $sine-blue;
+    z-index: unset !important;
+}
+
+/* Applies style on date. */
+
+.comment--date {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.student-list--style {
+    padding: 0px;
+    text-align: left;
+}
+
+.comment-type--style {
+    word-break: break-word;
+    cursor: pointer;
+    text-align: left;
+    white-space: initial;
+}
+
+.comment-type--media {
+    width: 100%;
+    height: 130px;
+    cursor: pointer;
+}
+
+.student-item-list--blank {
+    color: $dark-grey;
+    text-align: center;
+    padding-top: 200px;
+}
+
+.disable-click-event {
+    pointer-events: none;
+}
+
+.image-placeholder {
+    border: 2px solid $white-grey;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Applies style on complete section of comment. */
+
+.comment-section {
+    z-index: 100;
+    bottom: 2px;
+    border: 1px solid $white-grey;
+    width: 400px;
+    padding: 0 10px;
+    background: $endeavour;
+    position: absolute;
+}
+
+/* Applies style on inner section of comment. */
+
+.comment-section--inner {
+    margin: 8px 0px;
+    border: 1px solid;
+    height: 42px;
+    display: flex;
+    background: $white;
+    border-color: $light-grey;
+    border-radius: 5px;
+}
+
+.comment-student--add {
+    display: flex;
+    width: 100%;
+}
+
+input::placeholder {
+    color: $light-grey;
+}
+
+/* Applies style on the student comment. */
+
+.save-comment {
+    border: none;
+    font-size: 20px;
+}
+
+.media-upload__button {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+/* Applies style on the camera in the comment section. */
+
+.image-file {
+    display: none;
+}
+
+.btn__font--capture {
+    font-size: 30px;
+    color: $avatar-blue;
+}
+
+/* Applies style on the icon of the camera in the comment section. */
+
+.icon-camera {
+    right: 0px;
+    position: relative;
+}
+
+@-moz-document url-prefix() {
+    .editbutton-container {
+        bottom: 30px !important;
+    }
+}
+
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+    .comment-type--media {
+        width: 400px;
+        height: 220px;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .student-header {
+        height: 54px;
+    }
+    .student-container--margin {
+        line-height: 38px;
+        font-size: 20px;
+    }
+    .btn__font {
+        font-size: 18px;
+    }
+    .icon-any {
+        padding: 12px 0px;
+    }
+    .gavatar {
+        left: 10px !important;
+    }
+    .student--name {
+        width: 160px;
+    }
+    .editbutton--cancel {
+        padding-top: 3px;
+        padding-left: 3px;
+    }
+    .editbutton--remove {
+        padding-top: 5px;
+    }
+    .student-item-list {
+        height: calc(100% - 118px);
+    }
+    .comment-section {
+        z-index: 100;
+        bottom: 2px;
+        border: 1px solid $white-grey;
+        width: 100%;
+        background: $endeavour;
+    }
+}

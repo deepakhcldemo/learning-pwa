@@ -1,0 +1,80 @@
+@import "../../../../styles/mixins";
+
+.item-container {
+  position: absolute;
+  height: calc(100% - 62px);
+  width: 100%;
+  overflow-y: auto;
+}
+
+/*Holding The Format And Design Structure Of All Media Including Images And Videos.*/
+.media-list--column {
+  margin-top: 20px;
+  margin-right: 6px;
+  margin-left: 20px;
+}
+
+/*Holding The Format And Design Structure Of All Media Including Images And Videos.*/
+
+.media-list--image-placeholder {
+  width: 221px;
+  height: 168px;
+  border: 1px solid $light-grey;
+  cursor: pointer;
+  background-color: $grey;
+}
+
+/*Holding The Format And Design Structure Of All Media  Caption (ie. Name)Including Images And Videos.*/
+
+.media-list--caption {
+  padding-left: 0px;
+}
+
+/*Holding The Format And Design Structure Of All Media Caption (ie. Name)Including Images And Videos.*/
+.media-list--caption__picture {
+  font-family: $font-family-cabin;
+  color: $blue;
+  font-size: 18px;
+  margin-bottom: 0px;
+  max-width: 208px;
+  height: 20px;
+}
+
+/*Applied To The Date Displayed Along With The Media Caption*/
+
+.media-list--caption__date {
+  font-size: 12px;
+  color: $light-grey;
+  padding-top: 0px;
+}
+
+/*Format The CSS For The Students List Displayed On The Left Side*/
+.no-record {
+  width: 100%;
+  color: $black;
+  font-size: 20px;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .item-container {
+    position: unset;
+  }
+  .media-list--column {
+    margin-right: 0px;
+    margin-left: 11px;
+    margin-top: 10px;
+  }
+
+  .media-list--image-placeholder {
+    width: 146px;
+    height: 120px;
+    border: 1px solid $light-grey;
+    cursor: pointer;
+    background-color: $grey;
+  }
+
+  .media-list--caption__picture {
+    max-width: 162px;
+  }
+}

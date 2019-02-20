@@ -1,0 +1,182 @@
+@import "../../../../styles/mixins";
+/* Applied style on header. */
+
+.card {
+    border-radius: 0 !important;
+}
+
+.header {
+    background-color: $black;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    color: $white;
+    text-align: center;
+    padding: 0rem;
+    height: 44px;
+    z-index: 100;
+}
+
+.header-heading {
+    margin-top: 8px;
+}
+
+/*class for header title*/
+
+.header-heading {
+    font-size: 22px;
+    line-height: 1.7;
+    margin-top: 4px !important;
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        background-color: $blue;
+        width: 100%;
+        color: $white;
+        padding: 5px;
+        height: 56px;
+    }
+    /*class for header title*/
+    .header-heading {
+        font-size: 20px;
+        max-width: 201px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        line-height: 44px;
+    }
+}
+
+@media screen and (min-width: 1366px) {
+    .header {
+        max-width: 1366px;
+    }
+}
+
+/* Applied style on the logo of the application. */
+
+.logo {
+    cursor: pointer;
+    position: absolute;
+    height: 100%;
+    width: 175px;
+    left: 3px;
+    top: 0px;
+    background-repeat: no-repeat;
+    background-size: 165px;
+    background-position: 5px center;
+    background-image: url("../../../../assets/images/scout-logo@2x.png");
+}
+
+@media screen and (max-width: 768px) {
+    .logo {
+        height: 100%;
+        width: 45px;
+        top: 0px;
+        background-repeat: no-repeat;
+        background-size: 35px;
+        background-position: 5px center;
+        background-image: url("../../../../assets/images/rs-rev.png");
+    }
+}
+
+/* Applied style on the header, logo of the header. */
+
+.card-body {
+    flex: 1 1 auto;
+    font-family: $font-family-cabin;
+    padding: 0;
+}
+
+/* Applied style on the title of the header. */
+
+.header-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: $header-title-color;
+    margin-bottom: -25px !important;
+    border-left: 3px solid grey;
+    position: absolute;
+    left: 185px;
+    padding-left: 10px;
+    height: 42px;
+}
+
+@media screen and (max-width: 768px) {
+    .header-title {
+        font-size: 24px;
+        max-width: 413px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-left: -21px;
+        line-height: 50px;
+        border-left: none;
+        position: unset;
+        left: unset;
+        height: unset
+    }
+}
+
+.card {
+    border-radius: 0 !important;
+}
+
+/* Applied style on the camera and is hidden in desktop mode. */
+
+.camera-capture-header {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .camera-capture-header {
+        display: flex;
+        position: absolute;
+        top: 8px;
+        right: 40px;
+    }
+}
+
+/* Applied style on the header which displays "Choose File" and is hidden in desktop mode. */
+
+.camera-capture-header__input {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    /* Applied style on the camera in header and is hidden in desktop mode. */
+    .icon-camera {
+        font-size: 24px;
+        color: $white;
+    }
+    .header-icon {
+        display: none;
+        top: 5px;
+    }
+    .header-logo {
+        height: 200px;
+        width: 100%;
+        background-color: $blue;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    /*class for header title*/
+    .header-heading {
+        font-size: 20px;
+        max-width: 201px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        line-height: 44px;
+    }
+}
+
+.class-selector-status {
+    display: inline-block;
+    &.active {
+        display: none;
+    }
+}
